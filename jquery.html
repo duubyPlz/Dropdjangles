@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#hide").click(function(){
+			$("p").hide();
+		});
+		$("#show").click(function(){
+			$("p").show();
+		})
+		//slider of box a
+		$("a").click(function() {
+        	$(this).next().slideToggle(); 
+    	});
+    	//required to make things start collapsed for sliders
+    	 $("a").ready(function(){ 
+			$("a").next('div').hide(); 
+		});
+    	 $("h2").hover(function(){
+    	 	$("b").show();
+    	 },
+    	 function(){
+    	 	$("b").hide();
+    	 });
+    	 $("b").hide();
+    	 $("input").focus(function(){
+    	 	$(this).css("background-color", "#cccccc")
+    	 });
+    	 $("input").blur(function(){
+    	 	$(this).css("background-color", "#ffffff")
+    	 });
+	});
+
+	</script>
+</head>
+<style>
+	p{
+		font-family: "Arial";
+		font-size: 15px;
+		color: blue;
+	}
+	h2{
+		font-family: "Calibri";
+		color: red;
+	}
+	*{
+		text-align: center;
+		vertical-align: center;
+	}
+</style>
+<body>
+	<div class="jumbotron">
+		 <a>Clickme!</a>
+		 <div id="box" class="clearfix">
+			<h2>This is a heading</h2>
+			<b>This is hidden until you mouseover the heading.</b>
+			<p>This is a paragraph.</p>
+			<p>This is another paragraph.</p>
+
+			<button id = "hide" class = "btn btn-lg btn-success">Click me to hide</button>
+			<br>
+			<button id = "show" class = "btn btn-lg btn-danger">Click me to show</button>
+		</div>
+		<div id="someInputs">
+			Username: <input type="text" name="Username"><br>
+			Password:  <input type="password" name="Password"><br>
+		</div>
+	</div>
+</body>
+</html>
