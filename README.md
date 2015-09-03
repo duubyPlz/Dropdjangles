@@ -1,2 +1,2 @@
-# COMP2021 Assignment
-Dropjangles timetabling web application
+# Dropdjangles
++# This is a UNSW SENG2021 s2 Project
