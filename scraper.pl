@@ -31,7 +31,7 @@ foreach $subject (<STDIN>) {
         #print "+----------------------+\n";
         $url = "http://www.timetable.unsw.edu.au/$currYear/$subject.html";
         #open SITE, "wget -q -O- $url" or die; # for some reason this doesnt work for me
-        $content = `wget -q -O- "$url"` or die;
+        $content = `wget -q -O- "$url"` or die "$!";
         @content = split(/\n/m, $content);
 
         #flags and counters
