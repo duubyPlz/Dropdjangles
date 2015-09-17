@@ -22,6 +22,6 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TemplateView.as_view(template_name='mainView.html'), name='home'),
+    url(r'^$', TemplateView.as_view(template_name='test.html'), name='home'),
     url(r'^admin/', include(admin.site.urls)),
 )

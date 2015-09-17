@@ -5,7 +5,7 @@ from timetable.serializers import TimetableSerializer, ClassSerializer
 class Timetable(SelfPublishModel, models.Model):
     serializer_class = TimetableSerializer
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    
 
 class Class(SelfPublishModel, models.Model):
     serializer_class = ClassSerializer
