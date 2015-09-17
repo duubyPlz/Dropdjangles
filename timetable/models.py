@@ -14,20 +14,27 @@ class Course(SelfPublishModel, models.Model):
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
 class Class(SelfPublishModel, models.Model):
     serializer_class = ClassSerializer
-    LECTURE = 0
-    TUTORIAL = 1
-    LAB = 2
     TYPES = (
-        (LECTURE, 'Lecture'),
-        (TUTORIAL, 'Tutorial'),
-        (LAB, 'Lab'),
+        (0, 'Lecture'),
+        (1, 'Tutorial'),
+        (2, 'Lab'),
+    )
+    DAYS = (
+        (0, 'Monday'),
+        (1, 'Tuesday'),
+        (2, 'Wednesday'),
+        (3, 'Thursday'),
+        (4, 'Friday'),
+        (5, 'Saturday'),
+        (6, 'Sunday'),
     )
     timetable = models.ForeignKey(Timetable)
     name = models.CharField(max_length=10) 
-    classtype = models.IntegerField(default=LECTURE, choices=TYPES)
+    classtype = models.IntegerField(default=0, choices=TYPES)
     timeFrom = models.IntegerField()
     timeTo = models.IntegerField()
-  
+    day = models.IntegerField(default=0, choices=DAYS)
+
 '''  
 class SearchForm(SelfPublishModel, models.Model):
     class Meta:
