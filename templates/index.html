@@ -1,39 +1,278 @@
-{% load static swampdragon_tags %}
 <!DOCTYPE html>
-<html ng-app="TodoApp">
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>test</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static "font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "http://fonts.googleapis.com/css?family=Montserrat:400,700" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
-    {% verbatim %}
-        <div ng-controller="TodoListCtrl">
-            <h3>{{ todoList.name }}</h3>
-            <pre>{{ todoList.description }}</pre>
 
-            <ul>
-                <li ng-repeat="item in todoItems">
-                    {{ item.text }}
-                    <button type="button" ng-click="itemDone(item)">
-                        check
-                    </button>
-                    <span ng-show="item.done">done!</span>
-                </li>
-            </ul>
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Dropjangles</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    {% endverbatim %}
+        <!-- /.container-fluid -->
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar-nav-fixed affix">
+                <div class="well">
+                        <select class='form-control'>
+                        	<option value='asdf'>asdf</option>
+                    		<option value='tet'>COMP2041</option>
+                    		<option value='asdf'>MATH1231</option>
+                    	</select>
+                    <ul class="nav ">
+                        <li class="nav-header">Classes</li>
+                        <li class="active"><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li class="nav-header">Sidebar</li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li class="nav-header">Sidebar</li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                        <li><a href="#">Link</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/sidebar-nav-fixed -->
+        </div>
+        <!--/span-->
+    	<div>
+		<table class="table" style="width:60% " id="tableTest" align="center" border="1">
+            <tr id="Days">
+                <td></td>
+                <td>Monday</td>
+                <td>Tuesday</td>
+                <td>Wednesday</td>
+                <td>Thursday</td>
+                <td>Friday</td>
+                <td>Saturday</td>
+                <td>Sunday</td>
+    		<tr id="9:00 am">
+    			<td>9:00 am</td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr>
+    		<tr id="10:00 am">
+    			<td>10:00 am</td>
+				<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
 
-    <!-- AngularJS -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
+    		<tr id="11:00 am">
+    			<td>11:00 am</td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr>
+    		<tr id="12:00 pm">
+    			<td>12:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr>
+    		<tr id="1:00 pm">
+    			<td>1:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="2:00 pm">
+    			<td>2:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="3:00 pm">
+    			<td>3:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="4:00pm">
+    			<td>4:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 	 
+    		<tr id="5:00pm">
+    			<td>5:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="6:00pm">
+    			<td>6:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="7:00pm">
+    			<td>7:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr>  
+    		<tr id="8:00pm">
+    			<td>8:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
+    		<tr id="9:00pm">
+    			<td>9:00 pm</td>	
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    			<td></td> 
+    			<td></td>
+    			<td></td>
+    		</tr> 
 
-    {% swampdragon_settings %}
-    <script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'swampdragon/js/dist/datamapper.js' %}"></script>
-    <script type="text/javascript" src="{% static 'swampdragon/js/angular/services.js' %}"></script>
+		</table>
+	</div>
 
-    <!-- To-do app -->
-    <script type="text/javascript" src="{% static 'app.js' %}"></script>
-    <script type="text/javascript" src="{% static 'controllers.js' %}"></script>
+    <!-- jQuery -->
+    <script src="{% static "js/jquery.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" %}"></script>
+    <script src="{% static "js/classie.js" %}"></script>
+    <script src="{% static "js/cbpAnimatedHeader.js" %}"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+    <script src="{% static "js/contact_me.js" %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static "js/freelancer.js" %}"></script>
 
 </body>
+
 </html>
