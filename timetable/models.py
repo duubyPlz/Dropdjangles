@@ -8,8 +8,14 @@ class Timetable(SelfPublishModel, models.Model):
     name = models.CharField(max_length=100)
     
 class Course(SelfPublishModel, models.Model):
+    SEMESTERS = (
+        (0, 'One'),
+        (1, 'Two'),
+    )
     name = models.CharField(max_length=20)
     timetable = models.ForeignKey(Timetable)
+    year = models.IntegerField(default=2015)
+    semester = models.IntegerField(default=0, choices=SEMESTERS)
 
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
 class Class(SelfPublishModel, models.Model):
