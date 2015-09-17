@@ -24,7 +24,7 @@ class Class(SelfPublishModel, models.Model):
     )
     timetable = models.ForeignKey(Timetable)
     name = models.CharField(max_length=10) 
-    classtype = models.IntegerField(choices=TYPES)
+    classtype = models.IntegerField(default=LECTURE, choices=TYPES)
     timeFrom = models.IntegerField()
     timeTo = models.IntegerField()
   
