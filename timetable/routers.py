@@ -19,10 +19,10 @@ class ClassRouter(ModelRouter):
     serializer_class = ClassSerializer
     model = Class
 
-    def get_object(se.f, **kwargs):
+    def get_object(self, **kwargs):
         return self.model.objects.get(pk=kwargs['id'])
     def get_query_set(self, **kwargs):
-        return self.model.objects.filter(todo_list__id=kwargs['list_id']
+        return self.model.objects.filter(todo_list__id=kwargs['list_id'])
 
 route_handler.register(TimetableRouter)
 route_handler.register(ClassRouter)
