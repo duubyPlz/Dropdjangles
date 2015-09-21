@@ -68,7 +68,11 @@
         <div class="col-md-3">
             <div class="sidebar-nav-fixed affix">
                 <div class="well">
-                        {{ Course.name }}
+                    <select>
+                        {% for course in course_list %}
+                            <option value="name">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
                     <ul class="nav ">
                         <li class="nav-header">Classes</li>
                         <li class="active"><a href="#">Link</a>

@@ -8,5 +8,7 @@ from .models import Course
 def index(request):
     course_list = Course.objects.order_by('name')
     template = loader.get_template('../templates/index.html')
-    
-    return HttpResponse(template.render())
+    context = RequestContext(request, {
+        'course_list': course_list,
+    })
+    return HttpResponse(template.render(context))
