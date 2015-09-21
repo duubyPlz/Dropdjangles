@@ -9,3 +9,8 @@ class ClassSerializer(ModelSerializer):
     class Meta:
         model = 'timetable.Class'
         publish_fields = ('name', 'timeFrom', 'timeTo')
+
+class CourseSerializer(ModelSerializer):
+    class Meta:
+        model = 'timetable.Course'
+        publish_fields = ('name', 'year', 'semester')

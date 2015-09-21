@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 
+from timetable import views
+
 from django.contrib import admin
 from django.views.generic import TemplateView
 
@@ -22,6 +24,6 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^$', views.index, name='home'),
     url(r'^admin/', include(admin.site.urls)),
 )

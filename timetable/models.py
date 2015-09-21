@@ -1,13 +1,14 @@
 from django.db import models
 from django.forms import ModelForm
 from swampdragon.models import SelfPublishModel
-from timetable.serializers import TimetableSerializer, ClassSerializer
+from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer
 
 class Timetable(SelfPublishModel, models.Model):
     serializer_class = TimetableSerializer
     name = models.CharField(max_length=100)
     
 class Course(SelfPublishModel, models.Model):
+    serializer_class = CourseSerializer
     SEMESTERS = (
         (0, 'One'),
         (1, 'Two'),
