@@ -1,21 +1,22 @@
-var TodoControllers = angular.module('TodoControllers', []);
+var TodoControllers = angular.module('TimetableControllers', []);
 
-TodoControllers.controller('TodoListCtrl', ['$scope', '$dragon', function ($scope, $dragon) {
-    $scope.todoList = {};
-    $scope.todoItems = [];
-    $scope.channel = 'todos';
+TodoControllers.controller('TimetableCtrl', ['$scope', '$dragon', function ($scope, $dragon) {
+    $scope.timetable = {};
+    $scope.classInstances = [];
+    $scope.channel = 'timetables';
 
     $dragon.onReady(function() {
-        $dragon.subscribe('todo-item', $scope.channel, {todo_list__id: 1}).then(function(response) {
+        
+        $dragon.subscribe('timetable', $scope.channel, {timetable__id: 1}).then(function(response) {
             $scope.dataMapper = new DataMapper(response.data);
         });
 
-        $dragon.getSingle('todo-list', {id:1}).then(function(response) {
-            $scope.todoList = response.data;
+        $dragon.getSingle('timetable', {id:1}).then(function(response) {
+            $scope.timetable = response.data;
         });
 
-        $dragon.getList('todo-item', {list_id:1}).then(function(response) {
-            $scope.todoItems = response.data;
+        $dragon.getList('classInstance', {timetable_id:1}).then(function(response) {
+            $scope.classInstances = response.data;
         });
     });
 
@@ -27,8 +28,10 @@ TodoControllers.controller('TodoListCtrl', ['$scope', '$dragon', function ($scop
         }
     });
 
-    $scope.itemDone = function(item) {
-        item.done = true != item.done;
+    $scope.addClass = function(classInstance) {
+        col = classInstance.base.day;
+        rowfrom = classInstance.base.timeFrom;
+        rowTo = classInstance.base.timeTo;
         $dragon.update('todo-item', item);
     }
 }]);

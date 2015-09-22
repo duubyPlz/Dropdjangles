@@ -14,3 +14,13 @@ class CourseSerializer(ModelSerializer):
     class Meta:
         model = 'timetable.Course'
         publish_fields = ('name', 'year', 'semester')
+
+class CourseInstanceSerializer(ModelSerializer):
+    class Meta:
+        model = 'timetable.CourseInstance'
+        publish_fields = ('base', 'user')
+
+class ClassInstanceSerializer(ModelSerializer):
+    class Meta:
+        model = 'timetable.ClassInstance'
+        publish_fields = ('base', 'user')

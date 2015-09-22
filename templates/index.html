@@ -73,6 +73,7 @@
                             <option value="name">{{ course.name }}</option>
                         {% endfor %}
                     </select>
+                    <button id="addCourse"> Add Course </button>
                     <ul class="nav ">
                         <li class="nav-header">Classes</li>
                         <li class="active"><a href="#">Link</a>
@@ -259,6 +260,9 @@
     <!-- jQuery -->
     <script src="{% static "js/jquery.js" %}"></script>
 
+    <!-- AngularJS -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js" %}"></script>
 
@@ -273,6 +277,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static "js/freelancer.js" %}"></script>
+
+    <!-- Controller -->
+    <script src="(% static "controllers.js" %}></script>
 
 </body>
 
