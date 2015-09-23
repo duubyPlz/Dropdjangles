@@ -61,3 +61,4 @@ class CourseInstance(SelfPublishModel, models.Model):
     user = models.ForeignKey(Timetable)
     def __str__(self):
         return (self.base.name + " " +user.name)
+
