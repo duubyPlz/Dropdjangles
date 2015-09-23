@@ -1,11 +1,13 @@
 from django.db import models
 from django.forms import ModelForm
 from swampdragon.models import SelfPublishModel
-from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer, ClassInstanceSerializer, CourseInstanceSerializer
+from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer
 
 class Timetable(SelfPublishModel, models.Model):
     serializer_class = TimetableSerializer
     name = models.CharField(max_length=100)
+    courses = models.ManyToManyField("Course")
+    classes = models.ManyToManyField("Class")
     def __str__(self):
         return self.name
     
@@ -18,6 +20,7 @@ class Course(SelfPublishModel, models.Model):
     name = models.CharField(max_length=20)
     year = models.IntegerField(default=2015)
     semester = models.IntegerField(default=0, choices=SEMESTERS)
+    students = models.ManyToManyField("Timetable")
     def __str__(self):
         return self.name
 
@@ -45,20 +48,7 @@ class Class(SelfPublishModel, models.Model):
     timeFrom = models.IntegerField()
     timeTo = models.IntegerField()
     day = models.IntegerField(default=0, choices=DAYS)
+    students = models.ManyToManyField("Timetable")
     def __str__(self):
         return self.name
-
-class ClassInstance(SelfPublishModel, models.Model):
-    serializer_class = ClassInstanceSerializer
-    base = models.ForeignKey(Class)
-    user = models.ForeignKey(Timetable)
-    def __str__(self):
-        return (self.base.name + " " + user.name) 
-
-class CourseInstance(SelfPublishModel, models.Model):
-    serializer_class = CourseInstanceSerializer
-    base = models.ForeignKey(Course)
-    user = models.ForeignKey(Timetable)
-    def __str__(self):
-        return (self.base.name + " " +user.name)
 

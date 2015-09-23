@@ -34,28 +34,7 @@ class CourseRouter(ModelRouter):
     def get_query_set(self, **kwargs):
         return self.model.objects.all()
 
-class CourseInstanceRouter(ModelRouter):
-    route_name = 'courseInstance'
-    serializer_class = CourseInstanceSerializer
-    model = CourseInstance
-
-    def get_object(self, **kwargs):
-        return self.model.objects.get(pk=kwargs['id'])
-    def get_query_set(self, **kwargs):
-        return self.model.objects.filter(class__id=kwargs['timetable_id'])    
-
-class ClassInstanceRouter(ModelRouter):
-    route_name = 'classInstance'
-    serializer_class = ClassInstanceSerializer
-    model = ClassInstance
-
-    def get_object(self, **kwargs):
-        return self.model.objects.get(pk=kwargs['id'])
-    def get_query_set(self, **kwargs):
-        return self.model.objects.filter(class__id=kwargs['timetable_id'])
 
 route_handler.register(TimetableRouter)
 route_handler.register(ClassRouter)
 route_handler.register(CourseRouter)
-route_handler.register(CourseInstanceRouter)
-route_handler.register(ClassInstanceRouter)
