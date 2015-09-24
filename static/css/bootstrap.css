@@ -6,6 +6,7 @@
  * Based on Bootstrap
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+@import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -14,6 +15,9 @@ html {
 body {
   margin: 0;
 }
+/* start own */
+
+/* end own */
 article,
 aside,
 details,
@@ -259,9 +263,10 @@ th {
   .table th {
     background-color: #fff !important;
   }
+/*ddd*/
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 1px solid #2c3e50!important;
   }
 }
 @font-face {
@@ -2294,16 +2299,18 @@ th {
 .table-condensed > tfoot > tr > td {
   padding: 5px;
 }
+/*ecf0f1*/
 .table-bordered {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
 }
+/*ecf0f1*/
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -6677,6 +6684,7 @@ table > tfoot > tr > td,
 .table > tfoot > tr > td {
   border: none;
 }
+/*ecf0f1*/
 table-bordered > thead > tr > th,
 .table-bordered > thead > tr > th,
 table-bordered > tbody > tr > th,
@@ -6689,7 +6697,7 @@ table-bordered > tbody > tr > td,
 .table-bordered > tbody > tr > td,
 table-bordered > tfoot > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
 }
 .form-control,
 input {
