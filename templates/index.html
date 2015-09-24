@@ -19,7 +19,7 @@
     <!--script src="{% static "buttons.js" %}"></script-->
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
@@ -74,12 +74,12 @@
         <div class="col-md-3">
             <div class="sidebar-nav-fixed affix">
                 <div class="well">
-                    <select>
+                    <select class='form-control' style='width:100px; display:inline-block'>
                         {% for course in course_list %}
                             <option value="name">{{ course.name }}</option>
                         {% endfor %}
                     </select>
-                    <button id="addCourse"> Add Course </button>
+                    <button id="addCourse" class='btn btn-primary' style='height:41px; position: relative; bottom:1px'> Add Course </button>
                     <ul class="nav ">
                         <li class="nav-header"><h3>Classes</h3></li>
                         {% for course in timetableCourses %}
