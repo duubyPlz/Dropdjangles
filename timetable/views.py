@@ -7,7 +7,7 @@ from .models import Course, Timetable, Class
 
 def index(request):
     course_list = Course.objects.order_by('name')
-    timetableCourses = Timetable.objects.get(name='timetable').courses.all()
+    timetableCourses = Timetable.objects.get(name='15s2').courses.all()
     class_list = Class.objects.all()
     template = loader.get_template('../templates/index.html')
     context = RequestContext(request, {
