@@ -42,10 +42,18 @@ class Class(SelfPublishModel, models.Model):
         (5, 'Saturday'),
         (6, 'Sunday'),
     )
+    HOURS = (
+        (0, '8am'),
+        (1, '8:30am'),
+        (2, '9am'),
+        (3, '9:30am'),
+        (4, '10am'),
+        (5, '10:30am'),
+    )    
     course = models.ForeignKey(Course, null=True)
     name = models.CharField(max_length=20) 
     classtype = models.IntegerField(default=0, choices=TYPES)
-    timeFrom = models.IntegerField()
+    timeFrom = models.IntegerField(,choices=HOURS)
     timeTo = models.IntegerField()
     day = models.IntegerField(default=0, choices=DAYS)
     students = models.ManyToManyField("Timetable", blank=True)
