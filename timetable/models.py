@@ -53,7 +53,7 @@ class Class(SelfPublishModel, models.Model):
     course = models.ForeignKey(Course, null=True)
     name = models.CharField(max_length=20) 
     classtype = models.IntegerField(default=0, choices=TYPES)
-    timeFrom = models.IntegerField(,choices=HOURS)
+    timeFrom = models.IntegerField(default=2, choices=HOURS)
     timeTo = models.IntegerField()
     day = models.IntegerField(default=0, choices=DAYS)
     students = models.ManyToManyField("Timetable", blank=True)
