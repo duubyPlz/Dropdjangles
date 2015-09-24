@@ -1,6 +1,7 @@
 
 $(document).ready(function (){
     $('#addDiv').on('click',function(){
+          alert("HI");
         var body = $("#tableTest tbody");
         body.children().each(function(row){
             $(this).children().each(function (col){

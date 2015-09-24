@@ -12,6 +12,8 @@
 
     <title>test</title>
     <script src="{% static "buttons.js" %}"></script>
+    <script src="{% static "timetable.js" %}"></script>
+    <script src="{% static "select.js" %}"></script>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
@@ -30,8 +32,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="{% static "timetable.js" %}"></script>
-    <script src="{% static "select.js" %}"></script>
 </head>
 
 <body id="page-top" class="index">
@@ -259,7 +259,7 @@
 
         </table>
     </div>
-    <button class='btn' style='position:relative; left:380px;' id="addDiv">Insert a new Draggable</button>
+    <button class='btn' style='position:relative; left:380px;' id="addDiv">Insert a new Class</button>
 
     <!-- jQuery -->
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -284,7 +284,7 @@
 
     <!-- Controller -->
     <script src="{% static "app.js" %}"></script>
-    <script src="(% static "controllers.js" %}></script>
+    <script src="{% static "controllers.js" %}"></script>
 
 </body>
 
