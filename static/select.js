@@ -1,18 +1,6 @@
-
+alert("Imported select.js properly");
 $(document).ready(function (){
-    $('#addDiv').on('click',function(){
-        var body = $("#tableTest tbody");
-        body.children().each(function(row){
-            $(this).children().each(function (col){
-                if(col == 3 && (row == 5 || row == 9)){
-                    $(this).addClass('tableClassSelectingAvail');
-                }
-                else{
-                    $(this).addClass('tableClassSelectingNotAvail');
-                }
-            });
-        });
-    });
+    
 });
 
 
