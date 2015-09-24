@@ -30,7 +30,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="{% static "timetable.js" %}"></script>
+    <script src="{% static "select.js" %}"></script>
 </head>
 
 <body id="page-top" class="index">
@@ -112,8 +113,9 @@
             <!--/sidebar-nav-fixed -->
         </div>
         <!--/span-->
-    	<div>
-		<table class="table table-bordered" style="width:60% " id="tableTest" align="center" border="1">
+
+    <div>
+        <table class="table table-bordered" style="width:60% " id="tableTest" align="center" border="1">
             <tr id="Days">
                 <td></td>
                 <td>Monday</td>
@@ -123,143 +125,144 @@
                 <td>Friday</td>
                 <td>Saturday</td>
                 <td>Sunday</td>
-    		<tr id="9:00 am">
-    			<td>9:00 am</td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr>
-    		<tr id="10:00 am">
-    			<td>10:00 am</td>
-				<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
+            <tr id="9:00 am">
+                <td>9:00 am</td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="10:00 am">
+                <td>10:00 am</td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
 
-    		<tr id="11:00 am">
-    			<td>11:00 am</td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr>
-    		<tr id="12:00 pm">
-    			<td>12:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr>
-    		<tr id="1:00 pm">
-    			<td>1:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="2:00 pm">
-    			<td>2:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="3:00 pm">
-    			<td>3:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="4:00pm">
-    			<td>4:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 	 
-    		<tr id="5:00pm">
-    			<td>5:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="6:00pm">
-    			<td>6:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="7:00pm">
-    			<td>7:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr>  
-    		<tr id="8:00pm">
-    			<td>8:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
-    		<tr id="9:00pm">
-    			<td>9:00 pm</td>	
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    			<td></td> 
-    			<td></td>
-    			<td></td>
-    		</tr> 
+            <tr id="11:00 am">
+                <td>11:00 am</td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="12:00 pm">
+                <td>12:00 pm</td>   
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="1:00 pm">
+                <td>1:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="2:00 pm">
+                <td>2:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="3:00 pm">
+                <td>3:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="4:00pm">
+                <td>4:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>    
+            <tr id="5:00pm">
+                <td>5:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="6:00pm">
+                <td>6:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="7:00pm">
+                <td>7:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>  
+            <tr id="8:00pm">
+                <td>8:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
+            <tr id="9:00pm">
+                <td>9:00 pm</td>    
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr> 
 
-		</table>
-	</div>
+        </table>
+    </div>
+    <button class='btn' style='position:relative; left:380px;' id="addDiv">Insert a new Draggable</button>
 
     <!-- jQuery -->
-
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- AngularJS -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
