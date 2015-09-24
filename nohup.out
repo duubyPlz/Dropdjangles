@@ -26,3 +26,25 @@
 1389:C 23 Sep 16:15:47.636 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
 1389:M 23 Sep 16:15:47.638 * Increased maximum number of open files to 10032 (it was originally set to 256).
 1389:M 23 Sep 16:15:47.639 # Creating Server TCP listening socket *:6379: bind: Address already in use
+11627:C 24 Sep 17:20:03.153 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+11627:M 24 Sep 17:20:03.156 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.0.3 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 11627
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+11627:M 24 Sep 17:20:03.162 # Server started, Redis version 3.0.3
+11627:M 24 Sep 17:20:03.163 * The server is now ready to accept connections on port 6379
