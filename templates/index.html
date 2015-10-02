@@ -11,32 +11,20 @@
     <meta name="author" content="">
 
     <!-- jQuery -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-
-    <title>test</title>
+    <title>Dropjangles</title>
     <!--script src="{% static "buttons.js" %}"></script-->
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "css/simple-sidebar.css" %}" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="{% static "font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="{% static "http://fonts.googleapis.com/css?family=Montserrat:400,700" %}" rel="stylesheet" type="text/css">
     <link href="{% static "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" %}" rel="stylesheet" type="text/css">
     <link href="{% static "table.css" %}" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body id="page-top" class="index">
@@ -112,6 +100,49 @@
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
+
+
+
+<!-- Sidebar -->
+    <!-- http://tutorialzine.com/2015/04/freebie-5-elegant-and-responsive-sidebar-templates/ -->
+    <aside class="sidebar-left-collapse">
+        <!-- <a href="#" class="company-logo">Logo</a> -->
+        <center>
+            <img src='{% static "assets/img/logo.png" %}' id='logo-short'
+        </center>
+        <div class='search'>
+            <select class='form-control' >
+                {% for course in course_list %}
+                    <option value='{{ course.name }}'>{{ course.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="sidebar-links">
+            {% for course in timetableCourses %}
+                <div class="link-orange">
+                    <a href="#">
+                        <div class='link-orange'>{{ course.name }}</div>
+                    </a>
+                    <ul class="sub-links">
+                        {% for class in class_list %}
+                            <li><a href="#">
+                                {% if class.course.name == course.name %}
+                                    <div class='sub'>
+                                        <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button>
+                                    </div>
+                                {% endif %}
+                            </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </aside>
+    <!-- End Sidebar -->
+
+
+
 
     <div>
         <table class="table table-bordered" style="width:70%; table-layout: fixed " id="TimeTable" align="center">
@@ -260,12 +291,13 @@
     </div>
     <script src="{% static "timetable.js" %}"></script>
 
-
+    
     <!-- Bootstrap Core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="{% static "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" %}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="{% static "js/classie.js" %}"></script>
     <script src="{% static "js/cbpAnimatedHeader.js" %}"></script>
 
