@@ -10,7 +10,7 @@ def index(request):
     for obj in Timetable.objects.all(): #for all timetables
         timetableCourses = obj.courses.all()
         class_list = Class.objects.all()
-        template = loader.get_template('../templates/index.html')
+        template = loader.get_template('../templates/main.html')
         context = RequestContext(request, {
             'course_list': course_list,
             'timetableCourses': timetableCourses,
