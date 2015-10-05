@@ -64,25 +64,21 @@
           </span>
         </div>
         <div class="sidebar-links">
+          {% for course in timetableCourses %}
           <div class="link-yellow">
             <a href="#">
-              <center>COMP2911</center>
+              <center>{{ course.name }}</center>
             </a>
             <ul class="sub-links">
-              <li><a href="#">Lecture</a></li>
-              <li><a href="#">Tutorial</a></li>
-              <li><a href="#">Labs</a></li>
+              {% for class in class_list %}
+                {% if class.course.name == course.name %}
+                  <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
+                  <li><a href="#">{{ class.get_classtype_display }}</a></li>
+                {% endif %}
+              {% endfor %}
             </ul>
           </div>
-          <div class="link-yellow">
-            <a href="#">
-              <center>COMP2344</center>
-            </a>
-            <ul class="sub-links">
-              <li><a href="#">Lecture</a></li>
-              <li><a href="#">Tutorial</a></li>
-            </ul>
-          </div>
+          {% endfor %}
         </div>
       </aside>
 
