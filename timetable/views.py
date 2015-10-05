@@ -23,16 +23,13 @@ def timetable(request):
         }
         # we only want the first timetable
         break
+    # find the course instance and add the course to the timetable
     if form.is_valid():
         timetable = Timetable.objects.all()[0]
-        # print timetable
         for course in Course.objects.order_by('name'):
-            # print course
             if course.name == form.cleaned_data['course_code']:
-                # print "found course"
                 timetable.courses.add(course)
                 break
-        # print form.cleaned_data
     return render(request, 'main.html' ,context)
 
 
