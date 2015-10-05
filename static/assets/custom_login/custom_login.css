@@ -23,7 +23,7 @@ Last change	: 2015/03/27
 
 #dj-logo{
   width: 400px;
-  margin-top: 5%;
+  margin-top: 15%;
 
 }
 
@@ -33,30 +33,38 @@ Last change	: 2015/03/27
 /*=== 1. General Structure ===*/
 html,
 body {
-  background: #ffffff;
-  /*background: url(img/intro-bg.jpg);*/
-  padding: 10px;
+  /*background: #ffffff;*/
+  /* picture from
+  https://www.business.unsw.edu.au/News-Events-Site/PublishingImages/asb_2013_11_13-033.jpg*/
+  background-image: url(img/unsw.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: 0% 0%;
+  /*padding: 10px;*/
   font-family: 'Varela Round';
+
 }
 /*=== 2. Anchor Link ===*/
 a {
-  color: #aaaaaa;
+  color: #ffffff;
   transition: all ease-in-out 200ms;
 }
 a:hover {
-  color: #333333;
+  color: #8cc0b0;
   text-decoration: none;
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
-  color: #919191;
+  color: #ffffff;
   padding: 10px 20px;
 }
+
 .etc-login-form p {
   margin-bottom: 5px;
 }
 /*=== 4. Main Form ===*/
 .login-form-1 {
+  margin-top:6%;
   max-width: 300px;
   border-radius: 5px;
   display: inline-block;
