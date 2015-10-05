@@ -21,17 +21,18 @@ def timetable(request):
             'timetableCourses': timetableCourses,
             'class_list': class_list,
         }
+        # we only want the first timetable
         break
     if form.is_valid():
         timetable = Timetable.objects.all()[0]
-        print timetable
+        # print timetable
         for course in Course.objects.order_by('name'):
-            print course
+            # print course
             if course.name == form.cleaned_data['course_code']:
-                print "found course"
+                # print "found course"
                 timetable.courses.add(course)
                 break
-        print form.cleaned_data
+        # print form.cleaned_data
     return render(request, 'main.html' ,context)
 
 
