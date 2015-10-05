@@ -66,37 +66,49 @@
         <div class="sidebar-links">
           {% for course in timetableCourses %}
           <div class="link-yellow">
-            <a href="#">
-              <center>{{ course.name }}</center>
-            </a>
-            <ul class="sub-links">
-              {% for class in class_list %}
+            <a href="#">  <!-- need # to expand the dropdown -->
+              <div class='sidebar_remove_btn'>
+                <form action="" method="POST">{% csrf_token %}
+                <span class='sidebar_course_code'>{{ course.name }}</span>
+                  <input type="hidden" value="{{ course.name }}" name='rm_course_code' size="0">
+                  <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </button>
+              </form>
+            </div>
+          </a>
+          <ul class="sub-links">
+            {% for class in class_list %}
               {% if class.course.name == course.name %}
               <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
-              <li><a href="#">{{ class.get_classtype_display }}</a></li>
+              <li><a href="">{{ class.get_classtype_display }}</a></li>
               {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
-          {% endfor %}
+            {% endfor %}
+          </ul>
         </div>
-      </aside>
-
-
-      <aside class="sidebar-right-collapse">
-        <center class="panel-title">Friends</center>
-      </aside>
+        {% endfor %}
+      </div>
+    </aside>
 
 
 
 
+    <aside class="sidebar-right-collapse">
+      <center class="panel-title">Welcome, {{ user }}</center>
+      <br>
+      <center class="panel-title">Friends</center>
+    </aside>
 
 
 
 
 
 
-      <!-- JavaScript -->
+
+
+
+
+    <!-- JavaScript -->
 
 
     <!-- Select2 

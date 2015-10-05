@@ -3,7 +3,6 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 
 from .models import Course, Timetable, Class
-from .forms import CourseForm
 # Create your views here.
 
 def timetable(request):
@@ -14,9 +13,7 @@ def timetable(request):
         # print timetableCourses
         class_list = Class.objects.all()
         # print class_list
-        form = CourseForm(request.POST or None)
         context = {
-            'course_form': form,
             'course_list': course_list,
             'timetableCourses': timetableCourses,
             'class_list': class_list,
@@ -24,11 +21,19 @@ def timetable(request):
         # we only want the first timetable
         break
     # find the course instance and add the course to the timetable
-    if form.is_valid():
+    if request.POST.get("course_code"):
+        # print request.POST.get("course_code")
         timetable = Timetable.objects.all()[0]
         for course in Course.objects.order_by('name'):
-            if course.name == form.cleaned_data['course_code']:
+            if course.name == request.POST.get("course_code"):
                 timetable.courses.add(course)
+                break
+    if request.POST.get("rm_course"):
+        print "removing '%s'" %(request.POST.get("rm_course_code"))
+        timetable = Timetable.objects.all()[0]
+        for course in Course.objects.order_by('name'):
+            if course.name == request.POST.get("rm_course_code"):
+                timetable.courses.remove(course)
                 break
     return render(request, 'main.html' ,context)
 
