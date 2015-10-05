@@ -24,6 +24,7 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.index, name='home'),
+    url(r'^$', views.login, name='login'),
+    url(r'^timetable/$', views.timetable, name='timetable'),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,0 +1,683 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"jasny",
+				"jasny-bootstrap"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"test",
+				"test_condition"
+			],
+			[
+				"is",
+				"isOperator"
+			],
+			[
+				"program",
+				"program_parser"
+			],
+			[
+				"poe",
+				"poet_name"
+			],
+			[
+				"poet",
+				"poets_total_words"
+			],
+			[
+				"poets",
+				"poets_total_words"
+			],
+			[
+				"log",
+				"log_prob"
+			],
+			[
+				"check",
+				"checked_words"
+			],
+			[
+				"F",
+				"FALSE"
+			],
+			[
+				"target",
+				"target_word"
+			],
+			[
+				"loop",
+				"loop_list_handler"
+			],
+			[
+				"sep",
+				"string_separater"
+			],
+			[
+				"add",
+				"add_program_header"
+			],
+			[
+				"line",
+				"line"
+			],
+			[
+				"pro",
+				"program_parser"
+			],
+			[
+				"string",
+				"string_separater"
+			],
+			[
+				"echo",
+				"echo_handler"
+			],
+			[
+				"end",
+				"end_idx"
+			],
+			[
+				"sta",
+				"start_index"
+			],
+			[
+				"var",
+				"var_handler"
+			],
+			[
+				"bul",
+				"builtin_name"
+			],
+			[
+				"all",
+				"all_loop"
+			],
+			[
+				"bu",
+				"builtin_name"
+			],
+			[
+				"st",
+				"start_index"
+			],
+			[
+				"start",
+				"start_var_index"
+			],
+			[
+				"n",
+				"nIndividuals"
+			],
+			[
+				"pre",
+				"prereq_recursive"
+			],
+			[
+				"print",
+				"print"
+			],
+			[
+				"re",
+				"requested_item"
+			],
+			[
+				"reques",
+				"requested_page"
+			],
+			[
+				"http",
+				"http_request"
+			],
+			[
+				"small",
+				"small_file"
+			],
+			[
+				"star",
+				"start_vi"
+			],
+			[
+				"old_",
+				"old_white_set"
+			],
+			[
+				"alt",
+				"altColour"
+			],
+			[
+				"white",
+				"white_red_blue"
+			],
+			[
+				"path",
+				"path_from_root"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "timetable/views.py",
+			"settings":
+			{
+				"buffer_size": 770,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "dropjangles/urls.py",
+			"settings":
+			{
+				"buffer_size": 986,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/main.html",
+			"settings":
+			{
+				"buffer_size": 4687,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insat",
+				"Package Control: Install Package"
+			],
+			[
+				"packe",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/routers.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/dump.rdb",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/scraper.pl",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/admin.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/serializers.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/tests.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/views.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/custom_login/custom_login.js",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/custom_login/custom_login.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/jasny-bootstrap/css/jasny-bootstrap.css",
+		"/Users/kelvin/Downloads/admin side menu/asdf.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/templates/login",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/jasny-bootstrap/js/jasny-bootstrap.js",
+		"/Users/kelvin/Downloads/admin side menu/admin_side_menu.js",
+		"/Users/kelvin/Downloads/admin side menu/admin_side_menu.css",
+		"/Users/kelvin/Downloads/angucomplete-alt-master/example/index.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/templates/index.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/angucomplete-alt/js/libs/angucomplete-alt.js",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/js/get-shit-done.js",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/bootstrap3/css/bootstrap.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/css/sidebar-collapse.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/css/table.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/css/custom.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/assets/js/typeahead.js",
+		"/Users/kelvin/Downloads/Flat-UI-master/README.md",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/bootstrap3/css/sidebar-collapse.css",
+		"/Users/kelvin/Desktop/index.html",
+		"/Users/kelvin/Desktop/templates/index.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/templates/frontendonly.html",
+		"/Users/kelvin/Desktop/cs2041/tut/week 9 tutorial.txt",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/login.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/login.pl.cgi",
+		"/Users/kelvin/Downloads/shortest_path.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/browser.cgi",
+		"/Users/kelvin/Desktop/cs2041/ass1/shpy.pl",
+		"/Users/kelvin/Desktop/cs2041/cgi-bin/self_invoking_form.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/server.cgi",
+		"/Users/kelvin/Desktop/python django",
+		"/Users/kelvin/Desktop/cs2041/CGI/webserver.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/webserver/handle_request.sh",
+		"/Users/kelvin/Desktop/cs2041/CGI/self_invoking_form.cgi",
+		"/opt/local/share/emacs/site-lisp/autoconf-mode.el",
+		"/Users/kelvin/Desktop/cs2041/ass1/test04.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/test02.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/demo00.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/demo01.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/demo02.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/demo03.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/demo04.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/test01.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/test00.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/email_image.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/file_sizes.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/ex3.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/echon.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/digits.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/courses.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/run_x.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/run_test 2.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/0/single.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/date_image.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/jpg2png.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/3/sequence0_2.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/3/sequence0_2.sh",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/4/series.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/4/series.sh",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/css/freelancer.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/css/bootstrap.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/css/simple-sidebar.css",
+		"/Users/kelvin/Downloads/startbootstrap-simple-sidebar-1.0.4/index.html",
+		"/Users/kelvin/Desktop/19.9.15/done/_MG_6869.xmp",
+		"/Users/kelvin/Desktop/app.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/static/css/bootstrap.min.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangle_django/timetable/views.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangle_django/templates/index.html",
+		"/Users/kelvin/Desktop/table.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/DJ/index.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/timetable/models.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/server.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/dropjangles/settings.py",
+		"/Users/kelvin/Desktop/firstDjango/mysite/mysite/urls.py",
+		"/Users/kelvin/Desktop/firstDjango/mysite/mysite/settings.py",
+		"/Users/kelvin/Desktop/firstDjango/mysite/polls/models.py",
+		"/Users/kelvin/Desktop/firstDjango/mysite/polls/templates/polls/index.html",
+		"/Users/kelvin/Desktop/firstDjango/mysite/manage.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/manage.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_app/dropjangles/settings.py",
+		"/Users/kelvin/Desktop/test.pl",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/3/l.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/1/for_read0.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/1/cd.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/temp.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/test.pl",
+		"/Users/kelvin/Desktop/cs2041/ass1/test.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_app/jquery.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_app/jquery-2.1.3.js",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_app/manage.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/count_word.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/frequency.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/identify_poet.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/identify_poet.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/whale.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab08/courses.pl",
+		"/Users/kelvin/Desktop/dropjangles_proj/Application User Flow Diagram.xml",
+		"/Users/kelvin/Desktop/video/MVI_6816.THM",
+		"/Users/kelvin/Desktop/dropjangles_proj/app_usr_flow_diagram.xml",
+		"/Users/kelvin/Desktop/cs2041/ass1/dryrun",
+		"/Users/kelvin/Desktop/cs2041/ass1/run_test",
+		"/Users/kelvin/Desktop/cs2041/ass1/a.out",
+		"/Users/kelvin/Desktop/cs2041/ass1/test.sh",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_app/scraper.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/1",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/whale.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/total_words.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/total_words.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/all_whales.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/log_probability.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/all_whales.pl",
+		"/Users/kelvin/Desktop/cs2041/ass1/dryrun.sh",
+		"/Users/kelvin/Desktop/scraper.pl",
+		"/Users/kelvin/Desktop/dropjangles/dropjangles_app/scraper.pl",
+		"/Users/kelvin/Desktop/termdeposit.c",
+		"/Users/kelvin/Desktop/test.py",
+		"/Users/kelvin/Desktop/cs2041/ass1/run_test.sh",
+		"/Users/kelvin/Desktop/cs2041/week 7 tutorial.txt",
+		"/Users/kelvin/Desktop/cs2041/ass1/xiro xplorer v,",
+		"/Users/kelvin/Desktop/cs2041/ass1/examples/input",
+		"/Users/kelvin/Desktop/cs2041/ass1/shpy-initial.pl"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"nav",
+			"dropdown-toggle",
+			"border",
+			"navmenu-nav",
+			"#fff",
+			"#ffffff",
+			"border",
+			"e8c447",
+			"text-align",
+			"dropdown",
+			"dropdown-toggle",
+			"navmenu-inverse",
+			"padding",
+			"navmenu-nav",
+			".dropdown",
+			"link-blue",
+			".btn:focus",
+			"input-group",
+			"row-fluid",
+			"margin",
+			"row",
+			"crow",
+			"center",
+			"justify",
+			"center",
+			"col-xs-11",
+			"center",
+			"centered",
+			"center",
+			"col",
+			"form-control",
+			"input-group",
+			"form-control",
+			"btn-default",
+			"btn",
+			"btn btn-default",
+			"fa fa-picture-o",
+			"asserts",
+			"logo",
+			"logo-shor",
+			"sidebar-left-collapse",
+			"sequence",
+			"size",
+			"<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle",
+			"sidebar-brand",
+			"col-md-3",
+			"^#",
+			"        \n",
+			"and",
+			"or",
+			"all_builtins",
+			"indent",
+			"echo",
+			"loop_handler",
+			"@_",
+			"add_code",
+			"code",
+			"ocde",
+			"@#",
+			"'');\n",
+			"line",
+			"true",
+			"append_program",
+			"add_prog_header",
+			"append_program_head",
+			"\n    ",
+			"pre",
+			"Prereq",
+			"TELE3018",
+			"MTRN2500",
+			"MTRN2500MTRN2500MTRN2500MTRN2500\nMTRN2500\nMTRN2500",
+			"MTRN2500MTRN2500MTRN2500",
+			"MTRN2500MTRN2500",
+			"MTRN2500",
+			"for",
+			"foe",
+			"sh",
+			"cgi",
+			"'[\\.]+$'`\n",
+			"sed",
+			"penguins",
+			"=\"\n",
+			"\\.",
+			"o",
+			"requested_item",
+			"requested_page",
+			"<!DOCTYPE html>\n<HTML>\n<HEAD>\n<TITLE>Index of /example_directory</TITLE>\n<META NAME=\"generator\", CONTENT=\"mod_autoindex\"> </HEAD>\n<BODY bgcolor=\"#ffffff\" text=\"#000000\">\n\n<TABLE><TR><TD bgcolor=\"#ffffff\" class=\"title\">\n<FONT size=\"+3\" face=\"Helvetica,Arial,sans-serif\">\n<B>Index of /example_directory</B></FONT>\n\n</TD></TR></TABLE><PRE><A>Name</A>                    <A>Last modified</A>       <A>Size</A>\n<HR noshade align=\"left\" width=\"80%\">\n<A HREF=\"/~cs2041cgi/15s2/lab/sh/webserver/\">Parent Directory</A>        17-Aug-2015 16:21      -  \n<A HREF=\"a.html\">a.html</A>                  12-Aug-2015 14:49     1k  \n<A HREF=\"sub_directory/\">sub_directory/</A>          12-Aug-2015 14:49      -  \n\n\n</PRE><HR noshade align=\"left\" width=\"80%\">\n</BODY></HTML>\n",
+			"|\\/)'`\n",
+			"youtube_search",
+			"japn",
+			"cut",
+			"assume",
+			"  //",
+			"assert 1 == 2",
+			"  ",
+			"group",
+			"g.edges[",
+			"exist",
+			"path_from_root"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"add_code",
+			"add_program_header",
+			"add_prog_header",
+			"request",
+			"requested_item"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "timetable/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 770,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "dropjangles/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 986,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								844,
+								844
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4687,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3028,
+								3028
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 664.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "dropjangle.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
