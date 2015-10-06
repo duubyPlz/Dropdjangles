@@ -34,7 +34,7 @@ class MyRegistrationView(RegistrationView):
 
 
 urlpatterns = [
-    url(r'^$', views.login, name='login'),
+    url(r'^$|^login/$', views.login, name='login'),
     url(r'^timetable/$', views.timetable, name='timetable'),
 
     url(r'^admin/', include(admin.site.urls)),
