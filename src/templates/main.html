@@ -96,22 +96,17 @@
 
 
     <aside class="sidebar-right-collapse">
-      <center class="panel-title">Welcome, {{ user }}</center>
+      <p class='text-center'>Welcome, {{ user }} <br>
+      <a href="{% url 'auth_logout' %}">logout</a></p>
+      <!-- <center class="panel-title">Welcome, {{ user }}</center>
       <br>
-      <center class="panel-title">Friends</center>
+      <center class="panel-title">Friends</center> -->
     </aside>
 
 
 
 
-
-
-
-
-
-
     <!-- JavaScript -->
-
 
     <!-- Select2 
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -142,12 +137,7 @@
 
   </script>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="{% static "js/bootstrap.js" %}"></script>
-  <!-- jasny bootstrap-->
-  <script type="text/javascript" src="{% static "assets/jasny-bootstrap/js/jasny-bootstrap.js" %}"></script>
+  {% include 'tail_js.html' %}
 
 </body>
 </html>

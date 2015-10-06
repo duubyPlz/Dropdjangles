@@ -22,13 +22,24 @@ from timetable import views
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from registration.backends.simple.views import RegistrationView
+
 admin.autodiscover()
+
+
+# Create a new class that redirects the user to the index page, if successful at logging
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self,request, user):
+        return '/timetable/'
+
 
 urlpatterns = [
     url(r'^$', views.login, name='login'),
     url(r'^timetable/$', views.timetable, name='timetable'),
+
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

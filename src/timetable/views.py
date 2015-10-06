@@ -6,6 +6,10 @@ from .models import Course, Timetable, Class
 # Create your views here.
 
 def timetable(request):
+    # direct user to login if they arn't
+    if not request.user.is_authenticated():
+        return login(request)
+
     course_list = Course.objects.order_by('name')
     # print course_list
     for obj in Timetable.objects.all(): #for all timetables
@@ -40,4 +44,4 @@ def timetable(request):
 
 
 def login(request):
-    return render(request, 'login.html', {})
+    return render(request, 'custom_login.html', {})

@@ -27,17 +27,31 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# setup email for jangle
+# this is a real gmail account
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dropjangles@gmail.com'
+EMAIL_HOST_PASSWORD = 'dropjangles_2021'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Application definition
 
 INSTALLED_APPS = (
+    # django app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party app
+    'crispy_forms',
+    'registration',
     'swampdragon',
+    # my app
     'timetable',
 )
 
@@ -111,9 +125,30 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root")
+
+# Crispy Form Setting
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Django Registration Redux Settings
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/timetable/'
+LOGIN_URL = ''
+REGISTRATION_OPEN = True
+
 # SwampDragon settings
 SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
 DRAGON_URL = 'http://127.0.0.1:9999/'
+
+
+
+
