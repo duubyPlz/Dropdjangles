@@ -33,7 +33,7 @@ def timetable(request):
                 timetable.courses.add(course)
                 break
     if request.POST.get("rm_course"):
-        print "removing '%s'" %(request.POST.get("rm_course_code"))
+        #print "removing '%s'" %(request.POST.get("rm_course_code"))
         timetable = Timetable.objects.all()[0]
         for course in Course.objects.order_by('name'):
             if course.name == request.POST.get("rm_course_code"):
