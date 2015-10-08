@@ -41,10 +41,10 @@ class Class(SelfPublishModel, models.Model):
     timeFrom = models.CharField(max_length=10,default='0')
     timeTo = models.CharField(max_length=10, default='0')
     day = models.IntegerField(default=0, choices=DAYS)
-    classtype = models.CharField(max_length=40, default='Not specified')
+    classtype = models.CharField(max_length=70, default='Not specified')
     enrols = models.IntegerField(default=0)
     capacity = models.IntegerField(default=0)
-    room = models.CharField(max_length=60, default='Not specified')
+    room = models.CharField(max_length=170, default='Not specified')
     students = models.ManyToManyField("Timetable")
     def __str__(self):
         return self.name
