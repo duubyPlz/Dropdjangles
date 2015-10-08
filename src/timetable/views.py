@@ -44,4 +44,6 @@ def timetable(request):
 
 
 def login(request):
+    if request.user.is_authenticated():
+        return timetable(request)
     return render(request, 'custom_login.html', {})
