@@ -23,7 +23,7 @@ def populate():
     for course in courseFile.readlines():
         course = course.strip()
         #print course
-        #exec(course)
+        exec(course)
         #course.save()
         i = i + 1
 
@@ -39,7 +39,7 @@ def populate():
         relatedCourse = Course.objects.get(name=currCrs)
         exec(clss)
         c.course_id = relatedCourse.id
-        #c.save()
+        c.save()
 
 #start population
 if __name__ == '__main__':

@@ -33,3 +33,10 @@
     text-align: center;
     padding-right:12%;
 }
+
+.sidebar_classes {
+    padding-right:1%;
+    text-align: left;
+    margin-left:-10%; 
+    padding-left:-10%;
+}

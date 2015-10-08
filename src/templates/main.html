@@ -81,9 +81,9 @@
           </a>
           <ul class="sub-links">
             {% for class in class_list %}
-              {% if class.course.name == course.name %}
+              {% if class.course == course %}
               <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
-              <li><a href="" class='addClass'>{{ class.get_classtype_display }}</a></li>
+              <li><a href="" class='sidebar_classes'>{{ class.classtype }}</a></li>
               {% endif %}
             {% endfor %}
           </ul>
@@ -256,8 +256,6 @@
 
 
 
-<!-- typeahead.js -->
-<script src="{% static "assets/js/typeahead.js" %}"></script>
 
 <script>
 $(document).ready(function(){
@@ -281,7 +279,7 @@ $(document).ready(function(){
 <link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{% static "bootstrap3/js/bootstrap.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
 
 <!-- Sidebar -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
