@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Course, Timetable, Class
 # Create your views here.
 
+@csrf_exempt
 def timetable(request):
     # direct user to login if they arn't
     if not request.user.is_authenticated():
@@ -26,6 +28,7 @@ def timetable(request):
         # print request.POST.get("course_code")
         timetable = Timetable.objects.all()[0]
         for course in Course.objects.order_by('name'):
+            # print course
             if course.name == request.POST.get("course_code"):
                 timetable.courses.add(course)
                 break
@@ -36,10 +39,11 @@ def timetable(request):
             if course.name == request.POST.get("rm_course_code"):
                 timetable.courses.remove(course)
                 break
+    print "start render"
     return render(request, 'main.html' ,context)
 
 
-
+@csrf_exempt
 def login(request):
     if request.user.is_authenticated():
         return timetable(request)
