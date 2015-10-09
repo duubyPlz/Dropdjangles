@@ -11,12 +11,9 @@ def timetable(request):
         return login(request)
 
     course_list = Course.objects.order_by('name')
-    # print course_list
+    class_list = Class.objects.all()
     for obj in Timetable.objects.all(): #for all timetables
         timetableCourses = obj.courses.all()
-        # print timetableCourses
-        class_list = Class.objects.all()
-        # print class_list
         context = {
             'course_list': course_list,
             'timetableCourses': timetableCourses,
