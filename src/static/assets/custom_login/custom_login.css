@@ -43,10 +43,11 @@ body {
   /*background: #ffffff;*/
   /* picture from
   https://www.business.unsw.edu.au/News-Events-Site/PublishingImages/asb_2013_11_13-033.jpg*/
-  background-image: url(img/unsw3.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: 0% 0%;
+  background: url(img/unsw3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   /*padding: 10px;*/
   font-family: 'Varela Round';
   /*color: #ffffff;*/
