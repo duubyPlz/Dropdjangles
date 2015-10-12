@@ -39,7 +39,7 @@ def timetable(request):
             if course.name == request.POST.get("rm_course_code"):
                 timetable.courses.remove(course)
                 break
-    print "start render"
+    # print "start render"
     return render(request, 'main.html' ,context)
 
 
