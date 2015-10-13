@@ -28,14 +28,16 @@ def timetable(request):
 
     # find the course instance and add the course to the timetable
     if request.POST.get("course_code"):
-        course = Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[request.POST.get("course_code")])[0]
-        timetable.courses.add(course)
-        timetable.save()
+        course_code = request.POST.get("course_code").upper()
+        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            timetable.courses.add(course)
+            timetable.save()
 
     if request.POST.get("rm_course"):
-        course = Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[request.POST.get("rm_course_code")])[0]
-        timetable.courses.remove(course)
-        timetable.save()
+        course_code = request.POST.get("rm_course").upper()
+        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            timetable.courses.remove(course)
+            timetable.save()
     
     # Get all the courses from the user's timetable
     timetableCourses = timetable.courses.all()
