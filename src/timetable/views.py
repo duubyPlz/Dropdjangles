@@ -34,8 +34,9 @@ def timetable(request):
             timetable.save()
 
     if request.POST.get("rm_course"):
-        course_code = request.POST.get("rm_course").upper()
+        course_code = request.POST.get("rm_course_code").upper()
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            print course
             timetable.courses.remove(course)
             timetable.save()
     
