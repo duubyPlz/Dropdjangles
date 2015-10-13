@@ -25,6 +25,7 @@
     <!-- jasny-bootstrap -->
     <link rel="stylesheet" href="{% static "assets/jasny-bootstrap/css/jasny-bootstrap.css" %}">
 
+    <link rel="stylesheet" href="{% static "assets/css/checkbox.css" %}">
 
     <!-- Select 2 css 
     <link href="{% static "assets/css/select2.css" %}" rel="stylesheet" />
@@ -72,239 +73,260 @@
             <a href="#">  <!-- need # to expand the dropdown -->
               <div class='sidebar_remove_btn'>
                 <form action="" method="POST">
-                <span class='sidebar_course_code'>{{ course.name }}</span>
+                  <span class='sidebar_course_code'>{{ course.name }}</span>
                   <input type="hidden" value="{{ course.name }}" name='rm_course_code' size="0">
                   <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
-              </form>
-            </div>
-          </a>
-          <ul class="sub-links">
+                </form>
+              </div>
+            </a>
+            <ul class="sub-links">
 
-            {% for class in class_list %}
+              {% for class in class_list %}
               {% if class.course == course %}
               <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
               <li><a href="" class='sidebar_classes'>{{ class.classtype }}</a></li>
               {% endif %}
-            {% endfor %}
-            
-          </ul>
+              {% endfor %}
+
+            </ul>
+          </div>
+          {% endfor %}
+
+
         </div>
-        {% endfor %}
-
-        
-      </div>
-    </aside>
+      </aside>
 
 
-<!-- Content -->
-    <div class='timetable'>
+      <!-- Content -->
+      <div class='timetable'>
         <center>
-            <div class='title'>
-                Dropjangles
-            </div>
+          <div class='title'>
+            Dropjangles
+          </div>
         </center>
         <table class="table table-bordered" style="width:70%; table-layout: fixed " id="TimeTable" align="center">
-            <tr id="Days">
-                <td></td>
-                <td>Monday</td>
-                <td>Tuesday</td>
-                <td>Wednesday</td>
-                <td>Thursday</td>
-                <td>Friday</td>
-                <td>Saturday</td>
-                <td>Sunday</td>
+          <tr id="Days">
+            <td></td>
+            <td>Monday</td>
+            <td>Tuesday</td>
+            <td>Wednesday</td>
+            <td>Thursday</td>
+            <td>Friday</td>
+            <td>Saturday</td>
+            <td>Sunday</td>
             <tr id="9:00 am">
-                <td>9:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>9:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="10:00 am">
-                <td>10:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>10:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
 
             <tr id="11:00 am">
-                <td>11:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>11:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="12:00 pm">
-                <td>12:00 pm</td>   
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>12:00 pm</td>   
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="1:00 pm">
-                <td>1:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>1:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="2:00 pm">
-                <td>2:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>2:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="3:00 pm">
-                <td>3:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>3:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="4:00pm">
-                <td>4:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>4:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>    
             <tr id="5:00pm">
-                <td>5:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>5:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="6:00pm">
-                <td>6:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>6:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="7:00pm">
-                <td>7:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>7:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>  
             <tr id="8:00pm">
-                <td>8:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>8:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="9:00pm">
-                <td>9:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>9:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
-        </table>
-    </div>
-    <!-- End Content-->
+          </table>
+        </div>
+        <!-- End Content-->
 
-    <aside class="sidebar-right-collapse">
-      <p class='text-center'>Welcome, {{ user }} <br>
-      <a href="{% url 'auth_logout' %}?next=/timetable/">logout</a></p>
-      <!-- <center class="panel-title">Welcome, {{ user }}</center>
-      <br>
-      <center class="panel-title">Friends</center> -->
-    </aside>
+        <aside class="sidebar-right-collapse">
+          <p class='text-center'>Welcome, {{ user }} <br>
+            <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a></p>
+            <br>
+            <!-- <center class="panel-title">Friends</center> -->
+            <ul class="list-group sidebar_friendlist" style="color: black;">
+              <li class="h4 list-group-item active"> Friends </li>
+              {% for friend in friend_list %}
+              <li class="list-group-item">
+                <div class"container">
+                  <div class="row">
+                   <label class="checkbox" style="font-weight: normal !important">
+                    <div class="col-xs-11">
+                      {{ friend }}
+                    </div>
+                    <!-- <div class="col-xs-1"> -->
+                        <input type="checkbox">
+                    <!-- </div> -->
+                    </label>
+                  </div>
+                </div>
+
+              </li>
+              {% endfor %}
+            </ul>
+          </aside>
 
 
 
 
 
-<script>
-$(document).ready(function(){
-    $("#search").typeahead({
-        name : 'sear',
-        remote: {
-            url : 'connection.php?query=%QUERY'
-        }
-        
-    });
-});
-</script>
+          <script>
+            $(document).ready(function(){
+              $("#search").typeahead({
+                name : 'sear',
+                remote: {
+                  url : 'connection.php?query=%QUERY'
+                }
 
-<!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+              });
+            });
+          </script>
 
-<!-- AngularJS -->
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+          <!-- Plugin JavaScript -->
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-<!-- jquery css -->
-<link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
+          <!-- AngularJS -->
+          <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static "js/bootstrap.js" %}"></script>
+          <!-- jquery css -->
+          <link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
 
-<!-- Sidebar -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        var links = $('.sidebar-links > div');
-        links.on('click', function () {
-            links.removeClass('selected');
-            $(this).addClass('selected');
+          <!-- Bootstrap Core JavaScript -->
+          <script src="{% static "js/bootstrap.js" %}"></script>
 
-        });
-    });
-</script>
+          <!-- Sidebar -->
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <script>
+            $(function () {
+              var links = $('.sidebar-links > div');
+              links.on('click', function () {
+                links.removeClass('selected');
+                $(this).addClass('selected');
 
-<!-- Controller -->
-<!--script src="{% static "app.js" %}"></script-->
-<script src="{% static "controllers.js" %}"></script>
-<script src="{% static "timetable.js" %}"></script>
+              });
+            });
+          </script>
 
-  {% include 'tail_js.html' %}
 
-</body>
-</html>
+
+          <!-- Controller -->
+          <!--script src="{% static "app.js" %}"></script-->
+          <script src="{% static "controllers.js" %}"></script>
+          <script src="{% static "timetable.js" %}"></script>
+
+          {% include 'tail_js.html' %}
+
+        </body>
+        </html>

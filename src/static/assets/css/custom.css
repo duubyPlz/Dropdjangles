@@ -40,3 +40,9 @@
     margin-left:-10%; 
     padding-left:-10%;
 }
+
+.sidebar_friendlist {
+    text-align: center;
+    padding-right: 5%;
+    padding-left: 5%;
+}

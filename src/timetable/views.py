@@ -51,10 +51,13 @@ def timetable(request):
                 class_list.append(c)
                 exist_classtype.append(c.classtype)
 
+    friend_list = usr_profile.friends.all()
+
     context = {
         'course_list': course_list,
         'timetableCourses': timetableCourses,
         'class_list': class_list,
+        'friend_list': friend_list,
     }
     return render(request, 'main.html' ,context)
 
