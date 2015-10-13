@@ -74,7 +74,7 @@
                 <form action="" method="POST">
                 <span class='sidebar_course_code'>{{ course.name }}</span>
                   <input type="hidden" value="{{ course.name }}" name='rm_course_code' size="0">
-                  <!-- <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course"> -->
+                  <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
               </form>
@@ -84,7 +84,7 @@
 
             {% for class in class_list %}
               {% if class.course == course %}
-              <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button>
+              <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
               <li><a href="" class='sidebar_classes'>{{ class.classtype }}</a></li>
               {% endif %}
             {% endfor %}

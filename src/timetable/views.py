@@ -14,7 +14,7 @@ def timetable(request):
 
     # Load the course list and class list
     course_list = Course.objects.order_by('name')
-    class_list = Class.objects.all()
+    # class_list = Class.objects.all()
 
     # Get the timetable from the user if there is one
     # Create one if it doesn't exist
@@ -25,31 +25,31 @@ def timetable(request):
         usr_profile.timetable = timetable
         usr_profile.save()
 
-    # Get all the courses from the user's timetable
-    timetableCourses = timetable.courses.all()
-    context = {
-        'course_list': course_list,
-        'timetableCourses': timetableCourses,
-        # 'class_list': class_list,
-    }
 
     # find the course instance and add the course to the timetable
     if request.POST.get("course_code"):
-        # print request.POST.get("course_code")
-        timetable = Timetable.objects.all()[0]
-        for course in Course.objects.order_by('name'):
-            # print course
-            if course.name == request.POST.get("course_code"):
-                timetable.courses.add(course)
-                break
+        course = Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[request.POST.get("course_code")])[0]
+        timetable.courses.add(course)
+        timetable.save()
+
     if request.POST.get("rm_course"):
-        #print "removing '%s'" %(request.POST.get("rm_course_code"))
-        timetable = Timetable.objects.all()[0]
-        for course in Course.objects.order_by('name'):
-            if course.name == request.POST.get("rm_course_code"):
-                timetable.courses.remove(course)
-                break
-    # print "start render"
+        course = Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[request.POST.get("rm_course_code")])[0]
+        timetable.courses.remove(course)
+        timetable.save()
+    
+    # Get all the courses from the user's timetable
+    timetableCourses = timetable.courses.all()
+    # Get all the class from the courses
+    class_list = []
+    for course in timetableCourses:
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course.name]):
+                class_list.append(c)
+
+    context = {
+        'course_list': course_list,
+        'timetableCourses': timetableCourses,
+        'class_list': class_list,
+    }
     return render(request, 'main.html' ,context)
 
 @csrf_exempt
