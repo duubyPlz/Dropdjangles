@@ -56,6 +56,8 @@ class Class(SelfPublishModel, models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     timetable = models.OneToOneField(Timetable, primary_key=False,unique=True, null=True, blank=True)
+    friends = models.ManyToManyField('UserProfile',blank=True)
+
 
     # we can access the user profile by user.profile
     User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

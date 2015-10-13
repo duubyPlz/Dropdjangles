@@ -43,9 +43,12 @@ def timetable(request):
     timetableCourses = timetable.courses.all()
     # Get all the class from the courses
     class_list = []
+    exist_classtype = []
     for course in timetableCourses:
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course.name]):
+            if not c.classtype in exist_classtype:
                 class_list.append(c)
+                exist_classtype.append(c.classtype)
 
     context = {
         'course_list': course_list,
