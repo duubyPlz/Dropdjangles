@@ -3,11 +3,14 @@ from django.forms import ModelForm
 from swampdragon.models import SelfPublishModel
 from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer
 
+from django.contrib.auth.models import User
+
 class Timetable(SelfPublishModel, models.Model):
     serializer_class = TimetableSerializer
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,default="15s2")
     courses = models.ManyToManyField("Course", blank=True)
     classes = models.ManyToManyField("Class", blank=True)
+
     def __str__(self):
         return self.name
     
@@ -48,3 +51,17 @@ class Class(SelfPublishModel, models.Model):
     students = models.ManyToManyField("Timetable")
     def __str__(self):
         return self.name
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    timetable = models.OneToOneField(Timetable, primary_key=False,unique=True, null=True, blank=True)
+
+    # we can access the user profile by user.profile
+    User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+    def __str__(self):
+        return self.user.username
+
+
+

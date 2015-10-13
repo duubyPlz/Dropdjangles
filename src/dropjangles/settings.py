@@ -149,6 +149,6 @@ REGISTRATION_OPEN = True
 SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
 DRAGON_URL = 'http://127.0.0.1:9999/'
 
-
+AUTH_PROFILE_MODULE = 'timetable.UserProfile'
 
 
