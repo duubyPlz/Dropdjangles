@@ -15,7 +15,7 @@
 
     <!-- Custom CSS -->
     <link href="{% static "assets/css/custom.css" %}" rel="stylesheet" />
-    <link href="{% static "assets/css/table.css" %}" rel="stylesheet" />
+    <link href="{% static "assets/custom_table/table.css" %}" rel="stylesheet" />
 
     <!-- side bar -->
     <link rel="stylesheet" href="{% static "assets/css/sidebar-collapse.css" %}">
@@ -85,8 +85,8 @@
 
               {% for class in class_list %}
               {% if class.course == course %}
-              <!-- <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button> -->
-              <li><a href="" class='sidebar_classes'>{{ class.classtype }}</a></li>
+              <!-- <button class="addClass btn btn-warning"></button> -->
+              <li class='addClass sidebar_classes'>{{ class.classtype }}</li>
               {% endif %}
               {% endfor %}
 
@@ -324,7 +324,7 @@
           <!-- Controller -->
           <!--script src="{% static "app.js" %}"></script-->
           <script src="{% static "controllers.js" %}"></script>
-          <script src="{% static "timetable.js" %}"></script>
+          <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
 
           {% include 'tail_js.html' %}
 
