@@ -272,6 +272,39 @@
 
               </li>
               {% endfor %}
+              
+              <li class="list-group-item">
+              <!-- Trigger -->
+              <a data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
+
+              <!-- Modal creation -->
+              <div id="addFriendModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add a friend</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Enter the username or email of the person you wish to add.</p>
+
+                      <form method="POST" action="">
+                        <input type="text" name="friend_search" placeholder="example@dropjangles.com">
+                        <input type="submit" value="Add">
+                      </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </di>
+                
+                </div>
+              </div>
+              </li>
+              
             </ul>
           </aside>
 
