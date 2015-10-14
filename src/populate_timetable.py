@@ -35,7 +35,7 @@ def populate():
         crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
         if (crsFind is not None):
             currCrs = crsFind.group(1)
-
+    
         relatedCourse = Course.objects.get(name=currCrs)
         exec(clss)
         c.course_id = relatedCourse.id

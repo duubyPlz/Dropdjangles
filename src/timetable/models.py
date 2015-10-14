@@ -49,8 +49,26 @@ class Class(SelfPublishModel, models.Model):
     capacity = models.IntegerField(default=0)
     room = models.CharField(max_length=170, default='Not specified')
     students = models.ManyToManyField("Timetable")
+
+
+    # Here, we'll return the dictionary as part of the model
+    def as_dict(self):
+        return dict(
+            # course = self.course,
+            timeFrom = self.timeFrom,
+            timeTo = self.timeTo,
+            day = self.day,
+            classtype = self.classtype,
+            enrols = self.enrols,
+            capacity = self.capacity,
+            room = self.room,
+            # students = self.students
+        )
+    
+
     def __str__(self):
         return self.name
+
 
 
 class UserProfile(models.Model):
