@@ -67,17 +67,18 @@ def timetable(request):
 @csrf_exempt
 def class_search(request):
 
-
-    if request.method == 'GET':
-        courseId = request.GET['courseId']
-        classType = request.GET['classType']
-
-        message = courseId + ' in ' + classType
+    context = {}
+    if request.method == 'GET' :
+        course_name = request.GET['courseId'].upper()
+        class_type = request.GET['classType']
+        
+        avail_class_list = []
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
+            avail_class_list.append(c.as_dict())
         
         context = {
-            'message':message
+            'avail_class_list' : avail_class_list,
         }
-
     return JsonResponse(context)
 
 @csrf_exempt
