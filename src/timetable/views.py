@@ -42,6 +42,30 @@ def timetable(request):
             print course
             timetable.courses.remove(course)
             timetable.save()
+            
+    if request.POST.get("friend_search"):
+        #scrap the friend_text string for either username or password
+        friend_text = request.POST.get("friend_search")        
+        friend_text = friend_text.strip()
+
+        #get current_user profile
+        currUserProfile = UserProfile.objects.get(user=usr_profile.user)        
+
+        #get friend from given friend_search text
+        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
+            friendUser = usr         
+            #print friendUser.username
+            break
+
+        #get this friend's user profile
+        friendUserProfile = UserProfile.objects.get(user=friendUser.id)
+        #print currUserProfile
+
+        #add friendUser to currUser if they exist
+        if (friendUser is not None):
+             currUserProfile.friends.add(friendUserProfile)
+             currUserProfile.save()
+
     
     # Get all the courses from the user's timetable
     timetableCourses = timetable.courses.all()
