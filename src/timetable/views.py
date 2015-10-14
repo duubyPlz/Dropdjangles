@@ -6,6 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Course, Timetable, Class, UserProfile
 from django.contrib.auth.models import User
 
+from django.http import JsonResponse
+from django.core import serializers
+
 @csrf_exempt
 def timetable(request):
     # Require user to login inorder to continue
@@ -21,7 +24,7 @@ def timetable(request):
     usr_profile = request.user.profile
     timetable = usr_profile.timetable
     if timetable is None:
-        timetable = Timetable.objects.create(name=current_user.username+"'s 15s2")
+        timetable = Timetable.objects.create(name=usr_profile.user.username+"'s 15s2")
         usr_profile.timetable = timetable
         usr_profile.save()
 
@@ -63,25 +66,28 @@ def timetable(request):
 
 @csrf_exempt
 def class_search(request):
-    if request.user.is_authenticated():
-        return timetable(request)
 
-    # if request == POST:
-    courseId = request.POST.get('courseId').upper()
-    classType = request.POST.get('classType')
-    
-    print "Searhing for %s, %s" %(courseId,classType)
 
-    classes = []
-    for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[courseId,classType]):
-        classes.append(c)
-    context = {
-        'classes' : classes,
-    }
-    return HttpResponse (request,context)
+    if request.method == 'GET':
+        courseId = request.GET['courseId']
+        classType = request.GET['classType']
+
+        message = courseId + ' in ' + classType
+        
+        context = {
+            'message':message
+        }
+
+    return JsonResponse(context)
 
 @csrf_exempt
 def login(request):
     if request.user.is_authenticated():
         return timetable(request)
     return render(request, 'custom_login.html', {})
+
+
+
+
+
+

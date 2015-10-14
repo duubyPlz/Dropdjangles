@@ -32,7 +32,6 @@ class MyRegistrationView(RegistrationView):
     def get_success_url(self,request, user):
         return '/timetable/'
 
-
 urlpatterns = [
     url(r'^$|^login/$', views.login, name='login'),
     url(r'^timetable/$', views.timetable, name='timetable'),
@@ -41,7 +40,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
 
     # ajax GET
-    url(r'^class_search/','timetable.views.class_search',name='class_search'),
+    url(r'^class_search/$',views.class_search,name='class_search'),
 ]
 
 if settings.DEBUG:

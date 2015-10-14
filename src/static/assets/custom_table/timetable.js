@@ -18,7 +18,7 @@ $(document).ready(function() {
         }
         $('td').removeClass('tableClassSelectingAvail');
         $('td').removeClass('tableClassSelectingNotAvail');
-        alert("You clicked on row " + row + ", col " + col);
+        // alert("You clicked on row " + row + ", col " + col);
     });
 
 
@@ -27,19 +27,26 @@ $(document).ready(function() {
         var courseId = this.id.split('|')[0]
         var classType = this.id.split('|')[1]
         // alert(timetable.attr('id'));
-        get_all_avail_time_slot(courseId,classType);
 
-        function get_all_avail_time_slot (courseID,classType) {
-            $.ajax({
-                type: 'GET';
-                url: '/class_search/?courseId='+courseId+"&classType="+classType;
-                success: function (data) {
-                    concole.log('success',data);
-                }
-            })
-        }
+        // Jquery Ajax
+        $.get("/class_search/",{
+            courseId: courseId,
+            classType: classType,
+        }, function (data) {
+            alert("Data: " + data.message);
+        });
+        // $.ajax({
+        //     type: 'GET',
+        //     url: "/class_search/"+courseId+"/"+classType+"/",
+        //     success: function(data) {
+        //         // alert('Load was performed.'+data.ajax_resp);
+        //         console.log(data); // log the returned json to the console
+        //     }
+        // })
+        
+
         // Get the course and the class type from the sublinks
-        // alert(course_id+" , "+class_type);
+        // alert(courseId+" , "+classType);
         timetable.children().each(function (row){
             $(this).children().each(function (col){
                 if(col == 3 && (row == 5 || row == 9)){
