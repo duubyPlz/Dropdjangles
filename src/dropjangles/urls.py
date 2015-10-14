@@ -39,6 +39,9 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+
+    # ajax GET
+    url(r'^class_search/','timetable.views.class_search',name='class_search'),
 ]
 
 if settings.DEBUG:

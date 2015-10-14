@@ -62,6 +62,25 @@ def timetable(request):
     return render(request, 'main.html' ,context)
 
 @csrf_exempt
+def class_search(request):
+    if request.user.is_authenticated():
+        return timetable(request)
+
+    # if request == POST:
+    courseId = request.POST.get('courseId').upper()
+    classType = request.POST.get('classType')
+    
+    print "Searhing for %s, %s" %(courseId,classType)
+
+    classes = []
+    for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[courseId,classType]):
+        classes.append(c)
+    context = {
+        'classes' : classes,
+    }
+    return HttpResponse (request,context)
+
+@csrf_exempt
 def login(request):
     if request.user.is_authenticated():
         return timetable(request)
