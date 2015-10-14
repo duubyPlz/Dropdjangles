@@ -52,19 +52,18 @@ def timetable(request):
         currUserProfile = UserProfile.objects.get(user=usr_profile.user)        
 
         #get friend from given friend_search text
-        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
+        for usr in User.objects.raw("SELECT * FROM auth_user WHERE (username LIKE %s) OR (email LIKE %s)",[friend_text],[friend_text]):
             friendUser = usr         
             #print friendUser.username
             break
 
-        #get this friend's user profile
-        friendUserProfile = UserProfile.objects.get(user=friendUser.id)
-        #print currUserProfile
 
         #add friendUser to currUser if they exist
         if (friendUser is not None):
-             currUserProfile.friends.add(friendUserProfile)
-             currUserProfile.save()
+            #get this friend's user profile
+            friendUserProfile = UserProfile.objects.get(user=friendUser.id)
+            currUserProfile.friends.add(friendUserProfile)
+            currUserProfile.save()
 
     
     if request.POST.get("friend_search"):
