@@ -42,52 +42,45 @@ def timetable(request):
             print course
             timetable.courses.remove(course)
             timetable.save()
-            
+    
+    #reject a friend request        
+    if (request.POST.get("deny_request") or request.POST.get("accept_request")):
+        requestingFriend = request.POST.get("respond_friend_code")
+        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[requestingFriend]):
+            friendUser = usr
+            break
+         
+        if (friendUser is not None):
+            friendUserProfile = UserProfile.objects.get(user=friendUser.id)
+            usr_profile.pending_friends.remove(friendUserProfile)
+
+            #determine if we are accepting or denying, if accepting -> add eachother
+            if request.POST.get("accept_request"):
+                usr_profile.friends.add(friendUserProfile)    
+                friendUserProfile.friends.add(usr_profile)
+                friendUserProfile.save()
+            usr_profile.save()
+    
     if request.POST.get("friend_search"):
         #scrap the friend_text string for either username or password
         friend_text = request.POST.get("friend_search")        
         friend_text = friend_text.strip()
 
         #get current_user profile
-        currUserProfile = UserProfile.objects.get(user=usr_profile.user)        
+        #currUserProfile = UserProfile.objects.get(user=usr_profile.user)        
 
         #get friend from given friend_search text
-        for usr in User.objects.raw("SELECT * FROM auth_user WHERE (username LIKE %s) OR (email LIKE %s)",[friend_text],[friend_text]):
+        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
             friendUser = usr         
             #print friendUser.username
             break
-
 
         #add friendUser to currUser if they exist
         if (friendUser is not None):
             #get this friend's user profile
             friendUserProfile = UserProfile.objects.get(user=friendUser.id)
-            currUserProfile.friends.add(friendUserProfile)
-            currUserProfile.save()
-
-    
-    if request.POST.get("friend_search"):
-        #scrap the friend_text string for either username or password
-        friend_text = request.POST.get("friend_search")
-        friend_text = friend_text.strip()
-
-        #get current_user profile
-        currUserProfile = UserProfile.objects.get(user=usr_profile.user)
-
-        #get friend from given friend_search text
-        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
-            friendUser = usr
-            #print friendUser.username
-            break
-
-        #get this friend's user profile
-        friendUserProfile = UserProfile.objects.get(user=friendUser.id)
-        print currUserProfile
-
-        #add friendUser to currUser if they exist
-        if (friendUser is not None):
-             currUserProfile.friends.add(friendUserProfile)
-             currUserProfile.save()
+            friendUserProfile.pending_friends.add(usr_profile)
+            friendUserProfile.save()
 
     # Get all the courses from the user's timetable
     timetableCourses = timetable.courses.all()
@@ -101,12 +94,14 @@ def timetable(request):
                 exist_classtype.append(c.classtype)
 
     friend_list = usr_profile.friends.all()
+    pending_friend_list = usr_profile.pending_friends.all()
 
     context = {
         'course_list': course_list,
         'timetableCourses': timetableCourses,
         'class_list': class_list,
         'friend_list': friend_list,
+        'pending_friend_list': pending_friend_list,
     }
     return render(request, 'main.html' ,context)
 
