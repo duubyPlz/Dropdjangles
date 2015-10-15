@@ -95,21 +95,6 @@ $(document).ready(function() {
             day: day,
             timeFrom: timeFrom,
         });
-        // var data = {
-        //     'courseId': courseId,
-        //     'classType': classType,
-        //     'day': day,
-        //     'timeFrom': timeFrom,
-        // };
-        // $.ajax({
-        //     "type": "POST",
-        //     "dataType": "json",
-        //     "url": "/class_add/",
-        //     "data": data,
-        //     "success": function (result) {
-        //         console.log(result);
-        //     },
-        // })
     }
 
     function which_index(col, row) {
