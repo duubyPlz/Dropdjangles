@@ -72,21 +72,19 @@ $(document).ready(function() {
         var hours = class_hours(index);
         var i;
         for (i=0; i<hours; i++) {
-            //alert(i + " " + hours);
             var curr_row = row + i;
             var cell = $('#TimeTable tbody tr').eq(curr_row).find('td').eq(col);
 
             if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
                 cell.addClass('hasClass');
                 cell.html("<b>" + courseId + "</b><br>" +classType);
-                //alert('cell: ' + cell.index() + ' this: ' + $(this).index());
+                
             }
         }
 
         // remove all the select class tag
         $('td').removeClass('tableClassSelectingAvail');
         $('td').removeClass('tableClassSelectingNotAvail');
-        // alert("You clicked on row " + row + ", col " + col);
     });
 
     function which_index(col, row) {
@@ -115,6 +113,6 @@ $(document).ready(function() {
     }
 
     function class_hours(index) {
-        return Math.floor((avail_class_list[index]['timeTo'] - avail_class_list[index]['timeFrom']) / 100);
+        return Math.ceil((parseInt(avail_class_list[index]['timeTo']) - parseInt(avail_class_list[index]['timeFrom'])) / 100);
     }
 });

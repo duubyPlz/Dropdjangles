@@ -131,12 +131,12 @@ def class_add(request):
     # Require user to login inorder to continue
     if not request.user.is_authenticated():
         return login(request)
-    if request.method == 'GET':
-        course_name = request.GET['courseId'].upper()
-        class_type = request.GET['classType']
-        day = request.GET['day']
-        timeFrom = request.GET['timeFrom']
-        timeTo = request.GET['timeTo']
+    if request.method == 'POST':
+        course_name = request.POST['courseId'].upper()
+        class_type = request.POST['classType']
+        day = request.POST['day']
+        timeFrom = request.POST['timeFrom']
+        timeTo = request.POST['timeTo']
 
         class_id
         timetable_id
