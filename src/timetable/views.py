@@ -33,7 +33,7 @@ def timetable(request):
     if request.POST.get("course_code"):
         course_code = request.POST.get("course_code").upper()
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
-            if(not timetable.courses.filter(name=course_code).exists()):
+            if course in timetable.courses.all():
                 timetable.courses.add(course)
             timetable.save()
 
@@ -144,12 +144,12 @@ def class_add(request):
             if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
                 require_class = c
         timetable = request.user.profile.timetable
-        
+        if require_class in timetable.classes.all():
 # INSERT HERE: DONT ADD IF EXIST
 # example
 # self.apps.filter(id=app_id).exists()
 
-        timetable.classes.add(require_class)
+            timetable.classes.add(require_class)
 
 
         timetable.save()
