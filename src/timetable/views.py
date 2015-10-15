@@ -43,15 +43,18 @@ def timetable(request):
             timetable.courses.remove(course)
             timetable.save()
     
-    #reject a friend request        
+
+    
+    #reject a friend request  
     if (request.POST.get("deny_request") or request.POST.get("accept_request")):
         requestingFriend = request.POST.get("respond_friend_code")
+        friendUser = None      
         for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[requestingFriend]):
             friendUser = usr
             break
          
         if (friendUser is not None):
-            friendUserProfile = UserProfile.objects.get(user=friendUser.id)
+            friendUserProfile = friendUser.profile
             usr_profile.pending_friends.remove(friendUserProfile)
 
             #determine if we are accepting or denying, if accepting -> add eachother
@@ -64,23 +67,22 @@ def timetable(request):
     if request.POST.get("friend_search"):
         #scrap the friend_text string for either username or password
         friend_text = request.POST.get("friend_search")        
-        friend_text = friend_text.strip()
-
-        #get current_user profile
-        #currUserProfile = UserProfile.objects.get(user=usr_profile.user)        
+        friend_text = friend_text.rstrip()
 
         #get friend from given friend_search text
+        friendUser = None
         for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
             friendUser = usr         
-            #print friendUser.username
             break
 
         #add friendUser to currUser if they exist
         if (friendUser is not None):
             #get this friend's user profile
-            friendUserProfile = UserProfile.objects.get(user=friendUser.id)
+            friendUserProfile = friendUser.profile
             friendUserProfile.pending_friends.add(usr_profile)
             friendUserProfile.save()
+
+
 
     # Get all the courses from the user's timetable
     timetableCourses = timetable.courses.all()
