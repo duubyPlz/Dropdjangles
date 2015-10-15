@@ -41,6 +41,8 @@ urlpatterns = [
 
     # ajax GET
     url(r'^class_search/$',views.class_search,name='class_search'),
+    url(r'^class_add/$',views.class_add,name='class_add'),
+    url(r'^class_remove/$',views.class_remove,name='class_remove'),
 ]
 
 if settings.DEBUG:

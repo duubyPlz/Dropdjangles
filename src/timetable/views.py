@@ -109,7 +109,9 @@ def timetable(request):
 
 @csrf_exempt
 def class_search(request):
-
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)
     context = {}
     if request.method == 'GET' :
         course_name = request.GET['courseId'].upper()
@@ -123,6 +125,15 @@ def class_search(request):
             'avail_class_list' : avail_class_list,
         }
     return JsonResponse(context)
+
+@csrf_exempt
+def class_add(request):
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)
+
+    
+
 
 @csrf_exempt
 def login(request):
