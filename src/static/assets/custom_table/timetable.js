@@ -48,7 +48,7 @@ $(document).ready(function() {
         var hours = class_hours(index);
         var i;
         for (i=0; i<hours; i++) {
-            alert(i + " " + hours);
+            //alert(i + " " + hours);
             var curr_row = row + i;
             var cell = $('#TimeTable tbody tr').eq(curr_row).find('td').eq(col);
 
