@@ -136,21 +136,28 @@ def class_add(request):
         class_type = request.POST['classType']
         day = request.POST['day']
         timeFrom = request.POST['timeFrom']
-        timeTo = request.POST['timeTo']
-
-        class_id
-        timetable_id
-        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d AND timeTo=%d",[course_name,class_type,day,timeFrom,timeTo]):
-            class_id = c.id
-
-
+        wanted_class
+        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
+            wanted_class = c
+        # add wanted_class
+        request.user.profile.add(wanted_class)
 
 @csrf_exempt
 def class_remove(request):
     # Require user to login inorder to continue
     if not request.user.is_authenticated():
-        return login(request)   
-
+        return login(request)
+    if request.method == 'POST':
+        course_name = request.POST['courseId'].upper()
+        class_type = request.POST['classType']
+        day = request.POST['day']
+        timeFrom = request.POST['timeFrom']
+        wanted_class
+        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
+            wanted_class = c
+        # add wanted_class
+        request.user.profile.add(wanted_class)
+        print "%s, %s, %s" % (course_name, class_type, day, timeFrom)
 
 @csrf_exempt
 def login(request):
