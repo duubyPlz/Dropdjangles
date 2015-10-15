@@ -132,7 +132,11 @@ def class_add(request):
     if not request.user.is_authenticated():
         return login(request)
 
-    
+@csrf_exempt
+def class_remove(request):
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)   
 
 
 @csrf_exempt
