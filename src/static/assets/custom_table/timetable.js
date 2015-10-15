@@ -1,5 +1,29 @@
 // works with table.css
 
+/*
+timetable.js TODO
+
+save added class to backend
+cancel gray
+
+add grid to available class (for 2-3 hours class)
+
+merge cell by colspan=“2” or rowspan
+
+move class to a different time
+
+remove class from timetable
+
+class colouring
+
+
+display all class on timetable_class at start
+
+
+auto refresh every two second
+
+*/
+
 $(document).ready(function() {
     var timetable = $("#TimeTable tbody");
     timetable.children().each(function (row) { // iterate over <tr>s
