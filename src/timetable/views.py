@@ -128,19 +128,24 @@ def class_search(request):
 
 @csrf_exempt
 def class_add(request):
+    print "asdf"
     # Require user to login inorder to continue
     if not request.user.is_authenticated():
         return login(request)
     if request.method == 'POST':
-        course_name = request.POST['courseId'].upper()
-        class_type = request.POST['classType']
-        day = request.POST['day']
-        timeFrom = request.POST['timeFrom']
+        print "if"
+        course_name = request.POST.get('courseId').upper()
+        class_type = request.POST.get('classType')
+        day = request.POST.get('day')
+        timeFrom = request.POST.get('timeFrom')
+        print "asdf  %s, %s, %s" % (course_name, class_type, day, timeFrom)
         wanted_class
         for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
             wanted_class = c
         # add wanted_class
         request.user.profile.add(wanted_class)
+        
+    HttpResponse()
 
 @csrf_exempt
 def class_remove(request):
@@ -155,9 +160,7 @@ def class_remove(request):
         wanted_class
         for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
             wanted_class = c
-        # add wanted_class
-        request.user.profile.add(wanted_class)
-        print "%s, %s, %s" % (course_name, class_type, day, timeFrom)
+        
 
 @csrf_exempt
 def login(request):

@@ -87,7 +87,7 @@ $(document).ready(function() {
     });
 
     function add_class_to_backend (courseId,classType,day,timeFrom) {
-        $.POST("/class_add/",{
+        $.post("/class_add/",{
             courseId: courseId,
             classType: classType,
             day: day,
