@@ -9,7 +9,7 @@ class Timetable(SelfPublishModel, models.Model):
     serializer_class = TimetableSerializer
     name = models.CharField(max_length=100,default="15s2")
     courses = models.ManyToManyField("Course", blank=True)
-    classes = models.ManyToManyField("Class", blank=True)
+    classes = models.ManyToManyField("Class", blank=True, related_name="timetable")
 
     def __str__(self):
         return self.name
@@ -48,7 +48,7 @@ class Class(SelfPublishModel, models.Model):
     enrols = models.IntegerField(default=0)
     capacity = models.IntegerField(default=0)
     room = models.CharField(max_length=170, default='Not specified')
-    students = models.ManyToManyField("Timetable")
+    # students = models.ManyToManyField("Timetable",blank=True)
 
 
     # Here, we'll return the dictionary as part of the model

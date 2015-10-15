@@ -53,9 +53,9 @@ $(document).ready(function() {
             // alert(courseId+" , "+classType);
             timetable.children().each(function (row){
                 $(this).children().each(function (col){
-                    if(class_on_timetable(col,row)){
+                    if(class_on_timetable(col,row) && col != 0){
                         $(this).addClass('tableClassSelectingAvail');
-                    } else {
+                    } else if (col != 0) {
                         $(this).addClass('tableClassSelectingNotAvail');
                     }
                 });
@@ -68,10 +68,11 @@ $(document).ready(function() {
     timetable.find('td').click(function () {
         var row = $(this).data('row');
         var col = $(this).data('col');
+        alert("col:"+col+"row:"+row+" is clicked");
         var index = which_index(col, row);
         var hours = class_hours(index);
         var i;
-        for (i=0; i<hours; i++) {
+        for (i=0; i < hours; i++) {
             var curr_row = row + i;
             var cell = $('#TimeTable tbody tr').eq(curr_row).find('td').eq(col);
             if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
@@ -79,7 +80,8 @@ $(document).ready(function() {
                 cell.html("<b>" + courseId + "</b><br>" +classType);
             }
         }
-        add_class_to_backend (courseId,classType,col+1,avail_class_list[index]['timeFrom']);
+        alert("col-1:"+(col-1)+",day:"+avail_class_list[index]['day']);
+        add_class_to_backend(courseId,classType,col-1,avail_class_list[index]['timeFrom']);
 
         // remove all the select class tag
         $('td').removeClass('tableClassSelectingAvail');
@@ -93,15 +95,32 @@ $(document).ready(function() {
             day: day,
             timeFrom: timeFrom,
         });
+        // var data = {
+        //     'courseId': courseId,
+        //     'classType': classType,
+        //     'day': day,
+        //     'timeFrom': timeFrom,
+        // };
+        // $.ajax({
+        //     "type": "POST",
+        //     "dataType": "json",
+        //     "url": "/class_add/",
+        //     "data": data,
+        //     "success": function (result) {
+        //         console.log(result);
+        //     },
+        // })
     }
 
     function which_index(col, row) {
-        var timeFrom = (row + 8) * 100;
+        var timeFrom = (row + 9) * 100;
         var day = col - 1;
         var i;
+        alert("which_index: checking: timeFrom:"+timeFrom+",day:"+day);
         for (i = 0; i < avail_class_list.length; i++) {
-            if (avail_class_list[i]['day'] == day
-               && avail_class_list[i]['timeFrom'] == timeFrom) {
+            alert("which_index: checking: "+avail_class_list[i]['day']+"-"+avail_class_list[i]['timeFrom']);
+            if (parseInt(avail_class_list[i]['day']) == day
+               && parseInt(avail_class_list[i]['timeFrom']) == timeFrom) {
                 return i;
             }
         }
@@ -110,7 +129,7 @@ $(document).ready(function() {
 
     function class_on_timetable (col,row) {
         var i;
-        var r = (row + 8) * 100;
+        var r = (row + 9) * 100;
         for (i = 0; i < avail_class_list.length; i++) {
             if(avail_class_list[i]['day'] == col-1 &&
                 avail_class_list[i]['timeFrom'] <= r &&

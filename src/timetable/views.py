@@ -33,13 +33,16 @@ def timetable(request):
     if request.POST.get("course_code"):
         course_code = request.POST.get("course_code").upper()
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            # INSERT HERE: DONT ADD IF EXIST
+            # example
+            # self.apps.filter(id=app_id).exists()
             timetable.courses.add(course)
             timetable.save()
 
     if request.POST.get("rm_course"):
         course_code = request.POST.get("rm_course_code").upper()
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
-            print course
+            # print course
             timetable.courses.remove(course)
             timetable.save()
     
@@ -128,39 +131,46 @@ def class_search(request):
 
 @csrf_exempt
 def class_add(request):
-    print "asdf"
     # Require user to login inorder to continue
     if not request.user.is_authenticated():
         return login(request)
+
     if request.method == 'POST':
-        print "if"
         course_name = request.POST.get('courseId').upper()
         class_type = request.POST.get('classType')
         day = request.POST.get('day')
-        timeFrom = request.POST.get('timeFrom')
-        print "asdf  %s, %s, %s" % (course_name, class_type, day, timeFrom)
-        wanted_class
-        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
-            wanted_class = c
-        # add wanted_class
-        request.user.profile.add(wanted_class)
+        time_from = request.POST.get('timeFrom')
+        # print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
+        require_class = None
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
+            if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
+                require_class = c
+        timetable = request.user.profile.timetable
         
-    HttpResponse()
+# INSERT HERE: DONT ADD IF EXIST
+# example
+# self.apps.filter(id=app_id).exists()
+
+        timetable.classes.add(require_class)
+
+
+        timetable.save()
+    return JsonResponse({})
 
 @csrf_exempt
 def class_remove(request):
-    # Require user to login inorder to continue
-    if not request.user.is_authenticated():
-        return login(request)
-    if request.method == 'POST':
-        course_name = request.POST['courseId'].upper()
-        class_type = request.POST['classType']
-        day = request.POST['day']
-        timeFrom = request.POST['timeFrom']
-        wanted_class
-        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom])[0]:
-            wanted_class = c
-        
+#     # Require user to login inorder to continue
+#     if not request.user.is_authenticated():
+#         return login(request)
+#     if request.method == 'POST':
+#         course_name = request.POST['courseId'].upper()
+#         class_type = request.POST['classType']
+#         day = request.POST['day']
+#         timeFrom = request.POST['timeFrom']
+#         wanted_class
+#         for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom]):
+#             wanted_class = c
+    return JsonResponse({})
 
 @csrf_exempt
 def login(request):
