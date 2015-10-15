@@ -54,7 +54,7 @@ $(document).ready(function() {
 
             if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
                 cell.addClass('hasClass');
-                cell.html(courseId + classType);
+                cell.html("<b>" + courseId + "</b><br>" +classType);
                 //alert('cell: ' + cell.index() + ' this: ' + $(this).index());
             }
         }

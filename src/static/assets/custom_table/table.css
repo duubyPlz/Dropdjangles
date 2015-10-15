@@ -6,6 +6,8 @@
 }
 .hasClass{
     background-color: #e8c447;
+    height: 10px;
+    
 }
 #userOne{
     background-color: red;
@@ -14,3 +16,4 @@
 table, td, th {
     border: 1px solid black;
 }
+
