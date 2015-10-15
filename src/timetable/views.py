@@ -138,19 +138,21 @@ def class_add(request):
         class_type = request.POST.get('classType')
         day = request.POST.get('day')
         time_from = request.POST.get('timeFrom')
-        # print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
+        #print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
         require_class = None
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
             if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
                 require_class = c
         timetable = request.user.profile.timetable
-        if require_class in timetable.classes.all():
-# INSERT HERE: DONT ADD IF EXIST
-# example
-# self.apps.filter(id=app_id).exists()
-
+        if require_class in timetable.classes.all(): # class is already in timetable
+            # INSERT HERE: DONT ADD IF EXIST
+            # example
+            # self.apps.filter(id=app_id).exists()
+            #print "enters"
+            pass
+        else:
+            #print "else"
             timetable.classes.add(require_class)
-
 
         timetable.save()
     return JsonResponse({})
