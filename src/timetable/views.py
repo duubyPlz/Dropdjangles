@@ -131,6 +131,19 @@ def class_add(request):
     # Require user to login inorder to continue
     if not request.user.is_authenticated():
         return login(request)
+    if request.method == 'GET':
+        course_name = request.GET['courseId'].upper()
+        class_type = request.GET['classType']
+        day = request.GET['day']
+        timeFrom = request.GET['timeFrom']
+        timeTo = request.GET['timeTo']
+
+        class_id
+        timetable_id
+        for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d AND timeTo=%d",[course_name,class_type,day,timeFrom,timeTo]):
+            class_id = c.id
+
+
 
 @csrf_exempt
 def class_remove(request):
