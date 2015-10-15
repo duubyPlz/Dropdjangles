@@ -74,18 +74,26 @@ $(document).ready(function() {
         for (i=0; i<hours; i++) {
             var curr_row = row + i;
             var cell = $('#TimeTable tbody tr').eq(curr_row).find('td').eq(col);
-
             if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
                 cell.addClass('hasClass');
                 cell.html("<b>" + courseId + "</b><br>" +classType);
-                
             }
         }
+        add_class_to_backend (courseId,classType,col+1,avail_class_list[index]['timeFrom']);
 
         // remove all the select class tag
         $('td').removeClass('tableClassSelectingAvail');
         $('td').removeClass('tableClassSelectingNotAvail');
     });
+
+    function add_class_to_backend (courseId,classType,day,timeFrom) {
+        $.POST("/class_add/",{
+            courseId: courseId,
+            classType: classType,
+            day: day,
+            timeFrom: timeFrom,
+        });
+    }
 
     function which_index(col, row) {
         var timeFrom = (row + 8) * 100;
@@ -93,7 +101,7 @@ $(document).ready(function() {
         var i;
         for (i = 0; i < avail_class_list.length; i++) {
             if (avail_class_list[i]['day'] == day
-             && avail_class_list[i]['timeFrom'] == timeFrom) {
+               && avail_class_list[i]['timeFrom'] == timeFrom) {
                 return i;
             }
         }
