@@ -144,14 +144,11 @@ def class_add(request):
             if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
                 require_class = c
         timetable = request.user.profile.timetable
-        if require_class in timetable.classes.all(): # class is already in timetable
+        if require_class not in timetable.classes.all(): # class is already in timetable
             # INSERT HERE: DONT ADD IF EXIST
             # example
             # self.apps.filter(id=app_id).exists()
             #print "enters"
-            pass
-        else:
-            #print "else"
             timetable.classes.add(require_class)
 
         timetable.save()
