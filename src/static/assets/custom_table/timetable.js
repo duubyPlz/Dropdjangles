@@ -127,8 +127,9 @@ $(document).ready(function() {
     function add_class_to_timetable (col,row,courseId,classType,hours) {
             var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
             cell.addClass('hasClass');
-            cell.attr('rowspan',hours)
-            cell.html("<b>" + courseId + "</b><br>" +classType+"");
+            cell.attr('rowspan',hours);
+            cell.append("<div id='remove_class' style='float: right;margin-top:-13px;position: absolute;'>&times;");
+            cell.append("<b>" + courseId + "</b><br>" +classType+"</div>");
             for (var i = 1; i < hours; i++) {
                 $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
             }
