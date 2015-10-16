@@ -89,8 +89,8 @@ def timetable(request):
     timetableCourses = timetable.courses.all()
     # Get all the class from the courses
     class_list = []
-    exist_classtype = []
     for course in timetableCourses:
+        exist_classtype = []
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course.name]):
             if not c.classtype in exist_classtype:
                 class_list.append(c)
@@ -151,6 +151,29 @@ def class_add(request):
     return JsonResponse({})
 
 @csrf_exempt
+def class_remove(request):
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)
+
+    if request.method == 'POST':
+        course_name = request.POST.get('courseId').upper()
+        class_type = request.POST.get('classType')
+        day = request.POST.get('day')
+        time_from = request.POST.get('timeFrom')
+        #print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
+        require_class = None
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
+            if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
+                require_class = c
+        timetable = request.user.profile.timetable
+        if require_class in timetable.classes.all(): # class is already in timetable
+            timetable.classes.remove(require_class)
+        timetable.save()
+    return JsonResponse({})
+
+
+@csrf_exempt
 def get_all_class(request):
     if not request.user.is_authenticated():
         return login(request)
@@ -165,20 +188,6 @@ def get_all_class(request):
         }
     return JsonResponse(context)
 
-@csrf_exempt
-def class_remove(request):
-#     # Require user to login inorder to continue
-#     if not request.user.is_authenticated():
-#         return login(request)
-#     if request.method == 'POST':
-#         course_name = request.POST['courseId'].upper()
-#         class_type = request.POST['classType']
-#         day = request.POST['day']
-#         timeFrom = request.POST['timeFrom']
-#         wanted_class
-#         for c in Class.objects.raw("SELECT id FROM timetable_class() WHERE name=%s AND classtype=%s AND day=%d AND timeFrom=%d",[course_name,class_type,day,timeFrom]):
-#             wanted_class = c
-    return JsonResponse({})
 
 @csrf_exempt
 def login(request):
