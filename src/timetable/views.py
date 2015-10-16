@@ -155,10 +155,15 @@ def get_all_class(request):
     if not request.user.is_authenticated():
         return login(request)
     context = {}
-    # if request.method == 'GET':
-
-
-    return JsonResponse({})
+    if request.method == 'GET':
+        all_class = []
+        for c in request.user.profile.timetable.classes.all():
+            all_class.append(c.as_dict())
+        print "get class ok"
+        context = {
+            'all_class' : all_class,
+        }
+    return JsonResponse(context)
 
 @csrf_exempt
 def class_remove(request):

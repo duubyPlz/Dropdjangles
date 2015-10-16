@@ -50,11 +50,11 @@ class Class(SelfPublishModel, models.Model):
     room = models.CharField(max_length=170, default='Not specified')
     # students = models.ManyToManyField("Timetable",blank=True)
 
-
     # Here, we'll return the dictionary as part of the model
     def as_dict(self):
         return dict(
             # course = self.course,
+            name = self.name,
             timeFrom = self.timeFrom,
             timeTo = self.timeTo,
             day = self.day,
