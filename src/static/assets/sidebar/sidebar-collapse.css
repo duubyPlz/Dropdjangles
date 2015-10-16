@@ -171,7 +171,7 @@
 
 /* Making the sidebar responsive */
 
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {
 
     .main-content{
         max-width: none;
@@ -235,10 +235,10 @@
     }
 
 }
-
+*/
 /* Smartphone version */
 
-@media (max-width: 450px) {
+/*@media (max-width: 450px) {
 
     .main-content{
         padding: 90px 20px;
@@ -280,7 +280,7 @@
         bottom: -90px;
     }
 
-}
+}*/
 
 /*  Removing margins and paddings from the body, so that
     the sidebar takes the full height of the page */

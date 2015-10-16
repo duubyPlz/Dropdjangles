@@ -86,14 +86,14 @@ $(document).ready(function() {
         var row = $(this).data('row');
         var col = $(this).data('col');
         // alert("col:"+col+"row:"+row+" is clicked");
-        var me = $(this);
+        // var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
             // console.log("this is a class");
             $(this).children('div #remove_class').on('click',function() {
-                // console.log("remove_class");
+                // console.log("remove_class,col:"+col+",row:"+row);
                 // console.log($(this).parent().data('class_info'));
-                remove_class_from_timetable($(this).parent().data('class_info'));
+                remove_class_from_timetable(col,row);
             });
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             var index = which_index(col, row);
@@ -150,14 +150,22 @@ $(document).ready(function() {
         });
     }
 
-    function remove_class_from_timetable (a_class) {
+    function remove_class_from_timetable (col,row) {
+        console.log("removing from timetable");
+        var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         // remove the class from backend
-        remove_class_from_backend(a_class);
+        remove_class_from_backend(class_block.data('class_info'));
         // check if we need to unspan the row
-
-        // make a new cell
-
+        var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
+        console.log(rowspan);
+        for(var i = 1; i < rowspan; i++) {
+           class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
+        }
         // remove the whole original cell
+        class_block.removeData('class_info');
+        class_block.removeClass('hasClass');
+        class_block.removeAttr('rowspan');
+        class_block.find('div').remove();
     }
 
     function remove_class_from_backend (a_class) {
