@@ -18,7 +18,7 @@
   <link href="{% static "assets/custom_table/table.css" %}" rel="stylesheet" />
 
   <!-- side bar -->
-  <link rel="stylesheet" href="{% static "assets/css/sidebar-collapse.css" %}">
+  <link rel="stylesheet" href="{% static "assets/sidebar/sidebar-collapse.css" %}">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
@@ -53,7 +53,7 @@
         </center>
 
         <form method='POST' action='' class="input-group margin">
-          <input type="text" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="off">
+          <input type="text" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
           <datalist id="courses">
             {% for course in course_list %}
             <option value='{{ course.name }}'>{{ course.name }}</option>
@@ -370,7 +370,7 @@
         <!--script src="{% static "app.js" %}"></script-->
         <!-- <script src="{% static "controllers.js" %}"></script> -->
         <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
-
+        <script src="{% static "assets/sidebar/sidebar.js" %}"></script>
         {% include 'tail_js.html' %}
 
       </body>
