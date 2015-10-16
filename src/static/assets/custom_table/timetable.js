@@ -33,11 +33,29 @@ $(document).ready(function() {
         });
     });
 
+    // load all class when the page is loaded
+    .get("/get_all_class/",{},function (data) {
+        avail_class_list = data.avail_class_list;
+        console.log(avail_class_list);
+        // the course and the class type from the sublinks
+        // alert(courseId+" , "+classType);
+        timetable.children().each(function (row){
+            $(this).children().each(function (col){
+                if(class_on_timetable(col,row) && col != 0){
+                    $(this).addClass('tableClassSelectingAvail');
+                } else if (col != 0) {
+                    $(this).addClass('tableClassSelectingNotAvail');
+                }
+            });
+        });
+    }); 
+
+
+
+
     var courseId;
     var classType;
     var avail_class_list;
-
-
     //  this will gray out all the available timeslot
     $('.sidebar_classes').on('click',function(){
         courseId = this.id.split('|')[0]

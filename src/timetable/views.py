@@ -33,7 +33,7 @@ def timetable(request):
     if request.POST.get("course_code"):
         course_code = request.POST.get("course_code").upper()
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
-            if course in timetable.courses.all():
+            if course not in timetable.courses.all():
                 timetable.courses.add(course)
             timetable.save()
 
@@ -145,10 +145,6 @@ def class_add(request):
                 require_class = c
         timetable = request.user.profile.timetable
         if require_class not in timetable.classes.all(): # class is already in timetable
-            # INSERT HERE: DONT ADD IF EXIST
-            # example
-            # self.apps.filter(id=app_id).exists()
-            #print "enters"
             timetable.classes.add(require_class)
 
         timetable.save()
@@ -156,10 +152,12 @@ def class_add(request):
 
 @csrf_exempt
 def get_all_class(request):
+    if not request.user.is_authenticated():
+        return login(request)
+    context = {}
+    # if request.method == 'GET':
 
 
-
-    
     return JsonResponse({})
 
 @csrf_exempt
