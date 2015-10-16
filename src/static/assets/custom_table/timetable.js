@@ -36,13 +36,16 @@ $(document).ready(function() {
         }
     }); 
 
-
-
-
     //  this will gray out all the available timeslot
     $('.sidebar_classes').on('click',function(){
         courseId = this.id.split('|')[0]
         classType = this.id.split('|')[1]
+
+        // check if already greyed out
+        if ($('td').hasClass('tableClassSelectingAvail')) {
+            $('td').removeClass('tableClassSelectingAvail');
+            $('td').removeClass('tableClassSelectingNotAvail');
+        }
 
         $.get("/class_search/",{
             courseId: courseId,
