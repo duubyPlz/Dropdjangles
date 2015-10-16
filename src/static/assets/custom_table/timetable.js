@@ -39,8 +39,8 @@ $(document).ready(function() {
 
     //  this will gray out all the available timeslot
     $('.sidebar_classes').on('drag',function(){
-        courseId = this.id.split('|')[0]
-        classType = this.id.split('|')[1]
+        courseId = this.id.split('|')[0];
+        classType = this.id.split('|')[1];
 
         $.get("/class_search/",{
             courseId: courseId,
@@ -135,8 +135,11 @@ $(document).ready(function() {
     var dragSrcEl = null;
     function handleDragStart(e) {
         dragSrcEl = this;
+        courseId = this.id.split('|')[0];
+        classType = this.id.split('|')[1];
 
         e.dataTransfer.effectAllowed = 'move';
+        this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
         e.dataTransfer.setData('text/html', this.outerHTML);
     }
 
@@ -169,7 +172,9 @@ $(document).ready(function() {
         if (dragSrcEl != this) {
             // Set the source column's HTML to the HTML of the column we dropped on.
             dragSrcEl.innerHTML = this.innerHTML;
+
             this.innerHTML = e.dataTransfer.getData('text/html');
+            $(this).addClass('hasClass');
         }
 
         [].forEach.call(elems, function (elem) {

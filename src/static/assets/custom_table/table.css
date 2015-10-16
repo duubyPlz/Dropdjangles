@@ -7,7 +7,6 @@
 .hasClass{
     background-color: #e8c447;
     height: 10px;
-    
 }
 #userOne{
     background-color: red;
@@ -17,3 +16,12 @@ table, td, th {
     border: 1px solid black;
 }
 
+.dropzone.over {
+  border: 2px dashed #000;
+}
+
+.sidebar_classes {
+    background-color: #e8c447;
+    text-align: center;
+    width:;
+}
