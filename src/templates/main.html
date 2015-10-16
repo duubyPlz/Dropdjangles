@@ -69,7 +69,7 @@
 
           {% for course in timetableCourses %}
           <div class="link-yellow">
-            <a href="">  <!-- need # to expand the dropdown -->
+            <a style="cursor: default;">
               <div class='sidebar_remove_btn'>
                 <form action="" method="POST">
                   <span class='sidebar_course_code'>{{ course.name }}</span>
@@ -280,7 +280,7 @@
             <a data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
           </li>
         </ul>
-        
+
         {% if pending_friend_list|length > 0 %}
         <ul class="list-group sidebar_friendlist" style="color: black;">
           <li class="h4 list-group-item active">Pending</li>
@@ -311,7 +311,7 @@
       </li>
     </ul>
     {% endif %}
-    
+
   </aside>
 
   <!-- Modal creation -->
