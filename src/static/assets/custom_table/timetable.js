@@ -71,13 +71,15 @@ $(document).ready(function() {
         // alert("col:"+col+"row:"+row+" is clicked");
         var index = which_index(col, row);
         var hours = class_hours(index);
-        var i;
-        for (i=0; i < hours; i++) {
-            var curr_row = row + i;
-            var cell = $('#TimeTable tbody tr').eq(curr_row).find('td').eq(col);
-            if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
-                cell.addClass('hasClass');
-                cell.html("<center><b>" + courseId + "</b><br>" +classType+"</center>");
+        // for (var i = 0; i < hours; i++) {
+        // var curr_row = row + i;
+        var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+        if(cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')){
+            cell.addClass('hasClass');
+            cell.attr('rowspan',hours)
+            cell.html("<b>" + courseId + "</b><br>" +classType+"");
+            for (var i = 1; i < hours; i++) {
+                $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).remove();
             }
         }
         // alert("col-1:"+(col-1)+",day:"+avail_class_list[index]['day']);
@@ -87,6 +89,17 @@ $(document).ready(function() {
         $('td').removeClass('tableClassSelectingAvail');
         $('td').removeClass('tableClassSelectingNotAvail');
     });
+
+
+
+
+
+
+
+
+
+
+    // Helper functions
 
     function add_class_to_backend (courseId,classType,day,timeFrom) {
         $.post("/class_add/",{

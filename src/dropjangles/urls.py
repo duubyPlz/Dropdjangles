@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^class_search/$',views.class_search,name='class_search'),
     url(r'^class_add/$',views.class_add,name='class_add'),
     url(r'^class_remove/$',views.class_remove,name='class_remove'),
+    url(r'^get_all_class/$',views.get_all_class,name='get_all_class'),
 ]
 
 if settings.DEBUG:

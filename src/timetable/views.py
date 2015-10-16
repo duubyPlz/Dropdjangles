@@ -155,6 +155,14 @@ def class_add(request):
     return JsonResponse({})
 
 @csrf_exempt
+def get_all_class(request):
+
+
+
+    
+    return JsonResponse({})
+
+@csrf_exempt
 def class_remove(request):
 #     # Require user to login inorder to continue
 #     if not request.user.is_authenticated():
