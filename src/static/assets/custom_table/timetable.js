@@ -137,8 +137,7 @@ $(document).ready(function() {
         dragSrcEl = this;
 
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.innerHTML);
-        this.style.opacity = '0.4';  // this / e.target is the source node.
+        e.dataTransfer.setData('text/html', this.outerHTML);
     }
 
     function handleDragOver(e) {
@@ -187,7 +186,7 @@ $(document).ready(function() {
             elem.classList.remove('over');
         });
     }
-    
+
     var elems = document.querySelectorAll('.dropzone');
     [].forEach.call(elems, function(elem) {
         elem.addEventListener('dragstart', handleDragStart, false);
