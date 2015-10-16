@@ -81,21 +81,23 @@ $(document).ready(function() {
     // });
 
 
-
     // Locate which box we clicked on
     timetable.find('td').click(function () {
         var row = $(this).data('row');
         var col = $(this).data('col');
         // alert("col:"+col+"row:"+row+" is clicked");
         var me = $(this);
-        var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-        if(cell.hasClass('hasClass')){
-            console.log("this is a class");
-            var class_obj = cell.data('class_info');
-            remove_class_from_timetable(class_obj);
-        } else if (cell.hasClass('tableClassSelectingAvail') && !cell.hasClass('hasClass')) {
+        // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+        if($(this).hasClass('hasClass')){
+            // console.log("this is a class");
+            $(this).children('div #remove_class').on('click',function() {
+                // console.log("remove_class");
+                // console.log($(this).parent().data('class_info'));
+                remove_class_from_timetable($(this).parent().data('class_info'));
+            });
+        } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             var index = which_index(col, row);
-            var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+            // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
             add_class_to_timetable(class_list[index]);
             add_class_to_backend(class_list[index]);
             // alert("col-1:"+(col-1)+",day:"+class_list[index]['day']);
@@ -106,9 +108,6 @@ $(document).ready(function() {
         }
     });
 
-    // timetable.find('td').click(function () {
-    //     alert("remove class");
-    // });
 
 
 
@@ -152,10 +151,6 @@ $(document).ready(function() {
     }
 
     function remove_class_from_timetable (a_class) {
-        // var courseId = this.id.split('|')[0]
-        // var classType = 
-        // var timeFrom = 
-        // var day = 
         // remove the class from backend
         remove_class_from_backend(a_class);
         // check if we need to unspan the row
