@@ -84,7 +84,7 @@
               {% for class in class_list %}
               {% if class.course == course %}
               <!-- <button class="addClass btn btn-warning"></button> -->
-              <li class='sidebar_classes' id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</li>
+              <li class='sidebar_classes draggable' draggable='true' id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</li>
               {% endif %}
               {% endfor %}
             </ul>
@@ -127,13 +127,13 @@
             </tr>
             <tr id="10:00 am">
               <td>10:00 am</td>
-              <td></td>
-              <td></td> 
-              <td></td>
-              <td></td>
-              <td></td> 
-              <td></td>
-              <td></td>
+              <td class='dropzone'></td>
+              <td class='dropzone'></td> 
+              <td class='dropzone'></td>
+              <td class='dropzone'></td>
+              <td class='dropzone'></td> 
+              <td class='dropzone'></td>
+              <td class='dropzone'></td>
             </tr> 
 
             <tr id="11:00 am">

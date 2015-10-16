@@ -37,9 +37,8 @@ $(document).ready(function() {
     var classType;
     var avail_class_list;
 
-
     //  this will gray out all the available timeslot
-    $('.sidebar_classes').on('click',function(){
+    $('.sidebar_classes').on('drag',function(){
         courseId = this.id.split('|')[0]
         classType = this.id.split('|')[1]
 
@@ -127,4 +126,75 @@ $(document).ready(function() {
     function class_hours(index) {
         return Math.ceil((parseInt(avail_class_list[index]['timeTo']) - parseInt(avail_class_list[index]['timeFrom'])) / 100);
     }
+
+    var elems = document.querySelectorAll('.draggable');
+    [].forEach.call(elems, function(elem) {
+      elem.addEventListener('dragstart', handleDragStart, false);
+    });
+
+    var dragSrcEl = null;
+    function handleDragStart(e) {
+        dragSrcEl = this;
+
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML);
+        this.style.opacity = '0.4';  // this / e.target is the source node.
+    }
+
+    function handleDragOver(e) {
+        if (e.preventDefault) {
+            e.preventDefault(); // Necessary. Allows us to drop.
+      }
+
+        e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+    function handleDragEnter(e) {
+        // this / e.target is the current hover target.
+        this.classList.add('over');
+    }
+
+    function handleDragLeave(e) {
+        this.classList.remove('over');  // this / e.target is previous target element.
+    }
+
+    function handleDrop(e) {
+        // this / e.target is current target element.
+        if (e.stopPropagation) {
+            e.stopPropagation(); // stops the browser from redirecting.
+        }
+
+        // Don't do anything if dropping the same column we're dragging.
+        if (dragSrcEl != this) {
+            // Set the source column's HTML to the HTML of the column we dropped on.
+            dragSrcEl.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+        }
+
+        [].forEach.call(elems, function (elem) {
+            elem.classList.remove('over');
+        });
+        // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+    function handleDragEnd(e) {
+        // this/e.target is the source node.
+        [].forEach.call(elems, function (elem) {
+            elem.classList.remove('over');
+        });
+    }
+    
+    var elems = document.querySelectorAll('.dropzone');
+    [].forEach.call(elems, function(elem) {
+        elem.addEventListener('dragstart', handleDragStart, false);
+        elem.addEventListener('dragenter', handleDragEnter, false);
+        elem.addEventListener('dragover', handleDragOver, false);
+        elem.addEventListener('dragleave', handleDragLeave, false);
+        elem.addEventListener('drop', handleDrop, false);
+        elem.addEventListener('dragend', handleDragEnd, false);
+    });
 });
