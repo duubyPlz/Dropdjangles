@@ -150,8 +150,10 @@ $(document).ready(function() {
     function remove_class_from_timetable (col,row) {
         // console.log("removing from timetable");
         var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+
+        var class_info = class_block.data('class_info')
         // remove the class from backend
-        remove_class_from_backend(class_block.data('class_info'));
+        remove_class_from_backend(class_info);
         // check if we need to unspan the row
         var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
         // console.log(rowspan);
@@ -163,6 +165,16 @@ $(document).ready(function() {
         class_block.removeClass('hasClass');
         class_block.removeAttr('rowspan');
         class_block.find('div').remove();
+
+        $.get("/class_stream_search/",{
+            courseId:  class_info['name'],
+            classType: class_info['classtype'],
+            timeFrom:  class_info['timeFrom'],
+            day:       class_info['day'],
+        }, function (data) {
+            stream = data.stream;
+
+        });
     }
 
     function remove_class_from_backend (a_class) {
@@ -190,10 +202,10 @@ $(document).ready(function() {
     // }
 
     function which_stream_index_from_col_row (streams,col,row) {
-        var r = (row + 9) * 100;
+        var r = (row + 9);
         for (var i = 0; i < streams.length; i++) {
             for(var j = 0; j < streams[i].length; j++){ 
-                if(streams[i][j]['day'] == col-1 && streams[i][j]['timeFrom'] == r){
+                if(streams[i][j]['day'] == col-1 && Math.floor(parseInt(streams[i][j]['timeFrom'])/100) == r){
                     return i+"|"+j;
                 }
             }

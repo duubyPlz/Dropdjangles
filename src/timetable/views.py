@@ -118,6 +118,7 @@ def course_add(request):
     if request.method == 'GET' :
         course_code = request.GET['required_course_code'].upper()
         course_code = course_code.rstrip()
+        course_code_valid = 0
 
         class_types = []
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
@@ -125,13 +126,15 @@ def course_add(request):
                 # print "added course"
                 request.user.profile.timetable.courses.add(course)
                 request.user.profile.timetable.save()
+                course_code_valid = 1
 
                 for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course_code]):
                     if c.classtype not in class_types:
                         class_types.append(c.classtype)
 
         context = {
-            'class_types' : class_types,
+            'valid' : course_code_valid,
+            'class_types' :       class_types,
         }
     return JsonResponse(context)
 
@@ -166,6 +169,11 @@ def class_search(request):
             'streams' : streams,
         }
     return JsonResponse(context)
+
+@csrf_exempt
+def class_stream_search(request):
+   
+    return JsonResponse({})
 
 @csrf_exempt
 def class_add(request):
