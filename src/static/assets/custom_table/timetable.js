@@ -36,36 +36,37 @@ $(document).ready(function() {
     }); 
 
     //  this will gray out all the available timeslot
-    $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links').on('click','.sidebar_classes',function(){
-        courseId = this.id.split('|')[0]
-        classType = this.id.split('|')[1]
-        console.log('clicked');
-        // check if already greyed out
-        if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
-            $('td').removeClass('tableClassSelectingAvail');
-            $('td').removeClass('tableClassSelectingNotAvail');
-        }
+    $('body aside.sidebar-left-collapse div.sidebar-links ').on('click','div.link-yellow ul.sub-links li.sidebar_classes',
+        function(){
+            courseId = this.id.split('|')[0]
+            classType = this.id.split('|')[1]
+            console.log('clicked');
+            // check if already greyed out
+            if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
+                $('td').removeClass('tableClassSelectingAvail');
+                $('td').removeClass('tableClassSelectingNotAvail');
+            }
 
-        $.get("/class_search/",{
-            courseId: courseId,
-            classType: classType,
-        }, function (data) {
-            class_list = data.avail_class_list;
-            // console.log(class_list);
-            // the course and the class type from the sublinks
-            // alert(courseId+" , "+classType);
-            timetable.children().each(function (row){
-                $(this).children().each(function (col){
-                    if(class_on_timetable(col,row,class_list) && col != 0){
-                        $(this).addClass('tableClassSelectingAvail');
-                    } else if (col != 0) {
-                        $(this).addClass('tableClassSelectingNotAvail');
-                    }
+            $.get("/class_search/",{
+                courseId: courseId,
+                classType: classType,
+            }, function (data) {
+                class_list = data.avail_class_list;
+                // console.log(class_list);
+                // the course and the class type from the sublinks
+                // alert(courseId+" , "+classType);
+                timetable.children().each(function (row){
+                    $(this).children().each(function (col){
+                        if(class_on_timetable(col,row,class_list) && col != 0){
+                            $(this).addClass('tableClassSelectingAvail');
+                        } else if (col != 0) {
+                            $(this).addClass('tableClassSelectingNotAvail');
+                        }
+                    });
                 });
-            });
-        }); 
-
-    });
+            }); 
+        }
+    );
 
     // Locate which box we clicked on
     timetable.find('td').click(function () {
@@ -197,4 +198,6 @@ $(document).ready(function() {
     function class_hours(a_class) {
         return Math.ceil((parseInt(a_class['timeTo']) - parseInt(a_class['timeFrom'])) / 100);
     }
+
+
 });
