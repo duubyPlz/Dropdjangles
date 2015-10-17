@@ -39,7 +39,7 @@ $(document).ready(function() {
     $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links').on('click','.sidebar_classes',function(){
         courseId = this.id.split('|')[0]
         classType = this.id.split('|')[1]
-
+        console.log('clicked');
         // check if already greyed out
         if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
             $('td').removeClass('tableClassSelectingAvail');

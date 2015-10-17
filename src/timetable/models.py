@@ -57,8 +57,8 @@ class Class(SelfPublishModel, models.Model):
         return dict(
             # course = self.course,
             name = self.name,
-            timeFrom = self.timeFrom,
-            timeTo = self.timeTo,
+            timeFrom = self.time_from,
+            timeTo = self.time_to,
             day = self.day,
             classtype = self.classtype,
             enrols = self.enrols,

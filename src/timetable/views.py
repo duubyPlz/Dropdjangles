@@ -169,7 +169,7 @@ def class_add(request):
         #print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
         require_class = None
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
-            if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
+            if(int(c.time_from) == int(time_from) and int(c.day) == int(day)):
                 require_class = c
         timetable = request.user.profile.timetable
         if require_class not in timetable.classes.all(): # class is already in timetable
@@ -192,7 +192,7 @@ def class_remove(request):
         #print "input: courseId:%s,classType:%s,day:%s,timeFrom:%s" % (course_name, class_type, day, time_from)
         require_class = None
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
-            if(int(c.timeFrom) == int(time_from) and int(c.day) == int(day)):
+            if(int(c.time_from) == int(time_from) and int(c.day) == int(day)):
                 require_class = c
         timetable = request.user.profile.timetable
         if require_class in timetable.classes.all(): # class is already in timetable
