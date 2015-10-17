@@ -20,7 +20,6 @@ $(function(){
     //     }    
     // });
 
-
     $('body aside.sidebar-left-collapse div.sidebar-links').on("mouseover",".link-yellow",
         function(){
             $(this).addClass('selected');
@@ -70,19 +69,17 @@ $(function(){
     $('body .sidebar-left-collapse .sidebar-links ').on('click','div.link-yellow a .sidebar_remove_btn .btn.btn-xs.btn-link.not-focusable',
         function(){
             var required_course_code = $(this).siblings()[0].innerHTML;
-            var obj = $(this);
-            $("#TimeTable tbody tr").find('td.hasClass').each(function(){
-                remove_this_class_stream_from_timetable($(this));
-            })
-            console.log(classes);
+            var obj = $(this);   
+            $("#TimeTable tbody tr").find('td.hasClass div.remove_class').trigger('click');
+            // console.log(classes);
 
-            var i;
-            for (i=0; i<classes.length; i++) {
-            //     if (obj.hasClass('hasClass') && ($(this).find('b').innerHTML == )) {
-            //         console.log('asdf');
-            //         console.log(obj.data('class_info'));
-            //     }
-            }
+            // var i;
+            // for (i=0; i<classes.length; i++) {
+            // //     if (obj.hasClass('hasClass') && ($(this).find('b').innerHTML == )) {
+            // //         console.log('asdf');
+            // //         console.log(obj.data('class_info'));
+            // //     }
+            // }
             // if hasClass then get row & col & remove, for all td's
             // $(this).parent().parent().parent().parent().remove();
             $.get("/course_remove/", {
@@ -95,5 +92,4 @@ $(function(){
             })
         }
     );
-
 })
