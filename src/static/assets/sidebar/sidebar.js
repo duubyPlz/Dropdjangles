@@ -67,10 +67,15 @@ $(function(){
 
     // remove a course
     $('body .sidebar-left-collapse .sidebar-links ').on('click','div.link-yellow a .sidebar_remove_btn .btn.btn-xs.btn-link.not-focusable',
-        function(){
+        function() {
             var required_course_code = $(this).siblings()[0].innerHTML;
-            var obj = $(this);   
-            $("#TimeTable tbody tr").find('td.hasClass div.remove_class').trigger('click');
+            var obj = $(this);
+            $("#TimeTable tbody tr").find('td.hasClass').each(function() {
+                var current_course_code = $(this).children().children()[0].innerHTML;
+                if (current_course_code == required_course_code) {
+                    $(this).find('div.remove_class').trigger('click');
+                }
+            });
             // console.log(classes);
 
             // var i;
