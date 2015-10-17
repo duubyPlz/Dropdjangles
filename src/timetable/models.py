@@ -13,7 +13,7 @@ class Timetable(SelfPublishModel, models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class Course(SelfPublishModel, models.Model):
     serializer_class = CourseSerializer
     SEMESTERS = (
@@ -41,13 +41,15 @@ class Class(SelfPublishModel, models.Model):
     )
     course = models.ForeignKey(Course, null=True)
     name = models.CharField(max_length=20,default='Not specified')
-    timeFrom = models.CharField(max_length=10,default='0')
-    timeTo = models.CharField(max_length=10, default='0')
+    time_from = models.CharField(max_length=10,default='0')
+    time_to = models.CharField(max_length=10, default='0')
     day = models.IntegerField(default=0, choices=DAYS)
     classtype = models.CharField(max_length=70, default='Not specified')
     enrols = models.IntegerField(default=0)
     capacity = models.IntegerField(default=0)
     room = models.CharField(max_length=170, default='Not specified')
+    shared_stream = models.ManyToManyField('Class', related_name='shared_stream_classes',blank=True)
+
     # students = models.ManyToManyField("Timetable",blank=True)
 
     # Here, we'll return the dictionary as part of the model
@@ -82,6 +84,5 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
 
