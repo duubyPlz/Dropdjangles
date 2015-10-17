@@ -66,6 +66,22 @@ $(function(){
         }
     );
 
-
+    // remove a course
+    $('body .sidebar-left-collapse .sidebar-links ').on('click','div.link-yellow a .sidebar_remove_btn .btn.btn-xs.btn-link.not-focusable',
+        function(){
+            var required_course_code = $(this).siblings()[0].innerHTML;
+            console.log(required_course_code);
+            var obj = $(this);
+            // $(this).parent().parent().parent().parent().remove();
+            $.get("/course_remove/", {
+                'required_course_code': required_course_code,
+            }, function (data) {
+                // remove link-yellow
+                if (data.exit_code == 1) {
+                    obj.parent().parent().parent().remove();
+                }
+            })
+        }
+    );
 
 })

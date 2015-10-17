@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^class_remove/$',views.class_remove,name='class_remove'),
     url(r'^get_all_class/$',views.get_all_class,name='get_all_class'),
     url(r'^course_add/$',views.course_add,name='course_add'),
+    url(r'^course_remove/$',views.course_remove,name='course_remove'),
 ]
 
 if settings.DEBUG:

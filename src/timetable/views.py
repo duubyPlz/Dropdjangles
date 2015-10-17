@@ -138,6 +138,29 @@ def course_add(request):
         }
     return JsonResponse(context)
 
+@csrf_exempt
+def course_remove(request):
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)
+
+    exit_code = 0
+    if request.method == 'GET':
+        course_code = request.GET['required_course_code'].upper()
+        course_code = course_code.rstrip()
+
+        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            if course in request.user.profile.timetable.courses.all():
+                request.user.profile.timetable.courses.remove(course)
+                request.user.profile.timetable.save()
+                print 'asdf'
+                exit_code = 1
+    context = {
+        'exit_code' : exit_code,
+    }
+    return JsonResponse(context)
+
+    url(r'^course_remove/$',views.course_remove,name='course_remove'),
 
 @csrf_exempt
 def class_search(request):
