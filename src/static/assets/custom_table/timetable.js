@@ -123,7 +123,7 @@ $(document).ready(function() {
             cell.attr('rowspan',hours);
             cell.data('class_info',a_class);
             // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
-            cell.append("<div class='remove_class pull-right'>&times;</div>");
+            cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
             cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
             for (var i = 1; i < hours; i++) {
                 $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
