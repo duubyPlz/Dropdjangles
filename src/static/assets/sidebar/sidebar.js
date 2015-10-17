@@ -39,7 +39,7 @@ $(function(){
             $.get("/course_add/",{
                 'required_course_code': required_course_code,
             }, function (data) {
-                console.log(data);
+                // console.log(data);
                 var sidebar_links = $('body aside.sidebar-left-collapse div.sidebar-links');
                 console.log(sidebar_links);
                 var classes_sublinks = "";
