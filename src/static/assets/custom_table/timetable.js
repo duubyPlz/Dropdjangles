@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 
     //  this will gray out all the available timeslot
-    $('.sidebar_classes').on('click',function(){
+    $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links').on('click','.sidebar_classes',function(){
         courseId = this.id.split('|')[0]
         classType = this.id.split('|')[1]
 
@@ -65,11 +65,6 @@ $(document).ready(function() {
 
     });
     
-
-    // $('body').on('click',function (e) { 
-    //     // alert('works: col:'+$(this).data('col')+",row:"+$(this).data('row'));
-    // });
-
 
     // Locate which box we clicked on
     timetable.find('td').click(function () {

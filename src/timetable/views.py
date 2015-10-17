@@ -30,19 +30,19 @@ def timetable(request):
 
 
     # find the course instance and add the course to the timetable
-    if request.POST.get("course_code"):
-        course_code = request.POST.get("course_code").upper()
-        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
-            if course not in timetable.courses.all():
-                timetable.courses.add(course)
-            timetable.save()
+    # if request.POST.get("course_code"):
+    #     course_code = request.POST.get("course_code").upper()
+    #     for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+    #         if course not in timetable.courses.all():
+    #             timetable.courses.add(course)
+    #         timetable.save()
 
-    if request.POST.get("rm_course"):
-        course_code = request.POST.get("rm_course_code").upper()
-        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
-            # print course
-            timetable.courses.remove(course)
-            timetable.save()
+    # if request.POST.get("rm_course"):
+    #     course_code = request.POST.get("rm_course_code").upper()
+    #     for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+    #         # print course
+    #         timetable.courses.remove(course)
+    #         timetable.save()
     
 
     
@@ -107,6 +107,34 @@ def timetable(request):
         'pending_friend_list': pending_friend_list,
     }
     return render(request, 'main.html' ,context)
+
+@csrf_exempt
+def course_add(request):
+    # Require user to login inorder to continue
+    if not request.user.is_authenticated():
+        return login(request)
+ 
+    context = {}
+    if request.method == 'GET' :
+        course_code = request.GET['required_course_code'].upper()
+        course_code = course_code.rstrip()
+
+        for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
+            if course not in request.user.profile.timetable.courses.all():
+                # print "added course"
+                request.user.profile.timetable.courses.add(course)
+                request.user.profile.timetable.save()
+
+        class_types = []
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course_code]):
+            if c.classtype not in class_types:
+                class_types.append(c.classtype)
+
+        context = {
+            'class_types' : class_types,
+        }
+    return JsonResponse(context)
+
 
 @csrf_exempt
 def class_search(request):
@@ -182,7 +210,7 @@ def get_all_class(request):
         all_class = []
         for c in request.user.profile.timetable.classes.all():
             all_class.append(c.as_dict())
-        print "get class ok"
+        # print "get class ok"
         context = {
             'all_class' : all_class,
         }
