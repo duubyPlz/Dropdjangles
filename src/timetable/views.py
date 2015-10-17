@@ -69,6 +69,14 @@ def timetable(request):
         #scrap the friend_text string for either username or password
         friend_text = request.POST.get("friend_search")        
         friend_text = friend_text.rstrip()
+        
+        #check if you are trying to add yourself
+        if friend_text in usr_profile.user.username:
+            friend_text=''
+        #check if you are trying to add a friend
+        for friend in usr_profile.friends.all():
+            if friend_text in friend.user.username:
+                friend_text=''
 
         #get friend from given friend_search text
         friendUser = None
