@@ -153,14 +153,12 @@ def course_remove(request):
             if course in request.user.profile.timetable.courses.all():
                 request.user.profile.timetable.courses.remove(course)
                 request.user.profile.timetable.save()
-                print 'asdf'
+                print ('asdf')
                 exit_code = 1
     context = {
         'exit_code' : exit_code,
     }
     return JsonResponse(context)
-
-    url(r'^course_remove/$',views.course_remove,name='course_remove'),
 
 @csrf_exempt
 def class_search(request):

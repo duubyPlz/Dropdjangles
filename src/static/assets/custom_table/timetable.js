@@ -86,11 +86,7 @@ $(document).ready(function() {
         if($(this).hasClass('hasClass')){
             // console.log("this is a class");
             
-            // $(this).children('div .remove_class').on('click',function() {
-            //     // console.log("remove_class,col:"+col+",row:"+row);
-            //     // console.log($(this).parent().data('class_info'));
-            //     remove_class_from_timetable(col,row);
-            // });
+            
             
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             // var index = which_index(col, row);
