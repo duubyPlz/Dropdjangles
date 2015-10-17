@@ -84,8 +84,21 @@ $(document).ready(function() {
         // var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
+            var class_info = $(this).data('class_info');
+            // console.log(class_info);
             remove_class_all_stream_from_timetable(col,row);
-
+            var sidebar_classes = $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links li.sidebar_classes');
+            // console.log(sidebar_classes)
+            var target_class_courseId = class_info['name'];
+            var target_class_classType = class_info['classtype'];
+            sidebar_classes.each(function(){
+                // console.log($(this));
+                var curr_courseId = $(this).attr('id').split('|')[0];
+                var curr_classType = $(this).attr('id').split('|')[1];
+                if(target_class_courseId == curr_courseId && target_class_classType == curr_classType) {
+                    $(this).trigger('click');
+                }
+            });
             
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             // var index = which_index(col, row);
