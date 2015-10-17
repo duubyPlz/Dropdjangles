@@ -33,8 +33,8 @@ $(function(){
     );
 
 
-    $('body .sidebar-left-collapse .input-group.margin .btn.btn-default.not-focusable').click(
-        function(){
+    $('body .sidebar-left-collapse .input-group.margin .btn.btn-default.not-focusable').on('click',
+        function() {
             var required_course_code = $(this).parent().parent().find('input').val().toUpperCase();
             $.get("/course_add/",{
                 'required_course_code': required_course_code,
@@ -62,7 +62,10 @@ $(function(){
                             </ul> \
                         </div>");
                 }
-            })
+            });
         }
     );
+
+
+
 })

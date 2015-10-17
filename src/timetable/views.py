@@ -119,16 +119,16 @@ def course_add(request):
         course_code = request.GET['required_course_code'].upper()
         course_code = course_code.rstrip()
 
+        class_types = []
         for course in Course.objects.raw("SELECT * FROM timetable_course WHERE name=%s",[course_code]):
             if course not in request.user.profile.timetable.courses.all():
                 # print "added course"
                 request.user.profile.timetable.courses.add(course)
                 request.user.profile.timetable.save()
 
-        class_types = []
-        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course_code]):
-            if c.classtype not in class_types:
-                class_types.append(c.classtype)
+                for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s",[course_code]):
+                    if c.classtype not in class_types:
+                        class_types.append(c.classtype)
 
         context = {
             'class_types' : class_types,

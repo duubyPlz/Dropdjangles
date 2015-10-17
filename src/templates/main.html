@@ -52,8 +52,9 @@
           <img src='{% static "assets/img/logo.png" %}' id='logo-short'>
         </center>
 
+<!-- onkeypress="return event.keyCode != 13;"  -->
         <form method='POST' action='' class="input-group margin">
-          <input type="text" onkeypress="return event.keyCode != 13;" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
+          <input type="text" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
           <datalist id="courses">
             {% for course in course_list %}
             <option value='{{ course.name }}'>{{ course.name }}</option>
