@@ -67,14 +67,10 @@ $(document).ready(function() {
 
     });
 
-    timetable.find('td').on('mouseover', function() {
-        var row = $(this).data('row');
-        var col = $(this).data('col');
-        $(this).children('div .remove_class').on('click',function() {
-            // console.log("remove_class,col:"+col+",row:"+row);
-            // console.log($(this).parent().data('class_info'));
-            remove_class_from_timetable(col,row);
-        });
+    timetable.find('td').on('click', 'div.remove_class', function() {
+        var row = $(this).parent().data('row');
+        var col = $(this).parent().data('col');
+        remove_class_from_timetable(col,row);
     });
 
     // Locate which box we clicked on
