@@ -308,6 +308,7 @@
     </ul>
     {% endif %}
 
+    {% if waiting_on_list|length > 0 %}
     <ul class="list-group sidebar_friendlist" style="color: black;">
       <li class="h4 list-group-item active">Waiting On</li>
         {% for friend in waiting_on_list %}
@@ -325,6 +326,7 @@
         {% endfor %}
       </li>
     </ul>
+    {% endif %}
 
   <ul class="list-group sidebar_friendlist" style="color: black;">
     <li class="h4 list-group-item active">Suggestions</li>

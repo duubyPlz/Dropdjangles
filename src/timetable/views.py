@@ -94,7 +94,6 @@ def timetable(request):
             friendUserProfile = friendUser.profile
 
             if friendUserProfile in usr_profile.pending_friends.all():
-                print("YES")
                 usr_profile.pending_friends.remove(friendUserProfile)
                 usr_profile.friends.add(friendUserProfile)
                 friendUserProfile.friends.add(usr_profile)
