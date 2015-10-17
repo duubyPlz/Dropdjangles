@@ -19,9 +19,13 @@ def timetable(request):
     course_list = Course.objects.order_by('name')
     # class_list = Class.objects.all()
 
+
     # Get the timetable from the user if there is one
     # Create one if it doesn't exist
     usr_profile = request.user.profile
+    friend_list = usr_profile.friends.all()
+    pending_friend_list = usr_profile.pending_friends.all()
+
     timetable = usr_profile.timetable
     if timetable is None:
         timetable = Timetable.objects.create(name=usr_profile.user.username+"'s 15s2")
@@ -71,11 +75,11 @@ def timetable(request):
         friend_text = friend_text.rstrip()
         
         #check if you are trying to add yourself
-        if friend_text in usr_profile.user.username:
+        if (friend_text == usr_profile.user.username):
             friend_text=''
         #check if you are trying to add a friend
         for friend in usr_profile.friends.all():
-            if friend_text in friend.user.username:
+            if (friend_text == friend.user.username):
                 friend_text=''
 
         #get friend from given friend_search text
@@ -88,7 +92,16 @@ def timetable(request):
         if (friendUser is not None):
             #get this friend's user profile
             friendUserProfile = friendUser.profile
-            friendUserProfile.pending_friends.add(usr_profile)
+
+            if friendUserProfile in usr_profile.pending_friends.all():
+                print("YES")
+                usr_profile.pending_friends.remove(friendUserProfile)
+                usr_profile.friends.add(friendUserProfile)
+                friendUserProfile.friends.add(usr_profile)
+                usr_profile.save()
+                friendUserProfile.save()
+            else:
+                friendUserProfile.pending_friends.add(usr_profile)
             friendUserProfile.save()
 
 
@@ -103,9 +116,13 @@ def timetable(request):
             if not c.classtype in exist_classtype:
                 class_list.append(c)
                 exist_classtype.append(c.classtype)
-
-    friend_list = usr_profile.friends.all()
-    pending_friend_list = usr_profile.pending_friends.all()
+    
+    #find what friends we are waiting for
+    waiting_on_list = []
+    for friend in UserProfile.objects.all():
+        for friend_waiting in friend.pending_friends.all():
+            if (friend_waiting.user.username == usr_profile.user.username):
+                waiting_on_list.append(friend)
 
     context = {
         'course_list': course_list,
@@ -113,6 +130,7 @@ def timetable(request):
         'class_list': class_list,
         'friend_list': friend_list,
         'pending_friend_list': pending_friend_list,
+        'waiting_on_list': waiting_on_list,
     }
     return render(request, 'main.html' ,context)
 
