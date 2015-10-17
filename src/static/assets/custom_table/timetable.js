@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     var courseId;
     var classType;
-    var class_list = [];
+    var streams = [];
 
     // load all class when the page is loaded
     $.get("/get_all_class/",{},function (data) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
         function(){
             courseId = this.id.split('|')[0]
             classType = this.id.split('|')[1]
-            console.log('clicked');
+            // console.log('clicked');
             // check if already greyed out
             if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
                 $('td').removeClass('tableClassSelectingAvail');
@@ -51,13 +51,15 @@ $(document).ready(function() {
                 courseId: courseId,
                 classType: classType,
             }, function (data) {
-                class_list = data.avail_class_list;
-                // console.log(class_list);
+                // streams = data
+                streams = data.streams;
+                // console.log(data.streams);
+
                 // the course and the class type from the sublinks
                 // alert(courseId+" , "+classType);
                 timetable.children().each(function (row){
                     $(this).children().each(function (col){
-                        if(class_on_timetable(col,row,class_list) && col != 0){
+                        if(class_on_timetable(col,row,data.streams) && col != 0){
                             $(this).addClass('tableClassSelectingAvail');
                         } else if (col != 0) {
                             $(this).addClass('tableClassSelectingNotAvail');
@@ -91,10 +93,16 @@ $(document).ready(function() {
             // });
             
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
-            var index = which_index(col, row);
+            // var index = which_index(col, row);
             // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-            add_class_to_timetable(class_list[index]);
-            add_class_to_backend(class_list[index]);
+            var index_str = which_stream_index_from_col_row(streams,col,row);
+            // alert("index_str = "+index_str);
+            var i = index_str.split('|')[0];
+            var j = index_str.split('|')[1];
+            for (var k = 0; k < streams[i].length; k++){
+                add_class_to_timetable(streams[i][k]);
+                add_class_to_backend(streams[i][k]);
+            }
             // alert("col-1:"+(col-1)+",day:"+class_list[index]['day']);
 
             // remove all the select class tag
@@ -140,13 +148,13 @@ $(document).ready(function() {
     }
 
     function remove_class_from_timetable (col,row) {
-        console.log("removing from timetable");
+        // console.log("removing from timetable");
         var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         // remove the class from backend
         remove_class_from_backend(class_block.data('class_info'));
         // check if we need to unspan the row
         var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
-        console.log(rowspan);
+        // console.log(rowspan);
         for(var i = 1; i < rowspan; i++) {
            class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
         }
@@ -166,37 +174,52 @@ $(document).ready(function() {
         });
     }
 
-    function which_index(col, row) {
-        var timeFrom = (row + 9) * 100;
-        var day = col - 1;
-        var i;
-        // alert("which_index: checking: timeFrom:"+timeFrom+",day:"+day);
-        for (i = 0; i < class_list.length; i++) {
-            // alert("which_index: checking: "+class_list[i]['day']+"-"+class_list[i]['timeFrom']);
-            if (parseInt(class_list[i]['day']) == day
-               && parseInt(class_list[i]['timeFrom']) == timeFrom) {
-                return i;
+    // function which_index(col,row) {
+    //     var timeFrom = (row + 9) * 100;
+    //     var day = col - 1;
+    //     // alert("which_index: checking: timeFrom:"+timeFrom+",day:"+day);
+
+    //     for (var i = 0; i < streams.length; i++) {
+    //         // alert("which_index: checking: "+class_list[i]['day']+"-"+class_list[i]['timeFrom']);
+    //         if (parseInt(class_list[i]['day']) == day
+    //            && parseInt(class_list[i]['timeFrom']) == timeFrom) {
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
+
+    function which_stream_index_from_col_row (streams,col,row) {
+        var r = (row + 9) * 100;
+        for (var i = 0; i < streams.length; i++) {
+            for(var j = 0; j < streams[i].length; j++){ 
+                if(streams[i][j]['day'] == col-1 && streams[i][j]['timeFrom'] == r){
+                    return i+"|"+j;
+                }
             }
         }
-        return -1;
+        return "-1|-1";
     }
 
     function which_col(a_class) {
+        // console.log('col is '+parseInt(a_class['day'])+1);
         return parseInt(a_class['day'])+1;
     }
 
     function which_row (a_class) {
+        // console.log('row is '+((parseInt(a_class['timeFrom'])/100) - 9));
         return (parseInt(a_class['timeFrom'])/100) - 9;
     }
 
-    function class_on_timetable (col,row,class_list) {
-        var i;
+    function class_on_timetable (col,row,streams) {
         var r = (row + 9) * 100;
-        for (i = 0; i < class_list.length; i++) {
-            if(class_list[i]['day'] == col-1 &&
-                class_list[i]['timeFrom'] <= r &&
-                class_list[i]['timeTo'] > r)
-                return true;
+        for (var i = 0; i < streams.length; i++) {
+            for(var j = 0; j < streams[i].length; j++){ 
+                if(streams[i][j]['day'] == col-1 &&
+                    streams[i][j]['timeFrom'] <= r &&
+                    streams[i][j]['timeTo'] > r)
+                    return true;
+            }
         }
         return false;
     }
@@ -204,6 +227,5 @@ $(document).ready(function() {
     function class_hours(a_class) {
         return Math.ceil((parseInt(a_class['timeTo']) - parseInt(a_class['timeFrom'])) / 100);
     }
-
 
 });

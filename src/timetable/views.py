@@ -146,12 +146,24 @@ def class_search(request):
         course_name = request.GET['courseId'].upper()
         class_type = request.GET['classType']
         
-        avail_class_list = []
+        all_class_list = []
         for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s",[course_name,class_type]):
-            avail_class_list.append(c.as_dict())
-        
+            all_class_list.append(c)
+
+        added_class = []
+        streams = []
+        for c in all_class_list:
+            if c not in added_class:
+                curr_stream_list = []
+                curr_stream_list.append(c.as_dict())
+                added_class.append(c)
+                for shared_stream_class in c.shared_stream.all():
+                    curr_stream_list.append(shared_stream_class.as_dict())
+                streams.append(curr_stream_list)
+
+        # print streams
         context = {
-            'avail_class_list' : avail_class_list,
+            'streams' : streams,
         }
     return JsonResponse(context)
 
