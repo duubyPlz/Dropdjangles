@@ -29,7 +29,6 @@ $(document).ready(function() {
 
     // load all class when the page is loaded
     $.get("/get_all_class/",{},function (data) {
-        console.log(data.all_class);
         for(var i = 0; i < data.all_class.length; i++) {
             // alert("col:"+col+",row:"+row+",courseId:"+courseId+",classType:"+classType+",hours:"+hours);
             add_class_to_timetable(data.all_class[i]);
@@ -42,7 +41,7 @@ $(document).ready(function() {
         classType = this.id.split('|')[1]
 
         // check if already greyed out
-        if ($('td').hasClass('tableClassSelectingAvail')) {
+        if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
             $('td').removeClass('tableClassSelectingAvail');
             $('td').removeClass('tableClassSelectingNotAvail');
         }
@@ -68,11 +67,20 @@ $(document).ready(function() {
 
     });
     
-
     // $('body').on('click',function (e) { 
     //     // alert('works: col:'+$(this).data('col')+",row:"+$(this).data('row'));
     // });
 
+
+    // $('td').on("mouseover",function () {
+    //     var row = $(this).data('row');
+    //     var col = $(this).data('col');
+    //     $(this).children('div .remove_class').on('click',function() {
+    //         // console.log("remove_class,col:"+col+",row:"+row);
+    //         // console.log($(this).parent().data('class_info'));
+    //         remove_class_from_timetable(col,row);
+    //     });
+    // });
 
     // Locate which box we clicked on
     timetable.find('td').click(function () {
@@ -83,11 +91,13 @@ $(document).ready(function() {
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
             // console.log("this is a class");
-            $(this).children('div #remove_class').on('click',function() {
+            
+            $(this).children('div .remove_class').on('click',function() {
                 // console.log("remove_class,col:"+col+",row:"+row);
                 // console.log($(this).parent().data('class_info'));
                 remove_class_from_timetable(col,row);
             });
+            
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             var index = which_index(col, row);
             // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
@@ -98,17 +108,11 @@ $(document).ready(function() {
             // remove all the select class tag
             $('td').removeClass('tableClassSelectingAvail');
             $('td').removeClass('tableClassSelectingNotAvail');
+        } else {
+            $('td').removeClass('tableClassSelectingAvail');
+            $('td').removeClass('tableClassSelectingNotAvail');   
         }
     });
-
-
-
-
-
-
-
-
-
 
 
     // Helper functions
@@ -127,8 +131,8 @@ $(document).ready(function() {
             cell.attr('rowspan',hours);
             cell.data('class_info',a_class);
             // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
-            cell.append("<div id='remove_class' style='cursor: pointer;float: right;margin-top:-13px;position: absolute;'>&times;</div>");
-            cell.append("<div style='cursor: pointer;'><b>" + courseId + "</b><br>" +classType+"</div>");
+            cell.append("<div class='remove_class pull-right'>&times;</div>");
+            cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
             for (var i = 1; i < hours; i++) {
                 $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
             }
