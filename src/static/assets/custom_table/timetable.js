@@ -84,15 +84,7 @@ $(document).ready(function() {
         // var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
-            alert("a;sldfjl;asdjl;fjas");
-            // console.log("this is a class");
-            
-            // $(this).children('div .remove_class').on('click',function() {
-            //     // console.log("remove_class,col:"+col+",row:"+row);
-            //     // console.log($(this).parent().data('class_info'));
-            //     remove_class_from_timetable(col,row);
-            // });
-            
+            remove_class_all_stream_from_timetable(col,row);
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             // var index = which_index(col, row);
             // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
@@ -170,6 +162,10 @@ $(document).ready(function() {
     function remove_class_all_stream_from_timetable(col,row){
         var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         var class_info = class_block.data('class_info');
+        remove_this_class_stream_from_timetable(class_info);
+    }
+
+    function remove_this_class_stream_from_timetable(class_info) {
         remove_class_from_timetable(class_info);
         $.get("/class_stream_search/",{
             courseId:  class_info['name'],
