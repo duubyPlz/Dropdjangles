@@ -73,7 +73,7 @@ $(document).ready(function() {
     timetable.find('td').on('click', 'div.remove_class', function() {
         var row = $(this).parent().data('row');
         var col = $(this).parent().data('col');
-        remove_class_from_timetable(col,row);
+        remove_class_all_stream_from_timetable(col,row);
     });
 
     // Locate which box we clicked on
@@ -84,6 +84,7 @@ $(document).ready(function() {
         // var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
+            alert("a;sldfjl;asdjl;fjas");
             // console.log("this is a class");
             
             // $(this).children('div .remove_class').on('click',function() {
@@ -147,13 +148,11 @@ $(document).ready(function() {
         });
     }
 
-    function remove_class_from_timetable (col,row) {
-        // console.log("removing from timetable");
+    function remove_class_from_timetable (a_class) {
+        var col = which_col(a_class);
+        var row = which_row(a_class);
         var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-
-        var class_info = class_block.data('class_info')
-        // remove the class from backend
-        remove_class_from_backend(class_info);
+        remove_class_from_backend(a_class);
         // check if we need to unspan the row
         var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
         // console.log(rowspan);
@@ -166,16 +165,26 @@ $(document).ready(function() {
         class_block.removeAttr('rowspan');
         class_block.find('div').remove();
 
+    }
+
+    function remove_class_all_stream_from_timetable(col,row){
+        var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+        var class_info = class_block.data('class_info');
+        remove_class_from_timetable(class_info);
         $.get("/class_stream_search/",{
             courseId:  class_info['name'],
             classType: class_info['classtype'],
             timeFrom:  class_info['timeFrom'],
             day:       class_info['day'],
         }, function (data) {
-            stream = data.stream;
-
+            // console.log(data);
+            for(var i = 0; i < data.stream.length; i++){
+                var target_class = data.stream[i];
+                remove_class_from_timetable(target_class);
+            }
         });
     }
+
 
     function remove_class_from_backend (a_class) {
         $.post("/class_remove/",{

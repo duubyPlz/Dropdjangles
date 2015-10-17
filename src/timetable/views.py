@@ -195,8 +195,24 @@ def class_search(request):
 
 @csrf_exempt
 def class_stream_search(request):
-   
-    return JsonResponse({})
+    if not request.user.is_authenticated():
+        return login(request)
+    context = {}
+    if request.method == 'GET' :
+        course_name = request.GET['courseId'].upper()
+        class_type = request.GET['classType']
+        time_from = request.GET['timeFrom']
+        day = request.GET['day']
+        
+        stream = []
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s AND time_from=%s AND day=%s",[course_name,class_type,time_from,day]):
+            stream.append(c.as_dict())
+            for shared_stream_class in c.shared_stream.all():
+                stream.append(shared_stream_class.as_dict())
+        context = {
+            'stream' : stream,
+        }
+    return JsonResponse(context)
 
 @csrf_exempt
 def class_add(request):
