@@ -69,6 +69,14 @@ def timetable(request):
         #scrap the friend_text string for either username or password
         friend_text = request.POST.get("friend_search")        
         friend_text = friend_text.rstrip()
+        
+        #check if you are trying to add yourself
+        if friend_text in usr_profile.user.username:
+            friend_text=''
+        #check if you are trying to add a friend
+        for friend in usr_profile.friends.all():
+            if friend_text in friend.user.username:
+                friend_text=''
 
         #get friend from given friend_search text
         friendUser = None
@@ -193,8 +201,24 @@ def class_search(request):
 
 @csrf_exempt
 def class_stream_search(request):
-   
-    return JsonResponse({})
+    if not request.user.is_authenticated():
+        return login(request)
+    context = {}
+    if request.method == 'GET' :
+        course_name = request.GET['courseId'].upper()
+        class_type = request.GET['classType']
+        time_from = request.GET['timeFrom']
+        day = request.GET['day']
+        
+        stream = []
+        for c in Class.objects.raw("SELECT * FROM timetable_class WHERE name=%s AND classtype=%s AND time_from=%s AND day=%s",[course_name,class_type,time_from,day]):
+            stream.append(c.as_dict())
+            for shared_stream_class in c.shared_stream.all():
+                stream.append(shared_stream_class.as_dict())
+        context = {
+            'stream' : stream,
+        }
+    return JsonResponse(context)
 
 @csrf_exempt
 def class_add(request):
