@@ -20,7 +20,6 @@ $(function(){
     //     }    
     // });
 
-
     $('body aside.sidebar-left-collapse div.sidebar-links').on("mouseover",".link-yellow",
         function(){
             $(this).addClass('selected');
@@ -41,7 +40,6 @@ $(function(){
             }, function (data) {
                 // console.log(data);
                 var sidebar_links = $('body aside.sidebar-left-collapse div.sidebar-links');
-                console.log(sidebar_links);
                 var classes_sublinks = "";
                 for (var i = 0; i < data.class_types.length; i++){        
                     classes_sublinks = classes_sublinks +"<li style='cursor: default;' class='sidebar_classes' id="+required_course_code+"|"+data.class_types[i]+">"+data.class_types[i]+"</li>";
@@ -66,12 +64,28 @@ $(function(){
         }
     );
 
+
     // remove a course
     $('body .sidebar-left-collapse .sidebar-links ').on('click','div.link-yellow a .sidebar_remove_btn .btn.btn-xs.btn-link.not-focusable',
-        function(){
+        function() {
             var required_course_code = $(this).siblings()[0].innerHTML;
-            console.log(required_course_code);
             var obj = $(this);
+            $("#TimeTable tbody tr").find('td.hasClass').each(function() {
+                var current_course_code = $(this).children().children()[0].innerHTML;
+                if (current_course_code == required_course_code) {
+                    $(this).find('div.remove_class').trigger('click');
+                }
+            });
+            // console.log(classes);
+
+            // var i;
+            // for (i=0; i<classes.length; i++) {
+            // //     if (obj.hasClass('hasClass') && ($(this).find('b').innerHTML == )) {
+            // //         console.log('asdf');
+            // //         console.log(obj.data('class_info'));
+            // //     }
+            // }
+            // if hasClass then get row & col & remove, for all td's
             // $(this).parent().parent().parent().parent().remove();
             $.get("/course_remove/", {
                 'required_course_code': required_course_code,
@@ -83,5 +97,4 @@ $(function(){
             })
         }
     );
-
 })

@@ -99,7 +99,6 @@ $(document).ready(function() {
                     $(this).trigger('click');
                 }
             });
-            
         } else if ($(this).hasClass('tableClassSelectingAvail') && !$(this).hasClass('hasClass')) {
             // var index = which_index(col, row);
             // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
