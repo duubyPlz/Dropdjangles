@@ -132,6 +132,8 @@ $(document).ready(function() {
       elem.addEventListener('dragstart', handleDragStart, false);
     });
 
+
+    <!-- http://www.html5rocks.com/en/tutorials/dnd/basics/ -->
     var dragSrcEl = null;
     function handleDragStart(e) {
         dragSrcEl = this;
