@@ -63,7 +63,7 @@ def timetable(request):
             usr_profile.pending_friends.remove(friendUserProfile)
 
             #determine if we are accepting or denying, if accepting -> add eachother
-            if reque/st.POST.get("accept_request"):
+            if request.POST.get("accept_request"):
                 usr_profile.friends.add(friendUserProfile)    
                 friendUserProfile.friends.add(usr_profile)
                 friendUserProfile.save()
