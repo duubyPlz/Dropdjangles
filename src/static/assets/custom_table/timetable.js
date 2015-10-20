@@ -176,6 +176,7 @@ $(document).ready(function() {
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
+            cell.css("border-top","20px");
         }
     }
 
@@ -200,16 +201,37 @@ $(document).ready(function() {
         });
     }
 
+    // function remove_class_from_timetable (a_class) {
+    //     var col = which_col(a_class);
+    //     var row = which_row(a_class);
+    //     var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+    //     remove_class_from_backend(a_class);
+    //     // check if we need to unspan the row
+    //     var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
+    //     // console.log(rowspan);
+    //     for(var i = 1; i < rowspan; i++) {
+    //        class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
+    //     }
+    //     // remove the whole original cell
+    //     class_block.removeData('class_info');
+    //     class_block.removeClass('hasClass');
+    //     class_block.removeAttr('rowspan');
+    //     class_block.find('div').remove();
+
+    // }
+
     function remove_class_from_timetable (a_class) {
         var col = which_col(a_class);
         var row = which_row(a_class);
         var class_block = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         remove_class_from_backend(a_class);
         // check if we need to unspan the row
-        var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
+        // var rowspan = (rowspan === undefined) ? class_block.attr('rowspan') : 1;
         // console.log(rowspan);
-        for(var i = 1; i < rowspan; i++) {
-           class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
+        var hours = class_hours(a_class);
+        for(var i = 1; i < hours; i++) {
+            // class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
+            class_block.parent().parent().children().eq(row+i).find('td').eq(col).removeClass('hasClass');
         }
         // remove the whole original cell
         class_block.removeData('class_info');

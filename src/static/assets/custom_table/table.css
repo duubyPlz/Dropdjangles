@@ -18,7 +18,18 @@
 }
 
 table, td, th {
-    border: 1px solid black;
+  border: 1px solid black;
+
+  display: absolute;
+  top:    0;
+  bottom: 0;
+  left:   0;
+  right:  0;
+}
+
+table tbody td {
+  width: 100px;
+  height:50px;
 }
 
 .remove_class {
