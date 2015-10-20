@@ -177,6 +177,7 @@ $(document).ready(function() {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
             cell.css("border-top","20px");
+            $(cell).attr('style', 'border-top-width: 2px; border-top-color: #e8c447');
         }
     }
 
@@ -232,10 +233,12 @@ $(document).ready(function() {
         for(var i = 1; i < hours; i++) {
             // class_block.parent().parent().children().eq(row+i).find('td').eq(col).show(); 
             class_block.parent().parent().children().eq(row+i).find('td').eq(col).removeClass('hasClass');
+            class_block.parent().parent().children().eq(row+i).find('td').eq(col).removeAttr('style');
         }
         // remove the whole original cell
         class_block.removeData('class_info');
         class_block.removeClass('hasClass');
+        class_block.removeAttr('style');
         class_block.removeAttr('rowspan');
         class_block.find('div').remove();
 
