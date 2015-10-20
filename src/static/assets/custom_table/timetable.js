@@ -122,8 +122,20 @@ $(document).ready(function() {
     });
 
 
-    // Helper functions
+    // friends
+    $('.sidebar-right-collapse .sidebar_friendlist li div div label input').change(
+    function(){
+        if ($(this).is(':checked')) {
+            friend_username = $(this).val();
+            console.log(friend_username);
 
+            $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
+                overlay_friends_class(data.friends_class);
+            });  
+        }
+    });
+
+    // Helper functions
     function add_class_to_timetable (a_class) {
         var col =       which_col(a_class);
         var row =       which_row(a_class);
@@ -145,17 +157,17 @@ $(document).ready(function() {
         }
     }
 
-    // function overlay_friends_class (class_list) {
-    //     for (var i = 0; 0 < class_list.length; i++) {
-    //         var a_class = class_list.[i];
-    //         var hours = class_hours(a_class);
-    //         var col = which_col(a_class);
-    //         var row = which_row(a_class);
-    //         for (var j = 0; j < hours; j++) {
-    //             //  overlay the cell
-    //         }
-    //     }
-    // }
+    function overlay_friends_class (class_list) {
+        for (var i = 0; 0 < class_list.length; i++) {
+            var a_class = class_list.[i];
+            var hours = class_hours(a_class);
+            var col = which_col(a_class);
+            var row = which_row(a_class);
+            for (var j = 0; j < hours; j++) {
+                //  overlay the cell
+            }
+        }
+    }
 
     function add_class_to_backend (a_class) {
         $.post("/class_add/",{
