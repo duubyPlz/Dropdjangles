@@ -232,7 +232,7 @@ $(document).ready(function() {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
             // console.log('friend: ' + friend_username);
-            cell.find('div.hasFriendsClass').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+            cell.find('div.hasFriendsClass.friend_class_'+friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
