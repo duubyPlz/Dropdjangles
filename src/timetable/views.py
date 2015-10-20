@@ -305,7 +305,9 @@ def get_friends_classes(request):
     context = {}
     if request.method == 'GET':
         all_classes = []
-    for c in request.user.profile.friends.profile.timetable.classes.all():
+        friend_username = request.GET.get('friend_username')
+        friend_profile = request.user.profile.friends.get(username=friend_username)
+    for c in friend_profile.timetable.classes.all():
         all_classes.append(c.as_dict())
         context = {
             'friends_classes' : all_classes,
