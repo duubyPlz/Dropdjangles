@@ -136,6 +136,27 @@ $(document).ready(function() {
     });
 
     // Helper functions
+    // function add_class_to_timetable (a_class) {
+    //     var col =       which_col(a_class);
+    //     var row =       which_row(a_class);
+    //     var hours =     class_hours(a_class);
+    //     var timeFrom =  a_class['timeFrom'];
+    //     var timeTo =    a_class['timeTo'];
+    //     var day =       a_class['day'];
+    //     var classType = a_class['classtype'];
+    //     var courseId =  a_class['name'];
+    //     var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+    //     cell.addClass('hasClass');
+    //     cell.attr('rowspan',hours);
+    //     cell.data('class_info',a_class);
+    //     // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
+    //     cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
+    //     cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
+    //     for (var i = 1; i < hours; i++) {
+    //         $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
+    //     }
+    // }
+
     function add_class_to_timetable (a_class) {
         var col =       which_col(a_class);
         var row =       which_row(a_class);
@@ -147,27 +168,28 @@ $(document).ready(function() {
         var courseId =  a_class['name'];
         var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         cell.addClass('hasClass');
-        cell.attr('rowspan',hours);
+        // cell.attr('rowspan',hours);
         cell.data('class_info',a_class);
         // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
         cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
         cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 1; i < hours; i++) {
-            $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
+            cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
+            cell.addClass('hasClass');
         }
     }
 
-    function overlay_friends_class (class_list) {
-        for (var i = 0; 0 < class_list.length; i++) {
-            var a_class = class_list.[i];
-            var hours = class_hours(a_class);
-            var col = which_col(a_class);
-            var row = which_row(a_class);
-            for (var j = 0; j < hours; j++) {
-                //  overlay the cell
-            }
-        }
-    }
+    // function overlay_friends_class (class_list) {
+    //     for (var i = 0; 0 < class_list.length; i++) {
+    //         var a_class = class_list.[i];
+    //         var hours = class_hours(a_class);
+    //         var col = which_col(a_class);
+    //         var row = which_row(a_class);
+    //         for (var j = 0; j < hours; j++) {
+    //             //  overlay the cell
+    //         }
+    //     }
+    // }
 
     function add_class_to_backend (a_class) {
         $.post("/class_add/",{
