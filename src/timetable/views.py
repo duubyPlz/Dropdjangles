@@ -306,7 +306,7 @@ def get_friends_classes(request):
     if request.method == 'GET':
         all_classes = []
         friend_username = request.GET.get('friend_username')
-        print friend_username
+        print (friend_username)
         for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_username]):
             for c in usr.profile.timetable.classes.all():
                 all_classes.append(c.as_dict())
