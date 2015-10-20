@@ -163,6 +163,7 @@ $(document).ready(function() {
         if ($(this).is(':checked')) {
             var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
             friend_username = $(this).val();
+            $(this).data('color_index',color_index);
             get_classes_and_overlay_friends(color_index,friend_username);
             $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
@@ -171,6 +172,7 @@ $(document).ready(function() {
             // console.log($(this).parent().find('div.col-xs-11'));
             // $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').removeAttr('style');
+            $(this).removeData('color_index');
             remove_friends_from_timetable(friend_username);
         }
     });
@@ -254,13 +256,13 @@ $(document).ready(function() {
             // console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
-            // console.log('friend: ' + friend_username);
+            // console.log('friend: ' + friend_username + "; color_index:"+ color_index);
             cell.find('div.hasFriendsClass.friend_class_'+friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
     function overlay_friends_class (class_list, friend_username, color_index) {
-        if(class_list) {
+        if(typeof class_list !== 'undefined') {
             for (var i = 0; i < class_list.length; i++) {
                 var a_class = class_list[i];
                 // console.log(a_class);
@@ -428,14 +430,23 @@ $(document).ready(function() {
     setInterval(refresh_friends_timetable,1000);
 
     function refresh_friends_timetable() {
-        console.log("Refresh Friends Timetable");
-        $.get("/get_friends_classes/", {'friend_username' : 'Gino'},
-            function (data) {
-                // console.log(data.friends_classes);
-                remove_friends_from_timetable('Gino');
-                overlay_friends_class(data.friends_classes, 'Gino',0);
+        // console.log("Refresh Friends Timetable");
+
+
+        $('.sidebar-right-collapse .sidebar_friendlist li div div label input').each(function(){
+            if ($(this).is(':checked')) {
+                var username = $(this).val();
+                var color_index = $(this).data('color_index');
+                // console.log("getting; username: "+username+"; color_index:"+color_index);
+                $.get("/get_friends_classes/", {'friend_username' : username},
+                    function (data) {
+                        // console.log(data.friends_classes);
+                        remove_friends_from_timetable(username);
+                        overlay_friends_class(data.friends_classes, username,color_index);
+                    }
+                );
             }
-        );
+        });
     }
 
     
