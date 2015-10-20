@@ -204,7 +204,7 @@ $(document).ready(function() {
         }
     }
 
-    function add_friend_class_to_timetable (a_class) {
+    function add_friend_class_to_timetable (a_class,friend_username,color_index) {
         // console.log(a_class);
         var col =       which_col(a_class);
         var row =       which_row(a_class);
@@ -222,16 +222,20 @@ $(document).ready(function() {
         // cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
         // cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 0; i < hours; i++) {
-            console.log(i);
-            console.log(hours);
+            // console.log(i);
+            // console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
-            cell.append("<div class='hasFriendsClass'></div>");
-            // cell.addClass('hasFriendsClass');
-            // $(cell).find('div.hasFriendsClass').attr('style', 'border-top-width: 2px; border-top-color: #56CDF5');
+            cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
+            cell.find('div.hasFriendsClass').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
+    function highlight_friend_username (username) {
+        var 
+    }
+
     function overlay_friends_class (class_list) {
+        var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
         for (var i = 0; i < class_list.length; i++) {
             var a_class = class_list[i];
             console.log(a_class);
@@ -239,7 +243,8 @@ $(document).ready(function() {
             var col = which_col(a_class);
             var row = which_row(a_class);
             //  overlay the cell
-            add_friend_class_to_timetable(a_class);
+            console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+            add_friend_class_to_timetable(a_class,color_index);
         }
     }
 
@@ -383,4 +388,17 @@ $(document).ready(function() {
         return Math.ceil((parseInt(a_class['timeTo']) - parseInt(a_class['timeFrom'])) / 100);
     }
 
+    var color_list = [
+        ['5d8aa8',93,138,168],
+        ['e32636',227,38,54],
+        ['ffbf00',55,191,0],
+        ['9966cc',153,102,204],
+        ['8db600',141,182,0],
+        ['f5f5dc',245,245,220],
+        ['b2ffff',178,255,255]
+    ];
+
+
 });
+
+

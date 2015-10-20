@@ -1,25 +1,4 @@
 $(function(){
-    // $('.link-yellow').on('mouseover',self,
-    //     function(){
-    //         $(this).addClass('selected');
-    //     }
-    // ); 
-    // $('.link-yellow').on('mouseout',self,
-    //     function(){
-    //         $(this).removeClass('selected');
-    //     }
-    // );
-
-
-    // $('.link-yellow').on({
-    //     mouseenter: function () {
-    //         $(this).addClass('selected');
-    //     },
-    //     mouseleave: function () {
-    //         $(this).removeClass('selected');
-    //     }    
-    // });
-
     $('body aside.sidebar-left-collapse div.sidebar-links').on("mouseover",".link-yellow",
         function(){
             $(this).addClass('selected');
