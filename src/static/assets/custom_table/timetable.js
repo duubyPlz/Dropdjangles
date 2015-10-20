@@ -222,10 +222,12 @@ $(document).ready(function() {
         // cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
         // cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 0; i < hours; i++) {
+            console.log(i);
+            console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass'></div>");
             // cell.addClass('hasFriendsClass');
-            $(cell).find('div.hasFriendsClass').attr('style', 'border-top-width: 2px; border-top-color: #56CDF5');
+            // $(cell).find('div.hasFriendsClass').attr('style', 'border-top-width: 2px; border-top-color: #56CDF5');
         }
     }
 
@@ -236,11 +238,8 @@ $(document).ready(function() {
             var hours = class_hours(a_class);
             var col = which_col(a_class);
             var row = which_row(a_class);
-            for (var j = 0; j < hours; j++) {
-                //  overlay the cell
-                add_friend_class_to_timetable(a_class);
-                // cell.addClass('hasClass');
-            }
+            //  overlay the cell
+            add_friend_class_to_timetable(a_class);
         }
     }
 
