@@ -223,8 +223,9 @@ $(document).ready(function() {
         // cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 0; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
-            cell.addClass('hasFriendsClass');
-            $(cell).attr('style', 'border-top-width: 2px; border-top-color: #E42121');
+            cell.append("<div class='hasFriendsClass'></div>");
+            // cell.addClass('hasFriendsClass');
+            $(cell).find('div.hasFriendsClass').attr('style', 'border-top-width: 2px; border-top-color: #56CDF5');
         }
     }
 
