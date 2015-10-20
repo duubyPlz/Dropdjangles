@@ -148,11 +148,14 @@ $(document).ready(function() {
     $('.sidebar-right-collapse .sidebar_friendlist li div div label input').change(
     function(){
         if ($(this).is(':checked')) {
+            var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
             friend_username = $(this).val();
 
             $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
                 // console.log(data.friends_classes);
-                overlay_friends_class(data.friends_classes, friend_username);
+                overlay_friends_class(data.friends_classes, friend_username, color_index);
+                $(this).addClass('friend_username_highlight');
+                $(this).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
             });  
         } else {
             friend_username = $(this).val();
@@ -233,18 +236,7 @@ $(document).ready(function() {
         }
     }
 
-    function highlight_friend_username (username) {
-        var all_username = $('body aside.sidebar-right-collapse ul.list-group.sidebar-friendlist li.list-group-item div div.row label.checkbox div.col-xs-11');
-        all_username.on('click',
-            function(){
-                var username = all_username.innerHtml();
-                console.log(username);
-            }
-        );
-    }
-
-    function overlay_friends_class (class_list, friend_username) {
-        var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
+    function overlay_friends_class (class_list, friend_username, color_index) {
         for (var i = 0; i < class_list.length; i++) {
             var a_class = class_list[i];
             // console.log(a_class);
@@ -269,7 +261,7 @@ $(document).ready(function() {
     function remove_friends (friend_username) {
         $('td').find('div.hasFriendsClass').each(function () {
             if ($(this).hasClass('friend_class_' + friend_username)) {
-                console.log('OK');
+                // console.log('OK');
                 $(this).remove();
             }
         })
