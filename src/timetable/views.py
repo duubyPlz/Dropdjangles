@@ -314,6 +314,24 @@ def get_friends_classes(request):
         }
     return JsonResponse(context);
 
+@csrf_exempt
+def timetable_have_classtype_this_course(request):
+    if not request.user.is_authenticated():
+        return login(request)
+    context = {}
+    if request.method == 'GET':
+        have_this_classtype = 0
+        course_name = request.GET.get('courseId').upper()
+        class_type = request.GET.get('classType')
+        # print "hello"
+        for c in request.user.profile.timetable.classes.all():
+            if (c.name == course_name and class_type == c.classtype):
+                have_this_classtype = 1
+        context = {
+            'have_this_classtype' : have_this_classtype,
+        }
+    return JsonResponse(context);
+
 
 @csrf_exempt
 def login(request):
