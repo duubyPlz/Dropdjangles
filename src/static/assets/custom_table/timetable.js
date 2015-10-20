@@ -149,14 +149,14 @@ $(document).ready(function() {
     function(){
         if ($(this).is(':checked')) {
             friend_username = $(this).val();
-            console.log(friend_username);
 
             $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
                 // console.log(data.friends_classes);
                 overlay_friends_class(data.friends_classes, friend_username);
             });  
         } else {
-            //
+            friend_username = $(this).val();
+            remove_friends(friend_username);
         }
     });
 
@@ -267,9 +267,10 @@ $(document).ready(function() {
     }
 
     function remove_friends (friend_username) {
-        $('td').each(function () {
-            if ($(this).data('friend_username')) {
-                $(this).find('div.hasFriendsClass').remove();
+        $('td').find('div.hasFriendsClass').each(function () {
+            if ($(this).hasClass('friend_class_' + friend_username)) {
+                console.log('OK');
+                $(this).remove();
             }
         })
     }
