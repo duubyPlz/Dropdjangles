@@ -159,6 +159,9 @@ $(document).ready(function() {
             $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
         } else {
             friend_username = $(this).val();
+            console.log($(this).parent().find('div.col-xs-11'));
+            $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
+            $(this).parent().find('div.col-xs-11').removeAttr('style');
             remove_friends(friend_username);
         }
     });
@@ -265,6 +268,7 @@ $(document).ready(function() {
                 $(this).remove();
             }
         })
+
     }
 
     // function remove_class_from_timetable (a_class) {
