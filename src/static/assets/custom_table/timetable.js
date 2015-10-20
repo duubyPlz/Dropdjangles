@@ -153,8 +153,10 @@ $(document).ready(function() {
 
             $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
                 // console.log(data.friends_classes);
-                overlay_friends_class(data.friends_classes);
+                overlay_friends_class(data.friends_classes, friend_username);
             });  
+        } else {
+            //
         }
     });
 
@@ -226,15 +228,16 @@ $(document).ready(function() {
             // console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
+            console.log('friend: ' + friend_username);
             cell.find('div.hasFriendsClass').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
-    function highlight_friend_username (username) {
-        var 
-    }
+    // function highlight_friend_username (username) {
+    //     var 
+    // }
 
-    function overlay_friends_class (class_list) {
+    function overlay_friends_class (class_list, friend_username) {
         var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
         for (var i = 0; i < class_list.length; i++) {
             var a_class = class_list[i];
@@ -244,7 +247,7 @@ $(document).ready(function() {
             var row = which_row(a_class);
             //  overlay the cell
             console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
-            add_friend_class_to_timetable(a_class,color_index);
+            add_friend_class_to_timetable(a_class,friend_username,color_index);
         }
     }
 
@@ -255,6 +258,14 @@ $(document).ready(function() {
             day:       a_class['day'],
             timeFrom:  a_class['timeFrom'],
         });
+    }
+
+    function remove_friends (friend_username) {
+        $('td').each(function () {
+            if ($(this).data('friend_username')) {
+                $(this).find('div.hasFriendsClass').remove();
+            }
+        })
     }
 
     // function remove_class_from_timetable (a_class) {
