@@ -163,26 +163,25 @@ $(document).ready(function() {
         if ($(this).is(':checked')) {
             var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
             friend_username = $(this).val();
-            get_classes_and_overlay_friends(color_index,friend_username,this);
+            get_classes_and_overlay_friends(color_index,friend_username);
+            $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
+            $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
         } else {
             friend_username = $(this).val();
             // console.log($(this).parent().find('div.col-xs-11'));
-            $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
+            // $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').removeAttr('style');
             remove_friends_from_timetable(friend_username);
         }
     });
 
-    function get_classes_and_overlay_friends(color_index,friend_username,me) {
+    function get_classes_and_overlay_friends(color_index,friend_username) {
         $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
             // console.log(data.friends_classes);
             overlay_friends_class(data.friends_classes, friend_username, color_index);
         });
         // console.log(color_index);
         // console.log(color_list);
-        console.log(me);
-        me.parent().find('div.col-xs-11').addClass('friend_username_highlight');
-        me.parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
     }
 
     // Helper functions
@@ -425,6 +424,7 @@ $(document).ready(function() {
     setInterval(refresh_friends_timetable(),1000);
 
     function refresh_friends_timetable() {
+        console.log("hello");
         remove_friends_from_timetable('Gino');
         get_classes_and_overlay_friends(0,'Gino');
     }
