@@ -228,25 +228,31 @@ $(document).ready(function() {
             // console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
-            console.log('friend: ' + friend_username);
-            cell.find('div.hasFriendsClass.friend_class_' + friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+            // console.log('friend: ' + friend_username);
+            cell.find('div.hasFriendsClass.friend_class_'+friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
-    // function highlight_friend_username (username) {
-    //     var 
-    // }
+    function highlight_friend_username (username) {
+        var all_username = $('body aside.sidebar-right-collapse ul.list-group.sidebar-friendlist li.list-group-item div div.row label.checkbox div.col-xs-11');
+        all_username.on('click',
+            function(){
+                var username = all_username.innerHtml();
+                console.log(username);
+            }
+        );
+    }
 
     function overlay_friends_class (class_list, friend_username) {
         var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
         for (var i = 0; i < class_list.length; i++) {
             var a_class = class_list[i];
-            console.log(a_class);
+            // console.log(a_class);
             var hours = class_hours(a_class);
             var col = which_col(a_class);
             var row = which_row(a_class);
             //  overlay the cell
-            console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+            // console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
             add_friend_class_to_timetable(a_class,friend_username,color_index);
         }
     }
