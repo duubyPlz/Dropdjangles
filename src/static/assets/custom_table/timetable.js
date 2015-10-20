@@ -154,9 +154,9 @@ $(document).ready(function() {
             $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
                 // console.log(data.friends_classes);
                 overlay_friends_class(data.friends_classes, friend_username, color_index);
-                $(this).addClass('friend_username_highlight');
-                $(this).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
             });  
+            $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
+            $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
         } else {
             friend_username = $(this).val();
             remove_friends(friend_username);
