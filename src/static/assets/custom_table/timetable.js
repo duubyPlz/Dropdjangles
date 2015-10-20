@@ -150,13 +150,7 @@ $(document).ready(function() {
         if ($(this).is(':checked')) {
             var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
             friend_username = $(this).val();
-
-            $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
-                // console.log(data.friends_classes);
-                overlay_friends_class(data.friends_classes, friend_username, color_index);
-            });  
-            $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
-            $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
+            get_classes_and_overlay_friends(color_index,friend_username);
         } else {
             friend_username = $(this).val();
             console.log($(this).parent().find('div.col-xs-11'));
@@ -165,6 +159,15 @@ $(document).ready(function() {
             remove_friends_from_timetable(friend_username);
         }
     });
+
+    function get_classes_and_overlay_friends(color_index,friend_username) {
+        $.get("/get_friends_classes/", {'friend_username' : friend_username}, function (data) {
+            // console.log(data.friends_classes);
+            overlay_friends_class(data.friends_classes, friend_username, color_index);
+        });  
+        $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
+        $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
+    }
 
     // Helper functions
     function add_class_to_timetable (a_class) {
@@ -403,10 +406,11 @@ $(document).ready(function() {
     }
 
 
-    setInterval(refresh_friends_timetable,1000);
+    setInterval(refresh_friends_timetable(),1000);
 
     function refresh_friends_timetable() {
-        console.log("i am awesome");
+        remove_friends_from_timetable('Gino');
+        get_classes_and_overlay_friends(0,'Gino');
     }
 
     var color_list = [
