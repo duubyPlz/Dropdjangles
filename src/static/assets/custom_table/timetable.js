@@ -1,18 +1,3 @@
-// works with table.css
-
-/*
-timetable.js TODO
-=========================
-
-add grid to available class (for 2-3 hours class)
-
-move class to a different time
-
-class colouring
-
-auto refresh every two second
-
-*/
 
 $(document).ready(function() {
 
