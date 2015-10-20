@@ -19,6 +19,25 @@
 
 table, td, th {
     border: 1px solid black;
+    table-layout: fixed;
+    position: relative;
+    padding: 0px;
+    width: 117px;
+    height: 52px;
+    z-index: -1;
+}
+
+table tbody tr td div.test-color {
+  text-align: center;
+  line-height: 52px;
+  position: absolute;
+  left:0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display:table-row;
+  opacity: 0.7;
+  background-color: rgba(86,205,245,0.7);
 }
 
 .remove_class {
