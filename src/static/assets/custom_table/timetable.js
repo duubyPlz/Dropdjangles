@@ -199,21 +199,22 @@ $(document).ready(function() {
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
-            cell.css("border-top","20px");
         }
     }
 
-    // function overlay_friends_class (class_list) {
-    //     for (var i = 0; 0 < class_list.length; i++) {
-    //         var a_class = class_list.[i];
-    //         var hours = class_hours(a_class);
-    //         var col = which_col(a_class);
-    //         var row = which_row(a_class);
-    //         for (var j = 0; j < hours; j++) {
-    //             //  overlay the cell
-    //         }
-    //     }
-    // }
+    function overlay_friends_class (class_list) {
+        for (var i = 0; 0 < class_list.length; i++) {
+            var a_class = class_list.[i];
+            var hours = class_hours(a_class);
+            var col = which_col(a_class);
+            var row = which_row(a_class);
+            for (var j = 0; j < hours; j++) {
+                //  overlay the cell
+                var cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
+                cell.addClass('test-color');
+            }
+        }
+    }
 
     function add_class_to_backend (a_class) {
         $.post("/class_add/",{
