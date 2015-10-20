@@ -341,6 +341,18 @@ def login(request):
         return timetable(request)
     return render(request, 'custom_login.html', {})
 
+@csrf_exempt
+def register(request):
+    if request.user.is_authenticated():
+        return timetable(request)
+    return render(request, 'custom_register.html', {})
+
+@csrf_exempt
+def forgot_password(request):
+    if request.user.is_authenticated():
+        return timetable(request)
+    return render(request, 'custom_forgot_password.html', {})
+
 
 
 
