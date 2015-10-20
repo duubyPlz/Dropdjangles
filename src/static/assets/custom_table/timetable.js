@@ -428,7 +428,7 @@ $(document).ready(function() {
     setInterval(refresh_friends_timetable,1000);
 
     function refresh_friends_timetable() {
-        console.log("hello");
+        console.log("Refresh Friends Timetable");
         $.get("/get_friends_classes/", {'friend_username' : 'Gino'},
             function (data) {
                 // console.log(data.friends_classes);
