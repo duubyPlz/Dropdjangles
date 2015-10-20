@@ -18,6 +18,7 @@
 }
 
 table, td, th {
+<<<<<<< HEAD
   border: 1px solid black;
 
   display: absolute;
@@ -30,6 +31,28 @@ table, td, th {
 table tbody td {
   width: 100px;
   height:50px;
+=======
+    border: 1px solid black;
+    table-layout: fixed;
+    position: relative;
+    padding: 0px;
+    width: 117px;
+    height: 52px;
+    z-index: -1;
+}
+
+table tbody tr td div.test-color {
+  text-align: center;
+  line-height: 52px;
+  position: absolute;
+  left:0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display:table-row;
+  opacity: 0.7;
+  background-color: rgba(86,205,245,0.7);
+>>>>>>> b8f8ba162ed76fec0fb6545a0eb83fa13c884395
 }
 
 .remove_class {
