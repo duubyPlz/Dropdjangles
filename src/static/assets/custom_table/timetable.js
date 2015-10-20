@@ -184,6 +184,8 @@ $(document).ready(function() {
         // console.log(color_list);
     }
 
+
+
     // Helper functions
     function add_class_to_timetable (a_class) {
         var col =       which_col(a_class);
@@ -427,8 +429,13 @@ $(document).ready(function() {
 
     function refresh_friends_timetable() {
         console.log("hello");
-        remove_friends_from_timetable('Gino');
-        get_classes_and_overlay_friends(0,'Gino');
+        $.get("/get_friends_classes/", {'friend_username' : 'Gino'},
+            function (data) {
+                // console.log(data.friends_classes);
+                remove_friends_from_timetable('Gino');
+                overlay_friends_class(data.friends_classes, 'Gino',0);
+            }
+        );
     }
 
     
