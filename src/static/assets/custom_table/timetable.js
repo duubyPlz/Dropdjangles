@@ -258,15 +258,17 @@ $(document).ready(function() {
     }
 
     function overlay_friends_class (class_list, friend_username, color_index) {
-        for (var i = 0; i < class_list.length; i++) {
-            var a_class = class_list[i];
-            // console.log(a_class);
-            var hours = class_hours(a_class);
-            var col = which_col(a_class);
-            var row = which_row(a_class);
-            //  overlay the cell
-            // console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
-            add_friend_class_to_timetable(a_class,friend_username,color_index);
+        if(class_list) {
+            for (var i = 0; i < class_list.length; i++) {
+                var a_class = class_list[i];
+                // console.log(a_class);
+                var hours = class_hours(a_class);
+                var col = which_col(a_class);
+                var row = which_row(a_class);
+                //  overlay the cell
+                // console.log("rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+                add_friend_class_to_timetable(a_class,friend_username,color_index);
+            }
         }
     }
 
@@ -421,7 +423,7 @@ $(document).ready(function() {
     }
 
 
-    setInterval(refresh_friends_timetable(),1000);
+    setInterval(refresh_friends_timetable,1000);
 
     function refresh_friends_timetable() {
         console.log("hello");
