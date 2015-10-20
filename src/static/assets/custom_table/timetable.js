@@ -200,22 +200,45 @@ $(document).ready(function() {
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
-            cell.css("border-top","20px");
             $(cell).attr('style', 'border-top-width: 2px; border-top-color: #e8c447');
         }
     }
 
+    function add_friend_class_to_timetable (a_class) {
+        // console.log(a_class);
+        var col =       which_col(a_class);
+        var row =       which_row(a_class);
+        var hours =     class_hours(a_class);
+        var timeFrom =  a_class['timeFrom'];
+        var timeTo =    a_class['timeTo'];
+        var day =       a_class['day'];
+        var classType = a_class['classtype'];
+        var courseId =  a_class['name'];
+        var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
+        cell.addClass('hasFriendClass');
+        // cell.attr('rowspan',hours);
+        cell.data('friend_class_info',a_class);
+        // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
+        // cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
+        // cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
+        for (var i = 1; i < hours; i++) {
+            cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
+            cell.addClass('hasClass');
+            $(cell).attr('style', 'border-top-width: 2px; border-top-color: #E42121');
+        }
+    }
+
     function overlay_friends_class (class_list) {
-        console.log(class_list);
-        for (var i = 0; 0 < class_list.length; i++) {
+        for (var i = 0; i < class_list.length; i++) {
             var a_class = class_list[i];
+            console.log(a_class);
             var hours = class_hours(a_class);
             var col = which_col(a_class);
             var row = which_row(a_class);
             for (var j = 0; j < hours; j++) {
                 //  overlay the cell
-                var cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
-                cell.addClass('test-color');
+                add_friend_class_to_timetable(a_class);
+                // cell.addClass('hasClass');
             }
         }
     }
