@@ -103,6 +103,24 @@ def timetable(request):
                 friendUserProfile.pending_friends.add(usr_profile)
             friendUserProfile.save()
 
+    #remove a friend from friend list
+    #friend removal removes from each user
+    if request.POST.get("friend_rm"):
+        friend_text = request.POST.get("friend_rm_code")
+        friend_text = friend_text.strip()    
+        print("removing {0}x".format(friend_text))
+        #find the user object corresponding to the friend to be removed
+        friendUser = None
+        for usr in User.Objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
+            friendUser = usr
+            break
+
+        if (friendUser is not None):
+            friendUserProfile = friendUser.profile
+            usr_profile.friends.remove(friendUserProfile)
+            friendUserProfile.friends.remove(usr_profile)
+            usr_profile.save()
+            friendUserProfile.save()
 
 
     # Get all the courses from the user's timetable

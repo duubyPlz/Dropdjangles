@@ -261,6 +261,10 @@
                  <label class="checkbox" style="font-weight: normal !important">
                   <div class="col-xs-11">
                     {{ friend }}
+                      <input type="hidden" value="{{ friend }}" name='friend_rm_code' size="0">
+                    <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="friend_rm">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
                   </div>
                   <!-- <div class="col-xs-1"> -->
                   <input type="checkbox">
