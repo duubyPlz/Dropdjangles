@@ -48,6 +48,8 @@ urlpatterns = [
     url(r'^course_add/$',views.course_add,name='course_add'),
     url(r'^course_remove/$',views.course_remove,name='course_remove'),
     url(r'^get_friends_classes/$', views.get_friends_classes, name ='get_friends_classes'),
+
+    url(r'^timetable_have_classtype_this_course/$',views.timetable_have_classtype_this_course,name='timetable_have_classtype_this_course'),
 ]
 
 if settings.DEBUG:
