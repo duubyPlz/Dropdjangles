@@ -298,6 +298,20 @@ def get_all_class(request):
         }
     return JsonResponse(context)
 
+@csrf_exempt
+def get_friends_classes(request):
+    if not request.user.is_authenticated():
+        return login(request)
+    context = {}
+    if request.method == 'GET':
+        all_classes = []
+    for c in request.user.profile.friends.profile.timetable.classes.all():
+        all_classes.append(c.as_dict())
+        context = {
+            'friends_classes' : all_classes,
+        }
+    return JsonResponse(context);
+
 
 @csrf_exempt
 def login(request):
