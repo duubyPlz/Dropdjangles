@@ -215,15 +215,15 @@ $(document).ready(function() {
         var classType = a_class['classtype'];
         var courseId =  a_class['name'];
         var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-        cell.addClass('hasFriendClass');
+        // cell.addClass('hasFriendClass');
         // cell.attr('rowspan',hours);
         cell.data('friend_class_info',a_class);
         // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
         // cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
         // cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
-        for (var i = 1; i < hours; i++) {
+        for (var i = 0; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
-            cell.addClass('hasClass');
+            cell.addClass('hasFriendsClass');
             $(cell).attr('style', 'border-top-width: 2px; border-top-color: #E42121');
         }
     }

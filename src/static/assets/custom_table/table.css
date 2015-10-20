@@ -13,6 +13,14 @@
     height: 10px;
     cursor: default;
 }
+
+.hasFriendsClass{
+    background-color: #E42121;
+    height: 10px;
+    cursor: default;
+}
+
+
 #userOne{
     background-color: red;
 }
