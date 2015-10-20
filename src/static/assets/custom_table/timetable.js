@@ -162,7 +162,7 @@ $(document).ready(function() {
             console.log($(this).parent().find('div.col-xs-11'));
             $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').removeAttr('style');
-            remove_friends(friend_username);
+            remove_friends_from_timetable(friend_username);
         }
     });
 
@@ -261,7 +261,7 @@ $(document).ready(function() {
         });
     }
 
-    function remove_friends (friend_username) {
+    function remove_friends_from_timetable (friend_username) {
         $('td').find('div.hasFriendsClass').each(function () {
             if ($(this).hasClass('friend_class_' + friend_username)) {
                 // console.log('OK');
@@ -400,6 +400,13 @@ $(document).ready(function() {
 
     function class_hours(a_class) {
         return Math.ceil((parseInt(a_class['timeTo']) - parseInt(a_class['timeFrom'])) / 100);
+    }
+
+
+    setInterval(refresh_friends_timetable,1000);
+
+    function refresh_friends_timetable() {
+        console.log("i am awesome");
     }
 
     var color_list = [
