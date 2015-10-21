@@ -552,7 +552,7 @@ $(document).ready(function() {
             var j = index_str.split('|')[1];
 
             if ($(me).hasClass('hasClass')) {
-                //alert("Time occupied");
+                alert("Time occupied");
             } else {
                 if (click_on_class_flag[0]) {
                     var start_col = click_on_class_flag[1];
