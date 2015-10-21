@@ -51,6 +51,7 @@ $(function(){
             var obj = $(this);
             $("#TimeTable tbody tr").find('td.hasClass').each(function() {
                 var current_course_code = $(this).children().children()[0].innerHTML;
+                console.log($(this).children().children()[0]);
                 if (current_course_code == required_course_code) {
                     $(this).find('div.remove_class').trigger('click');
                 }

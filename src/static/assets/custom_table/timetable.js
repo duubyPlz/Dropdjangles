@@ -186,28 +186,7 @@ $(document).ready(function() {
 
 
 
-    // Helper functions
-    function add_class_to_timetable (a_class) {
-        var col =       which_col(a_class);
-        var row =       which_row(a_class);
-        var hours =     class_hours(a_class);
-        var timeFrom =  a_class['timeFrom'];
-        var timeTo =    a_class['timeTo'];
-        var day =       a_class['day'];
-        var classType = a_class['classtype'];
-        var courseId =  a_class['name'];
-        var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-        cell.addClass('hasClass');
-        cell.attr('rowspan',hours);
-        cell.data('class_info',a_class);
-        // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
-        cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
-        cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
-        for (var i = 1; i < hours; i++) {
-            $('#TimeTable tbody tr').eq(row+i).find('td').eq(col).hide();
-        }
-    }
-
+    // // Helper functions
     function add_class_to_timetable (a_class) {
         // console.log(a_class);
         var col =       which_col(a_class);
@@ -223,6 +202,9 @@ $(document).ready(function() {
         // cell.attr('rowspan',hours);
         cell.data('class_info',a_class);
         // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
+        if (classType === 'Tutorial-Laboratory') {
+            classType = 'Tute-Lab';
+        }
         cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
         cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 1; i < hours; i++) {
