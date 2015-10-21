@@ -289,8 +289,10 @@
                <label class="checkbox" style="font-weight: normal !important">
                 <div class="form-group">
                   <form method='POST' action='' class="form-inline">
-                    <div class="col-xs-9 pull-right">
+                    <center>
                       {{ friend }} 
+                    </cneter>
+                    <div class='pull-right'>
                         <input type="hidden" value="{{ friend }}" name='respond_friend_code' size="0">
                         <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="accept_request" value="{{ friend }}">
                           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -298,7 +300,7 @@
                         <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="deny_request" value="{{ friend }}">
                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
-                      </div>
+                    </div>
                   </form>
                 </div>
               </label>

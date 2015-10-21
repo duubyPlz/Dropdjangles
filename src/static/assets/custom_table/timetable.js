@@ -412,7 +412,7 @@ $(document).ready(function() {
                     streams[i][j]['timeTo'] > r)
                     return true;
             }
-        }f
+        }
         return false;
     }
 
