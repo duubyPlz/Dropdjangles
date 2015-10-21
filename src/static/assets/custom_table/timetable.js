@@ -67,10 +67,10 @@ $(document).ready(function() {
                 timetable.children().each(function (row){
                     $(this).children().each(function (col){
                         if(class_on_timetable(col,row,data.streams) && col != 0){
-                            //$(this).addClass('tableClassSelectingAvail');
+                            $(this).addClass('tableClassSelectingAvail');
                             $(this).addClass('dropzone');
                         } else if (col != 0) {
-                            //$(this).addClass('tableClassSelectingNotAvail');
+                            $(this).addClass('tableClassSelectingNotAvail');
                         }
                     });
                 });
@@ -438,16 +438,14 @@ $(document).ready(function() {
         classType = this.id.split('|')[1];
 
         e.dataTransfer.effectAllowed = 'move';
-        this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
-        e.dataTransfer.setData('text/html', this.outerHTML);
+        //this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
+        console.log(this.outerHTML + ' ' + this.innerHTML);
     }
 
     function handleDragOver(e, me) {
-        if (me.preventDefault) {
-            me.preventDefault(); // Necessary. Allows us to drop.
+        if (e.preventDefault) {
+            e.preventDefault(); // Necessary. Allows us to drop.
         }
-
-        //e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
 
         return false;
     }
@@ -462,19 +460,57 @@ $(document).ready(function() {
     }
 
     function handleDrop(e, me) {
-        // this / e.target is current target element.
+        if (e.stopPropagation) {
+            e.stopPropagation(); // stops the browser from redirecting.
+        }
         e.preventDefault();  
         e.stopPropagation();
         // Set the source column's HTML to the HTML of the column we dropped on.
         dragSrcEl.innerHTML = me.innerHTML;
 
-        console.log('e: ' + e + ' dt: ' + e.dataTransfer);
-        me.innerHTML = e.dataTransfer.getData('text/html');
+        // transfer information
+        $(me).html("<b>" + courseId + "</b><br>" +classType);
+        
+        $.get("/class_search/", {
+            'courseId': courseId,
+            'classType': classType,
+        }, function(data) {
+            var steams = data.streams;
+
+            var col = $(me).data('col');
+            var row = $(me).data('row');
+
+            var index_str = which_stream_index_from_col_row(streams,col,row);
+
+            var i = index_str.split('|')[0];
+            var j = index_str.split('|')[1];
+
+            $.get("/timetable_have_classtype_this_course/",
+                {
+                    'courseId':  streams[i][0]['name'],
+                    'classType': streams[i][0]['classtype'],
+                },
+                function (data) {
+                    if (data.have_this_classtype == 0) {
+                        for (var k = 0; k < streams[i].length; k++){
+                            // console.log(this_class);
+                            add_class_to_timetable(streams[i][k]);
+                            add_class_to_backend(streams[i][k]);
+                        }
+                    }
+                }
+            );
+        });
+
         $(me).addClass('hasClass');
 
-        [].forEach.call(elems, function (elem) {
-            elem.classList.remove('over');
-        });
+        me.classList.remove('over');
+        $('td').removeClass('tableClassSelectingAvail');
+        $('td').removeClass('tableClassSelectingNotAvail');
+
+        // [].forEach.call(elems, function (elem) {
+        //     elem.classList.remove('over');
+        // });
         // See the section on the DataTransfer object.
 
         return false;
@@ -482,37 +518,29 @@ $(document).ready(function() {
 
     function handleDragEnd(e, me) {
         // this/e.target is the source node.
+        $(me).removeClass('over');
         [].forEach.call(elems, function (elem) {
             elem.classList.remove('over');
         });
     }
 
-    $('body').on('dragstart dragenter dragover dragleave drop dragend', '.dropzone', function(elem) {
-        console.log(elem);
+    $('body').on('dragstart', '.dropzone', function(elem) {
+        handleDragStart(elem);
     });
-
-    $('body').on('drop', function(elem) {
-        console.log('asdf');//handleDrop(elem, this);
-    });
-
-    // $('body').on('dragstart', '.dropzone', function(elem) {
-    //     handleDragStart(elem);
-    // });
     $('body').on('dragenter', '.dropzone', function(elem) {
         handleDragEnter(elem, this);
     });
     $('body').on('dragover', '.dropzone', function(elem) {
+        console.log('wanted: ' + elem);
         handleDragOver(elem, this);
     });
     $('body').on('dragleave', '.dropzone', function(elem) {
         handleDragLeave(elem, this);
     });
     $('body').on('drop', '.dropzone', function(elem) {
-        alert("drop");
         handleDrop(elem, this);
     });
     $('body').on('dragend', '.dropzone', function(elem) {
-        alert("dragend");
         handleDragEnd(elem, this);
     });
 
@@ -527,7 +555,6 @@ $(document).ready(function() {
             });
         }
     );
-
 });
 
 
