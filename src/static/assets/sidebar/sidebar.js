@@ -26,7 +26,7 @@ $(function(){
                 if(data.valid) {
                     sidebar_links.append(" \
                         <div class='link-yellow'> \
-                            <a style='cursor: move;'> \
+                            <a> \
                                 <div class='sidebar_remove_btn'> \
                                     <span class='sidebar_course_code'>"+required_course_code+"</span> \
                                     <button type='button' class='btn btn-xs btn-link not-focusable' name='rm_course'> \
