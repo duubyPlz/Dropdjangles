@@ -41,10 +41,14 @@ $(document).ready(function() {
             add_class_to_timetable(data.all_class[i]);
         }
     }); 
-
+    var click_on_class_flag = [0,-1,-1];
     //  this will gray out all the available timeslot
-    $('body aside.sidebar-left-collapse div.sidebar-links ').on('dragstart','div.link-yellow ul.sub-links .sidebar_classes',
+    $('body').on('dragstart','.draggable',
         function(){
+            if($(this).hasClass('hasClass')) {
+                click_on_class_flag = [1,$(this).data('col'), $(this).data('row')];
+            }
+
             courseId = this.id.split('|')[0]
             classType = this.id.split('|')[1]
             // console.log('clicked');
@@ -489,9 +493,9 @@ $(document).ready(function() {
     function handleDragStart(e) {
         dragSrcEl = this;
         console.log(this);
-        console.log(this.id);
-        courseId = this.id.split('|')[0];
-        classType = this.id.split('|')[1];
+        // console.log(this.id);
+        // courseId = this.id.split('|')[0];
+        // classType = this.id.split('|')[1];
     }
 
     function handleDragOver(e, me) {
@@ -541,8 +545,13 @@ $(document).ready(function() {
 
             if ($(me).hasClass('hasClass')) {
                 alert("Time occupied");
+            } else if (click_on_class_flag[0]) {
+                click_on_class_flag[0] = 0;
+                var start_col = click_on_class_flag[1];
+                var start_row = click_on_class_flag[2];
+                console.log(click_on_class_flag);
+                remove_this_class_stream_from_timetable(start_col, start_row);
             } else {
-
                 $.get("/timetable_have_classtype_this_course/",
                     {
                         'courseId':  streams[i][0]['name'],
@@ -587,10 +596,10 @@ $(document).ready(function() {
 
     function handleDragEnd(e, me) {
         // this/e.target is the source node.
-        $(me).removeClass('over');
-        [].forEach.call(elems, function (elem) {
-            elem.classList.remove('over');
-        });
+        // $(me).removeClass('over');
+        // [].forEach.call(elems, function (elem) {
+        //     elem.classList.remove('over');
+        // });
     }
 
     // $('body').on('dragstart', '.dropzone', function(elem) {
