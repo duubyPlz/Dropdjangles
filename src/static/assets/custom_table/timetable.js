@@ -425,9 +425,18 @@ $(document).ready(function() {
         });
     }
 
-    
-
-
+    $('body aside.sidebar-right-collapse center button.btn').on('click',
+        function() {
+            console.log('export timetable');
+            html2canvas($('#TimeTable'),{
+                onrendered: function(canvas) {
+                    // document.body.appendChild(canvas);
+                    window.open(canvas.toDataURL('image/png'));
+                }
+            });
+        }
+    );
+ 
 });
 
 
