@@ -459,7 +459,7 @@ $(document).ready(function() {
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
 
-        e.dataTransfer.effectAllowed = 'move';
+        // e.dataTransfer.effectAllowed = 'move';
         //this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
         console.log(this.outerHTML + ' ' + this.innerHTML);
     }
