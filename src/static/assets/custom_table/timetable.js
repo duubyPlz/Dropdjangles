@@ -220,7 +220,7 @@ $(document).ready(function() {
         cell.data('class_info',a_class);
         // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
         cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
-        cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
+        cell.append("<div style='cursor: move;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
@@ -421,7 +421,7 @@ $(document).ready(function() {
     }
 
 
-    setInterval(refresh_friends_timetable,1000);
+    setInterval(refresh_friends_timetable,800);
 
     function refresh_friends_timetable() {
         // console.log("Refresh Friends Timetable");
