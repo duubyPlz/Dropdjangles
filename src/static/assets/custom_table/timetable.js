@@ -2,12 +2,12 @@
 $(document).ready(function() {
 
     var color_list = [
-        // new list
-        ['ff033e',255,  3, 62], // American rose
-        ['7fffd4',127, 255,  212], // Aquamarine (light blue)
-        ['03c03c',  3,192, 60], // Dark pastel green
-        ['318ce7', 19, 55, 91], // Bleu de France (blue)
-        ['9966cc',153,102,204], // Amethyst (purple)
+        // new list, last element array checks whether the color has been used
+        ['ff033e',255,  3, 62, 0], // American rose
+        ['7fffd4',127, 255,  212, 0], // Aquamarine (light blue)
+        ['03c03c',  3,192, 60, 0], // Dark pastel green
+        ['318ce7', 19, 55, 91, 0], // Bleu de France (blue)
+        ['9966cc',153,102,204 ,0], // Amethyst (purple)
 
 
         // old list
@@ -156,7 +156,26 @@ $(document).ready(function() {
     $('.sidebar-right-collapse .sidebar_friendlist li div div label input').change(
     function(){
         if ($(this).is(':checked')) {
-            var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
+            //check if color has already been chosen
+            var colors_available = false;
+            for (var i = 0; i < color_list.length; i++) {
+                if (color_list[i][4] == 0) {
+                    colors_available = true;
+                    break;
+                }
+            }
+            if (colors_available) {
+                //randomly choose a color until a unique color is chosen
+                var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
+                while (color_list[color_index][4] == 1) {
+                    color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
+                }
+                color_list[color_index][4] = 1;
+            } else {
+                //do nothing OR not allowed to overlay friend's course
+                console.log('no more colors left');
+            }
+            
             friend_username = $(this).val();
             $(this).data('color_index',color_index);
             get_classes_and_overlay_friends(color_index,friend_username);
@@ -167,6 +186,9 @@ $(document).ready(function() {
             // console.log($(this).parent().find('div.col-xs-11'));
             // $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').removeAttr('style');
+            //make color avaliable again
+            var color_index = $(this).data('color_index');
+            color_list[color_index][4] = 0;
             $(this).removeData('color_index');
             remove_friends_from_timetable(friend_username);
         }
