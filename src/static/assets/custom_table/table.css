@@ -84,12 +84,14 @@ table tbody tr td div.test-color {
   opacity: 0.4;
 }
 
-thead > tr {
+.table > thead > tr > td {
   color: #fff;
   background-color: #4F4F4F;
+  vertical-align: middle;
 }
 
 tbody > tr > td:first-child {
   color: #fff;
   background-color: #4f4f4f;
+  padding-top: 5px;
 }
