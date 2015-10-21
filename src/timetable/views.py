@@ -69,6 +69,21 @@ def timetable(request):
                 friendUserProfile.save()
             usr_profile.save()
     
+    if request.POST.get("rm_friend"):
+        friendToRemove = request.POST.get("rm_friend_code")
+        friendUser = None
+        for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friendToRemove]):
+            friendUser = usr
+            break
+
+        if (friendUser is not None):
+            friendUserProfile = friendUser.profile
+            #remove from each user
+            usr_profile.friends.remove(friendUserProfile)
+            friendUserProfile.friends.remove(usr_profile)
+            usr_profile.save()
+            friendUserProfile.save()
+
     if request.POST.get("friend_search"):
         #scrap the friend_text string for either username or password
         friend_text = request.POST.get("friend_search")        
@@ -87,6 +102,13 @@ def timetable(request):
         for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_text]):
             friendUser = usr         
             break
+       
+        #try email
+        if (friendUser is None):
+            for usr in User.objects.raw("SELECT * FROM auth_user WHERE email LIKE %s",[friend_text]):
+                friendUser = usr
+                break
+
 
         #add friendUser to currUser if they exist
         if (friendUser is not None):
