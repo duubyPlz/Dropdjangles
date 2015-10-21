@@ -384,11 +384,26 @@ $(document).ready(function() {
     //     return -1;
     // }
 
+
+    // 0 for first hour, 1 for middle hours, 2 for last hour
+    function which_hour (col,row,streams) {
+        var index_list = which_stream_index_from_col_row(col,row,streams);
+        var stream_index = index_list.split('|')[0];
+        var class_index = index_list.split('|')[1];
+        var a_class = streams[stream_index][class_index];
+        if(a_class['class_info']['timeFrom'] == (row+9)*100) {
+            return 0;
+        } else if (a_class['class_info']['timeFrom'] < (row+9)*100) {
+            return 1;
+        } else {
+            return 2;
+        }       
+    }
+
     function which_stream_index_from_col_row (streams,col,row) {
         var r = (row + 9) * 100;
         for (var i = 0; i < streams.length; i++) {
             for(var j = 0; j < streams[i].length; j++){
-
                 if(streams[i][j]['day'] == col-1 && streams[i][j]['timeFrom'] <= r && streams[i][j]['timeTo'] > r){
                     return i+"|"+j;
                 }
