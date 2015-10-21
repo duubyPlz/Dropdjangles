@@ -186,23 +186,23 @@ $(document).ready(function() {
             friend_username = $(this).val();
             $(this).data('color_index',color_index);
             $(this).parent().parent().find('div.col-xs-9 button').after("<div class='friend_username_highlight'></div>");
-            $(this).parent().parent().find('div.col-xs-9 button div.friend_username_highlight').css({"background-color" : "rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)",
+            $(this).parent().parent().find('div.col-xs-9 div.friend_username_highlight').css({"background-color" : "rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)",
                                                                         "border-radius":"4px",
                                                                         "padding" : "9px",
                                                                         "position" : "absolute",
                                                                         "top" : "2px",
-                                                                        "left" : "32px"})
+                                                                        "left" : "16px"})
 
         } else {
             friend_username = $(this).val();
-            $(this).parent().parent().find('div.col-xs-9 button').find('div.friend_username_highlight').remove();
+            $(this).parent().parent().find('div.col-xs-9 div.friend_username_highlight').remove();
 
             //make color avaliable again
             var color_index = $(this).data('color_index');
             color_list[color_index][4] = 0;
 
 
-            $(this).parent().parent().find('div.col-xs-9').removeClass('friend_username_highlight');
+            // $(this).parent().parent().find('div.col-xs-9').removeClass('friend_username_highlight');
             $(this).removeData('color_index');
             remove_friends_from_timetable(friend_username);
         }
