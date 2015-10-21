@@ -53,7 +53,7 @@
         <center>
           <img src='{% static "assets/img/logo.png" %}' id='logo-short'>
         </center>
-<!-- onkeypress="return event.keyCode != 13;"  -->
+        <!-- onkeypress="return event.keyCode != 13;"  -->
         <form method='POST' action='' class="input-group margin">
           <input type="text" onkeypress="return event.keyCode != 13;" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
           <datalist id="courses">
@@ -80,9 +80,9 @@
             </a>
             <ul class="sub-links">
               {% for class in class_list %}
-                {% if class.course == course %}
-                  <div class='sidebar_classes draggable' style="cursor: move;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
-                {% endif %}
+              {% if class.course == course %}
+              <div class='sidebar_classes draggable' style="cursor: move;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
+              {% endif %}
               {% endfor %}
             </ul>
           </div>
@@ -248,228 +248,140 @@
 
       <aside class="sidebar-right-collapse">
         <p class='text-center'>Welcome, {{ user }} <br>
-          <a data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true">Help</span></a>
-          <a>|</a>
-          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout></span></a>
-          </p>
-          <center>          
-            <button type='button' id="download_timetable" class='btn btn-success btn-sm'>
-              Download Timetable
-            </button>
-          </center>        
-          <!-- <center class="panel-title">Friends</center> -->
-          <ul class="list-group sidebar_friendlist" style="color: black;">
-            <li class="h4 list-group-item active">Friends </li>
-            {% for friend in friend_list %}
-            <li class="list-group-item">
-              <div class"container">
-                <div class="row">
-                 <label class="checkbox" style="font-weight: normal !important">
-                  <div class="col-xs-11">
-                    <form method='POST' action='' class='form-inline'>
-                      <input type="hidden" value="{{ friend }}" name='rm_friend_code' size="0">
-                      <button type="submit" class="btn btn-xs btn-link" value="Click" name="rm_friend">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                      </button>
-                    {{ friend }}
-                    </form>
-                  </div>
-                  <!-- <div class="col-xs-1"> -->
-                  <input type="checkbox" name='friend' value='{{ friend }}'>
-                  <!-- </div> -->
-                </label>
-              </div>
-            </div>
-          </li>
-          {% endfor %}
+          <a style="cursor: pointer;" data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true">Help</span></a>
+          <a> | </a>
+          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+        </p>
+        <center>          
+          <button type='button' id="download_timetable" class='btn btn-success btn-sm'>
+            Download Timetable
+          </button>
+        </center>    
+
+
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="friend_list">
+          <li class="h4 list-group-item active">Friends</li>
 
           <li class="list-group-item">
-            <!-- Trigger -->
-            <a data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
+            <a style="cursor: pointer;" data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
           </li>
         </ul>
 
-        {% if pending_friend_list|length > 0 %}
-        <ul class="list-group sidebar_friendlist" style="color: black;">
+ 
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="pending_list">
           <li class="h4 list-group-item active">Pending</li>
-          {% for friend in pending_friend_list %}
-          <li class="list-group-item">
-            <div class"container">
-              <div class="row">
-               <label class="checkbox" style="font-weight: normal !important">
-                <div class="form-group">
-                  <form method='POST' action='' class="form-inline">
-                    <center>
-                      {{ friend }} 
-                    </cneter>
-                    <div class='pull-right'>
-                        <input type="hidden" value="{{ friend }}" name='respond_friend_code' size="0">
-                        <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="accept_request" value="{{ friend }}">
-                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        </button>
-                        <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="deny_request" value="{{ friend }}">
-                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                  </form>
-                </div>
-              </label>
-            </div>
-          </div>
-        </li>
-        {% endfor %}
-      </li>
-    </ul>
-    {% endif %}
 
-    {% if waiting_on_list|length > 0 %}
-    <ul class="list-group sidebar_friendlist" style="color: black;">
-      <li class="h4 list-group-item active">Waiting On</li>
-        {% for friend in waiting_on_list %}
-          <li class="list-group-item">
-            <div class"container">
-              <div class="row">
-               <label class="checkbox" style="font-weight: normal !important">
-                <div class="col-xs-11">
-                  {{ friend }}
-                </div>
-                </label>
+        </ul>
+
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="waiting_list">
+          <li class="h4 list-group-item active">Waiting On</li>
+
+
+
+    </aside>
+
+    <!-- Modal creation -->
+    <div id="addFriendModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add a friend</h4>
+          </div>
+          <div class="modal-body">
+            <p>Enter the username or email of the person you wish to add.</p>
+            <div class='form-inline'>
+              <div class="form-group">
+                <input type="text" autofocus=1 class="form-control" size="60" name="friend_search" placeholder="username or email">
+
+                <button class="btn btn-primary" type="submit">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+                <p></p>
               </div>
             </div>
-          </li>
-        {% endfor %}
-      </li>
-    </ul>
-    {% endif %}
-
-   <!--
-  <ul class="list-group sidebar_friendlist" style="color: black;">
-    <li class="h4 list-group-item active">Suggestions</li>
-      {% for friend in friend_list %}
-          <li class="list-group-item">
-            <div class"container">
-              <div class="row">
-               <label class="checkbox" style="font-weight: normal !important">
-                <div class="col-xs-11">
-                  <form method='POST' action='' class="form-inline">
-                    <div class="form-group">
-                      {% if friend %}
-                        {{ friend }} has their COMP1927 lecture at 09:00, while yours is at 12:00, would you like to match their timeslot?
-                      {% endif %}
-                    </div>
-                  </form>
-                </div>
-              </label>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
             </div>
           </div>
-        </li>
-      {% endfor %}
-     </li>
-  </ul>
-  -->
 
-  </aside>
-
-  <!-- Modal creation -->
-  <div id="addFriendModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add a friend</h4>
         </div>
-        <div class="modal-body">
-          <p>Enter the username or email of the person you wish to add.</p>
-          <form method='POST' action='' class="form-inline">
-            <div class="form-group">
-              <input type="text" autofocus=1 class="form-control" size="35" name="friend_search" placeholder="username or email">
-              <button class="btn btn-primary" type="submit">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
+      </div>
+      <!-- Modal creation -->
+      <div id="helpModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Help/How To Use</h4>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            <div class="modal-body">
+
+
+              <p>Welcome to Dropjangles timetabler, an unofficial timetable maker for UNSW courses. <br>
+                Dropjangles is a drag and drop timetabler. To use this product, simply add courses from the <br>
+                search bar, then drag each class from the sidebar to the timetable to add to your timetable.
+              </p>
+              <img src="{% static 'assets/img/draggable_help.jpg' %}" style="">
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
         </div>
       </div>
+      <!-- Plugin JavaScript -->
 
-    </div>
-  </div>
-  <!-- Modal creation -->
-  <div id="helpModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Help/How To Use</h4>
-        </div>
-        <div class="modal-body">
+      <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
 
+      <!-- AngularJS -->
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 
-          <p>Welcome to Dropjangles timetabler, an unofficial timetable maker for UNSW courses. <br>
-          Dropjangles is a drag and drop timetabler. To use this product, simply add courses from the <br>
-           search bar, then drag each class from the sidebar to the timetable to add to your timetable.
-          </p>
-          <img src="{% static 'assets/img/draggable_help.jpg' %}" style="">
+      <!-- jquery css -->
+      <link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
 
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "js/bootstrap.js" %}"></script>
 
-
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- Plugin JavaScript -->
-
-  <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
-
-  <!-- AngularJS -->
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-
-  <!-- jquery css -->
-  <link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
-
-  <!-- Bootstrap Core JavaScript -->
-  <script src="{% static "js/bootstrap.js" %}"></script>
-
-  <!-- Sidebar -->
-  <script>
-    $(function () {
-      var links = $('.sidebar-links > div');
-      links.on('click', function () {
-        links.removeClass('selected');
-        $(this).addClass('selected');
-      });
-    });
-  </script>
+      <!-- Sidebar -->
+      <script>
+        $(function () {
+          var links = $('.sidebar-links > div');
+          links.on('click', function () {
+            links.removeClass('selected');
+            $(this).addClass('selected');
+          });
+        });
+      </script>
 
 
 
 
-  <!-- Export timetable -->
-  <!-- http://ngiriraj.com/pages/htmltable_export/demo.php -->
-  <script src="{% static 'assets/export_timetable/tableExport.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/jquery.base64.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/html2canvas.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/jspdf/libs/sprintf.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/jspdf/jspdf.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/jspdf/libs/base64.js' %}"></script>
-  <script src="{% static 'assets/export_timetable/dom-to-image.js' %}"></script>
-  <!-- Controller -->
-  <!--script src="{% static "app.js" %}"></script-->
-  <!-- <script src="{% static "controllers.js" %}"></script> -->
-  <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
-  <script src="{% static "assets/sidebar/sidebar.js" %}"></script>
+      <!-- Export timetable -->
+      <!-- http://ngiriraj.com/pages/htmltable_export/demo.php -->
+      <script src="{% static 'assets/export_timetable/tableExport.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jquery.base64.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/html2canvas.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/libs/sprintf.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/jspdf.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/libs/base64.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/dom-to-image.js' %}"></script>
+      <!-- Controller -->
+      <!--script src="{% static "app.js" %}"></script-->
+      <!-- <script src="{% static "controllers.js" %}"></script> -->
+      <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
+      <script src="{% static "assets/sidebar/sidebar.js" %}"></script>
+      <script src="{% static "assets/sidebar/sidebar_friends.js" %}"></script>
 
-  {% include 'tail_js.html' %}
+      {% include 'tail_js.html' %}
 
-</body>
-</html>
+    </body>
+    </html>
