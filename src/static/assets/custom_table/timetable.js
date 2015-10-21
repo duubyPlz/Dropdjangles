@@ -414,7 +414,7 @@ $(document).ready(function() {
         var stream_index = index_list.split('|')[0];
         var class_index = index_list.split('|')[1];
         var a_class = streams[stream_index][class_index];
-        console.log(a_class);
+        // console.log(a_class);
         if(a_class['timeFrom'] == (row+9)*100 && a_class['timeTo'] == (row+10)*100){
             return 3;
         } else if(a_class['timeFrom'] == (row+9)*100) {
@@ -550,7 +550,7 @@ $(document).ready(function() {
                 if (click_on_class_flag[0]) {
                     var start_col = click_on_class_flag[1];
                     var start_row = click_on_class_flag[2];
-                    console.log(click_on_class_flag);
+                    // console.log(click_on_class_flag);
                     remove_class_all_stream_from_timetable(start_col, start_row);
                 }
                 $.get("/timetable_have_classtype_this_course/",
@@ -559,22 +559,19 @@ $(document).ready(function() {
                         'classType': streams[i][0]['classtype'],
                     },
                     function (data) {
-                            console.log(click_on_class_flag[0]);
                         if ((click_on_class_flag[0] == 1) || (data.have_this_classtype == 0)) {
+                            click_on_class_flag[0] = 0;
                             for (var k = 0; k < streams[i].length; k++){
-                                // console.log(this_class);
                                 add_class_to_timetable(streams[i][k]);
                                 add_class_to_backend(streams[i][k]);
                             }
                             // $(me).addClass('hasClass');
-                        // } else {
-                        //     alert("You already have this class in your timetable.");
-                        // }
+                        } else {
+                            alert("You already have this class in your timetable.");
                         }
                     }
                 );
             }
-            click_on_class_flag[0] = 0;
 
             $('td').each(function() {
                 $(this).removeClass('dropzone');
@@ -641,7 +638,7 @@ $(document).ready(function() {
 
     $('body aside.sidebar-right-collapse center button.btn').on('click',
         function() {
-            console.log('export timetable');
+            // console.log('export timetable');
             html2canvas($('#TimeTable'),{
                 onrendered: function(canvas) {
                     // document.body.appendChild(canvas);
