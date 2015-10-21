@@ -51,7 +51,7 @@ $(document).ready(function() {
             // check if already greyed out
             if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
                 $('td').removeClass('tableClassSelectingAvail');
-                $('td').removeClass('tableClassSelectingNotAvail');
+                // $('td').removeClass('tableClassSelectingNotAvail');
             }
 
             $.get("/class_search/",{
@@ -88,7 +88,7 @@ $(document).ready(function() {
 
                             $(this).addClass('dropzone');
                         } else if (col != 0) {
-                            $(this).addClass('tableClassSelectingNotAvail');
+                            // $(this).addClass('tableClassSelectingNotAvail');
                         }
                     });
                 });
@@ -121,21 +121,21 @@ $(document).ready(function() {
         var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
-            var class_info = $(this).data('class_info');
-            // console.log(class_info);
-            remove_class_all_stream_from_timetable(col,row);
-            var sidebar_classes = $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links li.sidebar_classes');
-            // console.log(sidebar_classes)
-            var target_class_courseId = class_info['name'];
-            var target_class_classType = class_info['classtype'];
-            sidebar_classes.each(function(){
-                // console.log($(this));
-                var curr_courseId = $(this).attr('id').split('|')[0];
-                var curr_classType = $(this).attr('id').split('|')[1];
-                if(target_class_courseId == curr_courseId && target_class_classType == curr_classType) {
-                    $(this).trigger('click');
-                }
-            });
+            // var class_info = $(this).data('class_info');
+            // // console.log(class_info);
+            // remove_class_all_stream_from_timetable(col,row);
+            // var sidebar_classes = $('body aside.sidebar-left-collapse div.sidebar-links div.link-yellow ul.sub-links li.sidebar_classes');
+            // // console.log(sidebar_classes)
+            // var target_class_courseId = class_info['name'];
+            // var target_class_classType = class_info['classtype'];
+            // sidebar_classes.each(function(){
+            //     // console.log($(this));
+            //     var curr_courseId = $(this).attr('id').split('|')[0];
+            //     var curr_classType = $(this).attr('id').split('|')[1];
+            //     if(target_class_courseId == curr_courseId && target_class_classType == curr_classType) {
+            //         $(this).trigger('click');
+            //     }
+            // });
         } else if ($(this).hasClass('tableClassSelectingAvail')) {
             // var index = which_index(col, row);
             // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
@@ -162,10 +162,10 @@ $(document).ready(function() {
 
             // remove all the select class tag
             $('td').removeClass('tableClassSelectingAvail');
-            $('td').removeClass('tableClassSelectingNotAvail');
+            // $('td').removeClass('tableClassSelectingNotAvail');
         } else {
             $('td').removeClass('tableClassSelectingAvail');
-            $('td').removeClass('tableClassSelectingNotAvail');   
+            // $('td').removeClass('tableClassSelectingNotAvail');   
         }
     });
 
@@ -235,8 +235,8 @@ $(document).ready(function() {
         var classType = a_class['classtype'];
         var courseId =  a_class['name'];
         var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-        cell.addClass('hasClass');
-        // cell.attr('rowspan',hours);
+        cell.addClass('hasClass draggable');
+        cell.attr('id', courseId+"|"+classType);
         cell.data('class_info',a_class);
         // cell.attr('id',courseId+"|"+classType+"|"+day+"|"+timeFrom+"|"+timeTo);
         if (classType === 'Tutorial-Laboratory') {
@@ -246,7 +246,8 @@ $(document).ready(function() {
         cell.append("<div style='cursor: move;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
-            cell.addClass('hasClass');
+            cell.addClass('hasClass draggable');
+            cell.attr('id', courseId+"|"+classType);
             $(cell).attr('style', 'border-top-width: 2px; border-top-color: #e8c447');
         }
     }
@@ -484,17 +485,13 @@ $(document).ready(function() {
 
     // drag drop
     // http://www.html5rocks.com/en/tutorials/dnd/basics/
-    var elems = document.querySelectorAll('.draggable');
-    [].forEach.call(elems, function(elem) {
-      elem.addEventListener('dragstart', handleDragStart, false);
-    });
-
     var dragSrcEl = null;
     function handleDragStart(e) {
         dragSrcEl = this;
+        console.log(this);
+        console.log(this.id);
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
-
     }
 
     function handleDragOver(e, me) {
@@ -578,7 +575,7 @@ $(document).ready(function() {
 
         me.classList.remove('over');
         $('td').removeClass('tableClassSelectingAvail');
-        $('td').removeClass('tableClassSelectingNotAvail');
+        // $('td').removeClass('tableClassSelectingNotAvail');
 
         // [].forEach.call(elems, function (elem) {
         //     elem.classList.remove('over');
@@ -596,9 +593,9 @@ $(document).ready(function() {
         });
     }
 
-    $('body').on('dragstart', '.dropzone', function(elem) {
-        handleDragStart(elem);
-    });
+    // $('body').on('dragstart', '.dropzone', function(elem) {
+    //     handleDragStart(elem);
+    // });
     $('body').on('dragenter', '.dropzone', function(elem) {
         handleDragEnter(elem, this);
     });
@@ -624,7 +621,9 @@ $(document).ready(function() {
         });
     });
 
-
+    $('body').on('dragstart', '.draggable', function(elem) {
+        handleDragStart(elem, this);
+    });
     // Download timetable
 
     $('body aside.sidebar-right-collapse center button.btn').on('click',
