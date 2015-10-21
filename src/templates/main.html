@@ -66,11 +66,7 @@
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </button>
           </span>
-        </form>
-          <center>          
-          <!-- Trigger -->
-            <a data-toggle="modal" data-target="#helpModal">Help!</a>
-          </center> 
+        </form> 
         <div class="sidebar-links">
           {% for course in timetableCourses %}
           <div class="link-yellow">
@@ -252,7 +248,10 @@
 
       <aside class="sidebar-right-collapse">
         <p class='text-center'>Welcome, {{ user }} <br>
-          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a></p>
+          <a data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true">Help</span></a>
+          <a>|</a>
+          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+          </p>
           <center>          
             <button type='button' class='btn btn-success btn-sm'>
               Download Timetable
