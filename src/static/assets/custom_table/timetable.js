@@ -49,8 +49,8 @@ $(document).ready(function() {
                 click_on_class_flag = [1,$(this).data('col'), $(this).data('row')];
             }
 
-            courseId = this.id.split('|')[0]
-            classType = this.id.split('|')[1]
+            courseId = this.id.split('|')[0];
+            classType = this.id.split('|')[1];
             // console.log('clicked');
             // check if already greyed out
             if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
@@ -125,6 +125,7 @@ $(document).ready(function() {
         var me = $(this);
         // var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         if($(this).hasClass('hasClass')){
+
             // var class_info = $(this).data('class_info');
             // // console.log(class_info);
             // remove_class_all_stream_from_timetable(col,row);
@@ -545,13 +546,14 @@ $(document).ready(function() {
 
             if ($(me).hasClass('hasClass')) {
                 alert("Time occupied");
-            } else if (click_on_class_flag[0]) {
-                click_on_class_flag[0] = 0;
-                var start_col = click_on_class_flag[1];
-                var start_row = click_on_class_flag[2];
-                console.log(click_on_class_flag);
-                remove_this_class_stream_from_timetable(start_col, start_row);
             } else {
+                if (click_on_class_flag[0]) {
+                    click_on_class_flag[0] = 0;
+                    var start_col = click_on_class_flag[1];
+                    var start_row = click_on_class_flag[2];
+                    console.log(click_on_class_flag);
+                    remove_class_all_stream_from_timetable(start_col, start_row);
+                }
                 $.get("/timetable_have_classtype_this_course/",
                     {
                         'courseId':  streams[i][0]['name'],
