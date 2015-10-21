@@ -1,5 +1,11 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
 .title {
     font-family: 'Lato', sans-serif;
+    font-weight: 100;
 }
 
 .tableClassSelectingNotAvail {
@@ -76,4 +82,16 @@ table tbody tr td div.test-color {
   color: #000000;
   text-decoration: none;
   opacity: 0.4;
+}
+
+.table > thead > tr > td {
+  color: #fff;
+  background-color: #4F4F4F;
+  vertical-align: middle;
+}
+
+tbody > tr > td:first-child {
+  color: #fff;
+  background-color: #4f4f4f;
+  padding-top: 5px;
 }

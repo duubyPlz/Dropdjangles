@@ -50,9 +50,13 @@ $(function(){
             var required_course_code = $(this).siblings()[0].innerHTML;
             var obj = $(this);
             $("#TimeTable tbody tr").find('td.hasClass').each(function() {
-                var current_course_code = $(this).children().children()[0].innerHTML;
-                if (current_course_code == required_course_code) {
-                    $(this).find('div.remove_class').trigger('click');
+                if ($(this).children().children()[0]) {
+                    var current_course_code = $(this).children().children()[0].innerHTML;
+                    console.log($(this).children().children()[0]);
+                    console.log($(this).children().children()[0].innerHTML);
+                    if (current_course_code == required_course_code) {
+                        $(this).find('div.remove_class').trigger('click');
+                    }
                 }
             });
             // console.log(classes);
