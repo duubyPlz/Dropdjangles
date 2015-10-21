@@ -409,12 +409,14 @@ $(document).ready(function() {
         var class_index = index_list.split('|')[1];
         var a_class = streams[stream_index][class_index];
         console.log(a_class);
-        if(a_class['timeFrom'] == (row+9)*100) {
+        if(a_class['timeFrom'] == (row+9)*100 && a_class['timeTo'] == (row+10)*100){
+            return 3;
+        } else if(a_class['timeFrom'] == (row+9)*100) {
             return 0;
-        } else if (a_class['timeFrom'] < (row+9)*100) {
-            return 1;
-        } else {
+        } else if (a_class['timeTo'] == (row+10)*100) {
             return 2;
+        } else {
+            return 1;
         }       
     }
 
