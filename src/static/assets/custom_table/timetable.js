@@ -205,10 +205,11 @@ $(document).ready(function() {
             $(this).parent().find('div.col-xs-11').find('form').find('button').after("<div class='friend_username_highlight'></div>");/*.addClass('friend_username_highlight');*/
             console.log($(this).parent());
             $(this).siblings().find('div.friend_username_highlight').css({"background-color" : "rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)",
-                                                                          "border" : "1px solid black",
+                                                                          // "border" : "1px solid black",
+                                                                          "border-radius":"4px",
                                                                           "padding" : "9px",
                                                                           "position" : "absolute",
-                                                                          "top" : "1px",
+                                                                          "top" : "2px",
                                                                           "left" : "32px"})
         } else {
             friend_username = $(this).val();
