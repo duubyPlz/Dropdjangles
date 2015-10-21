@@ -80,6 +80,8 @@ $(document).ready(function() {
                             } else if (hour == 2) {
                                 // last
                                 $(this).addClass('last_hour');
+                            } else if (hour == 3) {
+                                $(this).addClass('individual');
                             } else {
                                 console.log('illegal argument: hour');
                             }
@@ -553,6 +555,13 @@ $(document).ready(function() {
                     }
                 }
             );
+
+            $('td').each(function() {
+                $(this).removeClass('first_hour');
+                $(this).removeClass('middle_hours');
+                $(this).removeClass('last_hour');
+                $(this).removeClass('individual');
+            });
         });
         
 
