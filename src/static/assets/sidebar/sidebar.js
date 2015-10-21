@@ -10,7 +10,7 @@ $(function(){
         }
     );
 
-
+    // add course to list
     $('body .sidebar-left-collapse .input-group.margin .btn.btn-default.not-focusable').on('click',
         function() {
             var required_course_code = $(this).parent().parent().find('input').val().toUpperCase();
@@ -40,6 +40,7 @@ $(function(){
                         </div>");
                 }
             });
+            $(this).parent().parent().find('input').val('');
         }
     );
 
