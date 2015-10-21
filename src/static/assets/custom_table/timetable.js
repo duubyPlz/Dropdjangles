@@ -4,7 +4,7 @@ $(document).ready(function() {
     var color_list = [
         // new list
         ['ff033e',255,  3, 62], // American rose
-        ['cc5500',204, 85,  0], // Burnt orange
+        ['7fffd4',127, 255,  212], // Aquamarine (light blue)
         ['03c03c',  3,192, 60], // Dark pastel green
         ['318ce7', 19, 55, 91], // Bleu de France (blue)
         ['9966cc',153,102,204], // Amethyst (purple)
@@ -412,7 +412,7 @@ $(document).ready(function() {
                     streams[i][j]['timeTo'] > r)
                     return true;
             }
-        }
+        }f
         return false;
     }
 
