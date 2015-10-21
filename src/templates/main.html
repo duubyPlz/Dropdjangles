@@ -247,10 +247,12 @@
       <!-- End Content-->
 
       <aside class="sidebar-right-collapse">
-        <p class='text-center'>Welcome, {{ user }} <br>
+        <p class='text-center'><span style='line-height: 40px'>Welcome, {{ user }}</span><br/>
+          <span style='display:block; padding-bottom: 5px'>
           <a data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true">Help</span></a>
-          <a>|</a>
-          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout></span></a>
+          <a>&nbsp;|&nbsp;</a>
+          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+          </span>
           </p>
           <center>          
             <button type='button' id="download_timetable" class='btn btn-success btn-sm'>
@@ -259,23 +261,23 @@
           </center>        
           <!-- <center class="panel-title">Friends</center> -->
           <ul class="list-group sidebar_friendlist" style="color: black;">
-            <li class="h4 list-group-item active">Friends </li>
+            <li class="h4 list-group-item active" style='position: relative; top: 7px'>Friends </li>
             {% for friend in friend_list %}
             <li class="list-group-item">
               <div class"container">
                 <div class="row">
-                 <label class="checkbox" style="font-weight: normal !important">
+                 <label class="checkbox" style="font-weight: normal !important;">
                   <div class="col-xs-11">
                     <form method='POST' action='' class='form-inline'>
                       <input type="hidden" value="{{ friend }}" name='rm_friend_code' size="0">
-                      <button type="submit" class="btn btn-xs btn-link" value="Click" name="rm_friend">
+                      <button type="submit" class="btn btn-xs btn-link pull-left" style='position: relative; right: 10px' value="Click" name="rm_friend">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                       </button>
                     {{ friend }}
                     </form>
                   </div>
                   <!-- <div class="col-xs-1"> -->
-                  <input type="checkbox" name='friend' value='{{ friend }}'>
+                  <input type="checkbox"  name='friend' value='{{ friend }}' style='position: relative; right: 5px'>
                   <!-- </div> -->
                 </label>
               </div>

@@ -202,13 +202,20 @@ $(document).ready(function() {
             friend_username = $(this).val();
             $(this).data('color_index',color_index);
             get_classes_and_overlay_friends(color_index,friend_username);
-            $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
-            $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
+            $(this).parent().find('div.col-xs-11').find('form').find('button').after("<div class='friend_username_highlight'></div>");/*.addClass('friend_username_highlight');*/
+            console.log($(this).parent());
+            $(this).siblings().find('div.friend_username_highlight').css({"background-color" : "rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)",
+                                                                          "border" : "1px solid black",
+                                                                          "padding" : "9px",
+                                                                          "position" : "absolute",
+                                                                          "top" : "1px",
+                                                                          "left" : "32px"})
         } else {
             friend_username = $(this).val();
             // console.log($(this).parent().find('div.col-xs-11'));
             // $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
-            $(this).parent().find('div.col-xs-11').removeAttr('style');
+            // $(this).parent().find('div.col-xs-11').removeAttr('style');
+            $(this).parent().find('div.col-xs-11').find('div.friend_username_highlight').remove();
             //make color avaliable again
             var color_index = $(this).data('color_index');
             color_list[color_index][4] = 0;
