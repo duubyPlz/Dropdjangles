@@ -106,6 +106,29 @@ tbody > tr > td:first-child {
   -webkit-user-drag: element;
 }
 
-.table > tbody > tr > td.dropzone.over {
+/*.table > tbody > tr > td.dropzone.over {
+    border: 2px dashed #000;
+}*/
+
+table > tbody > tr > td.first_hour {
+    border-left: 2px dashed #000;
+    border-right: 2px dashed #000;
+
+    border-top: 2px dashed #000;
+}
+
+table > tbody > tr > td.middle_hours {
+    border-left: 2px dashed #000;
+    border-right: 2px dashed #000;
+}
+
+table > tbody > tr > td.last_hour {
+    border-left: 2px dashed #000;
+    border-right: 2px dashed #000;
+
+    border-bottom: 2px dashed #000;
+}
+
+table > tbody > tr > td.individual {
     border: 2px dashed #000;
 }

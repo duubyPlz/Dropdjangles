@@ -63,11 +63,29 @@ $(document).ready(function() {
                 // console.log(data.streams);
 
                 // the course and the class type from the sublinks
-                // alert(courseId+" , "+classType);
                 timetable.children().each(function (row){
                     $(this).children().each(function (col){
                         if(class_on_timetable(col,row,data.streams) && col != 0){
                             $(this).addClass('tableClassSelectingAvail');
+
+                            // which hour is this cell?
+                            // console.log('adding class: ' + $(this));
+                            var hour = which_hour(col, row, data.streams);
+                            if (hour == 0) {
+                                // first
+                                $(this).addClass('first_hour');
+                            } else if (hour == 1) {
+                                // middle
+                                $(this).addClass('middle_hours');
+                            } else if (hour == 2) {
+                                // last
+                                $(this).addClass('last_hour');
+                            } else if (hour == 3) {
+                                $(this).addClass('individual');
+                            } else {
+                                console.log('illegal argument: hour');
+                            }
+
                             $(this).addClass('dropzone');
                         } else if (col != 0) {
                             $(this).addClass('tableClassSelectingNotAvail');
@@ -383,11 +401,29 @@ $(document).ready(function() {
     //     return -1;
     // }
 
+
+    // 0 for first hour, 1 for middle hours, 2 for last hour
+    function which_hour (col,row,streams) {
+        var index_list = which_stream_index_from_col_row(streams,col,row);
+        var stream_index = index_list.split('|')[0];
+        var class_index = index_list.split('|')[1];
+        var a_class = streams[stream_index][class_index];
+        console.log(a_class);
+        if(a_class['timeFrom'] == (row+9)*100 && a_class['timeTo'] == (row+10)*100){
+            return 3;
+        } else if(a_class['timeFrom'] == (row+9)*100) {
+            return 0;
+        } else if (a_class['timeTo'] == (row+10)*100) {
+            return 2;
+        } else {
+            return 1;
+        }       
+    }
+
     function which_stream_index_from_col_row (streams,col,row) {
         var r = (row + 9) * 100;
         for (var i = 0; i < streams.length; i++) {
             for(var j = 0; j < streams[i].length; j++){
-
                 if(streams[i][j]['day'] == col-1 && streams[i][j]['timeFrom'] <= r && streams[i][j]['timeTo'] > r){
                     return i+"|"+j;
                 }
@@ -458,10 +494,6 @@ $(document).ready(function() {
         dragSrcEl = this;
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
-
-        e.dataTransfer.effectAllowed = 'move';
-        //this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
-        console.log(this.outerHTML + ' ' + this.innerHTML);
     }
 
     function handleDragOver(e, me) {
@@ -488,7 +520,8 @@ $(document).ready(function() {
         e.preventDefault();  
         e.stopPropagation();
         // Set the source column's HTML to the HTML of the column we dropped on.
-        dragSrcEl.innerHTML = me.innerHTML;
+        console.log(me.innerHTML);
+        // dragSrcEl.innerHTML = me.innerHTML;
 
         // transfer information
         
@@ -518,12 +551,21 @@ $(document).ready(function() {
                             add_class_to_timetable(streams[i][k]);
                             add_class_to_backend(streams[i][k]);
                         }
+                        $(me).addClass('hasClass');
+                    } else {
+                        alert('You already have this class in your timetable.');
                     }
                 }
             );
-        });
 
-        $(me).addClass('hasClass');
+            $('td').each(function() {
+                $(this).removeClass('first_hour');
+                $(this).removeClass('middle_hours');
+                $(this).removeClass('last_hour');
+                $(this).removeClass('individual');
+            });
+        });
+        
 
         me.classList.remove('over');
         $('td').removeClass('tableClassSelectingAvail');
@@ -552,7 +594,6 @@ $(document).ready(function() {
         handleDragEnter(elem, this);
     });
     $('body').on('dragover', '.dropzone', function(elem) {
-        console.log('wanted: ' + elem);
         handleDragOver(elem, this);
     });
     $('body').on('dragleave', '.dropzone', function(elem) {
