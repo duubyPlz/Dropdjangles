@@ -3,11 +3,6 @@ body {
     font-weight: 300;
 }
 
-.title {
-    font-family: 'Lato', sans-serif;
-    font-weight: 100;
-}
-
 /*.tableClassSelectingNotAvail {
     background-color: gray;
 }*/
@@ -26,7 +21,7 @@ table tbody tr td div.hasFriendsClass{
     cursor: default;
 
     text-align: center;
-    line-height: 52px;
+    line-height: 50px;
     position: absolute;
     left:0;
     top: 0;
@@ -48,7 +43,7 @@ table, td, th {
     position: relative;
     padding: 0px;
     width: 117px;
-    height: 52px;
+    height: 58px;
     /*z-index: -*/1;
 }
 
