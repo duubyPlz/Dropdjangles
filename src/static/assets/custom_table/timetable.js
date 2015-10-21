@@ -73,13 +73,13 @@ $(document).ready(function() {
                             var hour = which_hour(col, row, data.streams);
                             if (hour == 0) {
                                 // first
-                                $(this).addClass('first');
+                                $(this).addClass('first_hour');
                             } else if (hour == 1) {
                                 // middle
-                                $(this).addClass('middle');
+                                $(this).addClass('middle_hours');
                             } else if (hour == 2) {
                                 // last
-                                $(this).addClass('last');
+                                $(this).addClass('last_hour');
                             } else {
                                 console.log('illegal argument: hour');
                             }
@@ -402,13 +402,14 @@ $(document).ready(function() {
 
     // 0 for first hour, 1 for middle hours, 2 for last hour
     function which_hour (col,row,streams) {
-        var index_list = which_stream_index_from_col_row(col,row,streams);
+        var index_list = which_stream_index_from_col_row(streams,col,row);
         var stream_index = index_list.split('|')[0];
         var class_index = index_list.split('|')[1];
         var a_class = streams[stream_index][class_index];
-        if(a_class['class_info']['timeFrom'] == (row+9)*100) {
+        console.log(a_class);
+        if(a_class['timeFrom'] == (row+9)*100) {
             return 0;
-        } else if (a_class['class_info']['timeFrom'] < (row+9)*100) {
+        } else if (a_class['timeFrom'] < (row+9)*100) {
             return 1;
         } else {
             return 2;

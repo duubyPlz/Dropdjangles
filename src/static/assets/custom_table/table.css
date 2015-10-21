@@ -110,19 +110,19 @@ tbody > tr > td:first-child {
     border: 2px dashed #000;
 }
 
-table > tbody > tr > td.first {
+table > tbody > tr > td.first_hour {
     border-left: 2px dashed #000;
     border-right: 2px dashed #000;
 
     border-top: 2px dashed #000;
 }
 
-table > tbody > tr > td.middle {
+table > tbody > tr > td.middle_hours {
     border-left: 2px dashed #000;
     border-right: 2px dashed #000;
 }
 
-table > tbody > tr > td.last {
+table > tbody > tr > td.last_hour {
     border-left: 2px dashed #000;
     border-right: 2px dashed #000;
 
