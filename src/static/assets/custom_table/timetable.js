@@ -548,7 +548,6 @@ $(document).ready(function() {
                 alert("Time occupied");
             } else {
                 if (click_on_class_flag[0]) {
-                    click_on_class_flag[0] = 0;
                     var start_col = click_on_class_flag[1];
                     var start_row = click_on_class_flag[2];
                     console.log(click_on_class_flag);
@@ -560,19 +559,22 @@ $(document).ready(function() {
                         'classType': streams[i][0]['classtype'],
                     },
                     function (data) {
-                        if (data.have_this_classtype == 0) {
+                            console.log(click_on_class_flag[0]);
+                        if ((click_on_class_flag[0] == 1) || (data.have_this_classtype == 0)) {
                             for (var k = 0; k < streams[i].length; k++){
                                 // console.log(this_class);
                                 add_class_to_timetable(streams[i][k]);
                                 add_class_to_backend(streams[i][k]);
                             }
-                            $(me).addClass('hasClass');
-                        } else {
-                            alert('You already have this class in your timetable.');
+                            // $(me).addClass('hasClass');
+                        // } else {
+                        //     alert("You already have this class in your timetable.");
+                        // }
                         }
                     }
                 );
             }
+            click_on_class_flag[0] = 0;
 
             $('td').each(function() {
                 $(this).removeClass('dropzone');
