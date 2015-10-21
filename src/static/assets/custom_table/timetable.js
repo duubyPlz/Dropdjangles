@@ -63,11 +63,26 @@ $(document).ready(function() {
                 // console.log(data.streams);
 
                 // the course and the class type from the sublinks
-                // alert(courseId+" , "+classType);
                 timetable.children().each(function (row){
                     $(this).children().each(function (col){
                         if(class_on_timetable(col,row,data.streams) && col != 0){
                             $(this).addClass('tableClassSelectingAvail');
+
+                            // which hour is this cell?
+                            // console.log('adding class: ' + $(this));
+                            var hour = which_hour(col, row, data.streams);
+                            if (hour == 0) {
+                                // first
+                                $(this).addClass('first');
+                            } else if (hour == 1) {
+                                // middle
+                                $(this).addClass('middle');
+                            } else if (hour == 2) {
+                                // last
+                                $(this).addClass('last');
+                            } else {
+                                console.log('illegal argument: hour');
+                            }
 
                             $(this).addClass('dropzone');
                         } else if (col != 0) {
@@ -552,7 +567,6 @@ $(document).ready(function() {
         handleDragEnter(elem, this);
     });
     $('body').on('dragover', '.dropzone', function(elem) {
-        console.log('wanted: ' + elem);
         handleDragOver(elem, this);
     });
     $('body').on('dragleave', '.dropzone', function(elem) {
