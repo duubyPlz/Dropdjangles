@@ -424,7 +424,6 @@ $(document).ready(function() {
         });
     }
 
-    
     // drag drop
     // http://www.html5rocks.com/en/tutorials/dnd/basics/
     var elems = document.querySelectorAll('.draggable');
@@ -516,6 +515,19 @@ $(document).ready(function() {
         alert("dragend");
         handleDragEnd(elem, this);
     });
+
+    $('body aside.sidebar-right-collapse center button.btn').on('click',
+        function() {
+            console.log('export timetable');
+            html2canvas($('#TimeTable'),{
+                onrendered: function(canvas) {
+                    // document.body.appendChild(canvas);
+                    window.open(canvas.toDataURL('image/png'));
+                }
+            });
+        }
+    );
+
 });
 
 

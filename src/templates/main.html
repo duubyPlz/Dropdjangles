@@ -250,7 +250,13 @@
       <aside class="sidebar-right-collapse">
         <p class='text-center'>Welcome, {{ user }} <br>
           <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a></p>
-          <br>
+
+          <center>          
+            <button type='button' class='btn btn-success btn-sm'>
+              Download Timetable
+            </button>
+          </center>
+
           <!-- <center class="panel-title">Friends</center> -->
           <ul class="list-group sidebar_friendlist" style="color: black;">
             <li class="h4 list-group-item active">Friends </li>
@@ -410,11 +416,22 @@
 
 
 
+
+  <!-- Export timetable -->
+  <!-- http://ngiriraj.com/pages/htmltable_export/demo.php -->
+  <script src="{% static 'assets/export_timetable/tableExport.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/jquery.base64.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/html2canvas.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/jspdf/libs/sprintf.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/jspdf/jspdf.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/jspdf/libs/base64.js' %}"></script>
+  <script src="{% static 'assets/export_timetable/dom-to-image.js' %}"></script>
   <!-- Controller -->
   <!--script src="{% static "app.js" %}"></script-->
   <!-- <script src="{% static "controllers.js" %}"></script> -->
   <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
   <script src="{% static "assets/sidebar/sidebar.js" %}"></script>
+
   {% include 'tail_js.html' %}
 
 </body>
