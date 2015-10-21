@@ -21,7 +21,7 @@ $(function(){
                 var sidebar_links = $('body aside.sidebar-left-collapse div.sidebar-links');
                 var classes_sublinks = "";
                 for (var i = 0; i < data.class_types.length; i++){        
-                    classes_sublinks = classes_sublinks +"<li style='cursor: move;' class='sidebar_classes' id="+required_course_code+"|"+data.class_types[i]+">"+data.class_types[i]+"</li>";
+                    classes_sublinks = classes_sublinks +"<li style='cursor: move;' class='sidebar_classes draggable' id="+required_course_code+"|"+data.class_types[i]+">"+data.class_types[i]+"</li>";
                 }
                 if(data.valid) {
                     sidebar_links.append(" \
