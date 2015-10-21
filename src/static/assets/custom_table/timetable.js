@@ -469,7 +469,6 @@ $(document).ready(function() {
         dragSrcEl.innerHTML = me.innerHTML;
 
         // transfer information
-        $(me).html("<b>" + courseId + "</b><br>" +classType);
         
         $.get("/class_search/", {
             'courseId': courseId,
