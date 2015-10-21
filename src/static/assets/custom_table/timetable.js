@@ -239,7 +239,7 @@ $(document).ready(function() {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass draggable');
             cell.attr('id', courseId+"|"+classType);
-            $(cell).attr('style', 'border-top-width: 2px; border-top-color: #e8c447');
+            $(cell).attr('style', 'border-top-width: 5px; border-top-color: #e8c447');
         }
     }
 
@@ -583,6 +583,21 @@ $(document).ready(function() {
             });
         }
     );
+
+    $('body table#TimeTable tbody').on("mouseover","td.hasClass",
+        function(){
+            console.log($(this).data('class_info'));
+            var class_info = $(this).data('class_info')
+            $('body center#bottom_class_info p').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
+        }
+    );
+    $('body table#TimeTable tbody').on("mouseout","td.hasClass",
+        function(){
+            console.log("mouse off class");
+            $('body center#bottom_class_info p').empty();
+        }
+    );
+
 });
 
 
