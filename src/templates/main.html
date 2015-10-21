@@ -81,7 +81,7 @@
             <ul class="sub-links">
               {% for class in class_list %}
                 {% if class.course == course %}
-                  <div class='sidebar_classes draggable' draggable='true' style="cursor: default;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
+                  <div class='sidebar_classes draggable' draggable='true' style="cursor: move;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -336,6 +336,7 @@
     </ul>
     {% endif %}
 
+   <!--
   <ul class="list-group sidebar_friendlist" style="color: black;">
     <li class="h4 list-group-item active">Suggestions</li>
       {% for friend in friend_list %}
@@ -359,6 +360,7 @@
       {% endfor %}
      </li>
   </ul>
+  -->
 
   </aside>
 
