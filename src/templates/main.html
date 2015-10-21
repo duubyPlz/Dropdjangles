@@ -82,14 +82,12 @@
             <ul class="sub-links">
               {% for class in class_list %}
                 {% if class.course == course %}
-                  <li class='sidebar_classes' style="cursor: default;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</li>
+                  <div class='sidebar_classes draggable' draggable='true' style="cursor: default;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
                 {% endif %}
               {% endfor %}
             </ul>
           </div>
           {% endfor %}
-
-
         </div>
       </aside>
 

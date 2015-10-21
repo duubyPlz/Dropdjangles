@@ -43,7 +43,7 @@ $(document).ready(function() {
     }); 
 
     //  this will gray out all the available timeslot
-    $('body aside.sidebar-left-collapse div.sidebar-links ').on('click','div.link-yellow ul.sub-links li.sidebar_classes',
+    $('body aside.sidebar-left-collapse div.sidebar-links ').on('dragstart','div.link-yellow ul.sub-links .sidebar_classes',
         function(){
             courseId = this.id.split('|')[0]
             classType = this.id.split('|')[1]
@@ -67,9 +67,10 @@ $(document).ready(function() {
                 timetable.children().each(function (row){
                     $(this).children().each(function (col){
                         if(class_on_timetable(col,row,data.streams) && col != 0){
-                            $(this).addClass('tableClassSelectingAvail');
+                            //$(this).addClass('tableClassSelectingAvail');
+                            $(this).addClass('dropzone');
                         } else if (col != 0) {
-                            $(this).addClass('tableClassSelectingNotAvail');
+                            //$(this).addClass('tableClassSelectingNotAvail');
                         }
                     });
                 });
@@ -407,8 +408,6 @@ $(document).ready(function() {
 
     function refresh_friends_timetable() {
         // console.log("Refresh Friends Timetable");
-
-
         $('.sidebar-right-collapse .sidebar_friendlist li div div label input').each(function(){
             if ($(this).is(':checked')) {
                 var username = $(this).val();
@@ -426,8 +425,97 @@ $(document).ready(function() {
     }
 
     
+    // drag drop
+    // http://www.html5rocks.com/en/tutorials/dnd/basics/
+    var elems = document.querySelectorAll('.draggable');
+    [].forEach.call(elems, function(elem) {
+      elem.addEventListener('dragstart', handleDragStart, false);
+    });
 
+    var dragSrcEl = null;
+    function handleDragStart(e) {
+        dragSrcEl = this;
+        courseId = this.id.split('|')[0];
+        classType = this.id.split('|')[1];
 
+        e.dataTransfer.effectAllowed = 'move';
+        this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
+        e.dataTransfer.setData('text/html', this.outerHTML);
+    }
+
+    function handleDragOver(e, me) {
+        if (me.preventDefault) {
+            me.preventDefault(); // Necessary. Allows us to drop.
+        }
+
+        //e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+    function handleDragEnter(e, me) {
+        // this / e.target is the current hover target.
+        me.classList.add('over');
+    }
+
+    function handleDragLeave(e, me) {
+        me.classList.remove('over');  // this / e.target is previous target element.
+    }
+
+    function handleDrop(e, me) {
+        // this / e.target is current target element.
+        e.preventDefault();  
+        e.stopPropagation();
+        // Set the source column's HTML to the HTML of the column we dropped on.
+        dragSrcEl.innerHTML = me.innerHTML;
+
+        console.log('e: ' + e + ' dt: ' + e.dataTransfer);
+        me.innerHTML = e.dataTransfer.getData('text/html');
+        $(me).addClass('hasClass');
+
+        [].forEach.call(elems, function (elem) {
+            elem.classList.remove('over');
+        });
+        // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+    function handleDragEnd(e, me) {
+        // this/e.target is the source node.
+        [].forEach.call(elems, function (elem) {
+            elem.classList.remove('over');
+        });
+    }
+
+    $('body').on('dragstart dragenter dragover dragleave drop dragend', '.dropzone', function(elem) {
+        console.log(elem);
+    });
+
+    $('body').on('drop', function(elem) {
+        console.log('asdf');//handleDrop(elem, this);
+    });
+
+    // $('body').on('dragstart', '.dropzone', function(elem) {
+    //     handleDragStart(elem);
+    // });
+    $('body').on('dragenter', '.dropzone', function(elem) {
+        handleDragEnter(elem, this);
+    });
+    $('body').on('dragover', '.dropzone', function(elem) {
+        handleDragOver(elem, this);
+    });
+    $('body').on('dragleave', '.dropzone', function(elem) {
+        handleDragLeave(elem, this);
+    });
+    $('body').on('drop', '.dropzone', function(elem) {
+        alert("drop");
+        handleDrop(elem, this);
+    });
+    $('body').on('dragend', '.dropzone', function(elem) {
+        alert("dragend");
+        handleDragEnd(elem, this);
+    });
 });
 
 
