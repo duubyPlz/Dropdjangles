@@ -459,11 +459,6 @@ $(document).ready(function() {
         dragSrcEl = this;
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
-
-
-
-
-        // e.dataTransfer.effectAllowed = 'move';
     }
 
     function handleDragOver(e, me) {
