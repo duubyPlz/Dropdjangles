@@ -53,7 +53,6 @@
         <center>
           <img src='{% static "assets/img/logo.png" %}' id='logo-short'>
         </center>
-
 <!-- onkeypress="return event.keyCode != 13;"  -->
         <form method='POST' action='' class="input-group margin">
           <input type="text" onkeypress="return event.keyCode != 13;" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
@@ -68,6 +67,10 @@
             </button>
           </span>
         </form>
+          <center>          
+          <!-- Trigger -->
+            <a data-toggle="modal" data-target="#helpModal">Help!</a>
+          </center> 
         <div class="sidebar-links">
           {% for course in timetableCourses %}
           <div class="link-yellow">
@@ -250,13 +253,11 @@
       <aside class="sidebar-right-collapse">
         <p class='text-center'>Welcome, {{ user }} <br>
           <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a></p>
-
           <center>          
             <button type='button' class='btn btn-success btn-sm'>
               Download Timetable
             </button>
-          </center>
-
+          </center>        
           <!-- <center class="panel-title">Friends</center> -->
           <ul class="list-group sidebar_friendlist" style="color: black;">
             <li class="h4 list-group-item active">Friends </li>
@@ -389,7 +390,28 @@
 
     </div>
   </div>
+  <!-- Modal creation -->
+  <div id="helpModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Help/How To Use</h4>
+        </div>
+        <div class="modal-body">
+          <p>Welcome to Dropjangles timetabler, an unofficial timetable maker for UNSW courses. <br>
+          Dropjangles is a drag and drop timetabler. To use this product, simply add courses from the <br>
+           search bar, then drag each class from the sidebar to the timetable to add to your timetable.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
+    </div>
+  </div>
   <!-- Plugin JavaScript -->
 
   <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
