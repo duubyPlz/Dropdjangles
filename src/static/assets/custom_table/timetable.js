@@ -68,6 +68,7 @@ $(document).ready(function() {
                     $(this).children().each(function (col){
                         if(class_on_timetable(col,row,data.streams) && col != 0){
                             $(this).addClass('tableClassSelectingAvail');
+
                             $(this).addClass('dropzone');
                         } else if (col != 0) {
                             $(this).addClass('tableClassSelectingNotAvail');
@@ -437,9 +438,10 @@ $(document).ready(function() {
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
 
-        e.dataTransfer.effectAllowed = 'move';
-        //this.innerHTML = "<b>" + courseId + "</b><br/>" + classType;
-        console.log(this.outerHTML + ' ' + this.innerHTML);
+
+
+
+        // e.dataTransfer.effectAllowed = 'move';
     }
 
     function handleDragOver(e, me) {
@@ -466,7 +468,8 @@ $(document).ready(function() {
         e.preventDefault();  
         e.stopPropagation();
         // Set the source column's HTML to the HTML of the column we dropped on.
-        dragSrcEl.innerHTML = me.innerHTML;
+        console.log(me.innerHTML);
+        // dragSrcEl.innerHTML = me.innerHTML;
 
         // transfer information
         
@@ -496,12 +499,14 @@ $(document).ready(function() {
                             add_class_to_timetable(streams[i][k]);
                             add_class_to_backend(streams[i][k]);
                         }
+                        $(me).addClass('hasClass');
+                    } else {
+                        alert('You already have this class in your timetable.');
                     }
                 }
             );
         });
-
-        $(me).addClass('hasClass');
+        
 
         me.classList.remove('over');
         $('td').removeClass('tableClassSelectingAvail');
