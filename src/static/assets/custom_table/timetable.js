@@ -1,29 +1,23 @@
-// works with table.css
-
-/*
-timetable.js TODO
-=========================
-
-add grid to available class (for 2-3 hours class)
-
-move class to a different time
-
-class colouring
-
-auto refresh every two second
-
-*/
 
 $(document).ready(function() {
 
     var color_list = [
-        ['5d8aa8',93,138,168],
-        ['e32636',227,38,54],
-        ['ffbf00',55,191,0],
-        ['9966cc',153,102,204],
-        ['8db600',141,182,0],
-        ['f5f5dc',245,245,220],
-        ['b2ffff',178,255,255]
+        // new list
+        ['ff033e',255,  3, 62], // American rose
+        ['7fffd4',127, 255,  212], // Aquamarine (light blue)
+        ['03c03c',  3,192, 60], // Dark pastel green
+        ['318ce7', 19, 55, 91], // Bleu de France (blue)
+        ['9966cc',153,102,204], // Amethyst (purple)
+
+
+        // old list
+        // ['5d8aa8',93,138,168],
+        // ['e32636',227,38,54],
+        // ['ffbf00',55,191,0],
+        // ['9966cc',153,102,204],
+        // ['8db600',141,182,0],
+        // ['f5f5dc',245,245,220],
+        // ['b2ffff',178,255,255]
     ];
 
 
@@ -163,6 +157,7 @@ $(document).ready(function() {
         if ($(this).is(':checked')) {
             var color_index = Math.floor((Math.random() * 100) + 1)%color_list.length;
             friend_username = $(this).val();
+            $(this).data('color_index',color_index);
             get_classes_and_overlay_friends(color_index,friend_username);
             $(this).parent().find('div.col-xs-11').addClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)")
@@ -171,6 +166,7 @@ $(document).ready(function() {
             // console.log($(this).parent().find('div.col-xs-11'));
             // $(this).parent().find('div.col-xs-11').removeClass('friend_username_highlight');
             $(this).parent().find('div.col-xs-11').removeAttr('style');
+            $(this).removeData('color_index');
             remove_friends_from_timetable(friend_username);
         }
     });
@@ -206,7 +202,7 @@ $(document).ready(function() {
             classType = 'Tute-Lab';
         }
         cell.append("<div style='cursor: pointer;' class='remove_class pull-right'>&times;</div>");
-        cell.append("<div style='cursor: default;'><b>" + courseId + "</b><br>" +classType+"</div>");
+        cell.append("<div style='cursor: move;'><b>" + courseId + "</b><br>" +classType+"</div>");
         for (var i = 1; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass');
@@ -236,13 +232,13 @@ $(document).ready(function() {
             // console.log(hours);
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
-            // console.log('friend: ' + friend_username);
+            // console.log('friend: ' + friend_username + "; color_index:"+ color_index);
             cell.find('div.hasFriendsClass.friend_class_'+friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
         }
     }
 
     function overlay_friends_class (class_list, friend_username, color_index) {
-        if(class_list) {
+        if(typeof class_list !== 'undefined') {
             for (var i = 0; i < class_list.length; i++) {
                 var a_class = class_list[i];
                 // console.log(a_class);
@@ -398,7 +394,7 @@ $(document).ready(function() {
                     streams[i][j]['timeTo'] > r)
                     return true;
             }
-        }
+        }f
         return false;
     }
 
@@ -407,17 +403,26 @@ $(document).ready(function() {
     }
 
 
-    setInterval(refresh_friends_timetable,1000);
+    setInterval(refresh_friends_timetable,800);
 
     function refresh_friends_timetable() {
-        console.log("Refresh Friends Timetable");
-        $.get("/get_friends_classes/", {'friend_username' : 'Gino'},
-            function (data) {
-                // console.log(data.friends_classes);
-                remove_friends_from_timetable('Gino');
-                overlay_friends_class(data.friends_classes, 'Gino',0);
+        // console.log("Refresh Friends Timetable");
+
+
+        $('.sidebar-right-collapse .sidebar_friendlist li div div label input').each(function(){
+            if ($(this).is(':checked')) {
+                var username = $(this).val();
+                var color_index = $(this).data('color_index');
+                // console.log("getting; username: "+username+"; color_index:"+color_index);
+                $.get("/get_friends_classes/", {'friend_username' : username},
+                    function (data) {
+                        // console.log(data.friends_classes);
+                        remove_friends_from_timetable(username);
+                        overlay_friends_class(data.friends_classes, username,color_index);
+                    }
+                );
             }
-        );
+        });
     }
 
     

@@ -306,7 +306,7 @@ def get_friends_classes(request):
     if request.method == 'GET':
         all_classes = []
         friend_username = request.GET.get('friend_username')
-        print friend_username
+        print (friend_username)
         for usr in User.objects.raw("SELECT * FROM auth_user WHERE username LIKE %s",[friend_username]):
             for c in usr.profile.timetable.classes.all():
                 all_classes.append(c.as_dict())
@@ -340,6 +340,18 @@ def login(request):
     if request.user.is_authenticated():
         return timetable(request)
     return render(request, 'custom_login.html', {})
+
+@csrf_exempt
+def register(request):
+    if request.user.is_authenticated():
+        return timetable(request)
+    return render(request, 'custom_register.html', {})
+
+@csrf_exempt
+def forgot_password(request):
+    if request.user.is_authenticated():
+        return timetable(request)
+    return render(request, 'custom_forgot_password.html', {})
 
 
 

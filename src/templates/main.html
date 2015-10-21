@@ -1,4 +1,4 @@
-{% load static swampdragon_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -287,18 +287,18 @@
             <div class"container">
               <div class="row">
                <label class="checkbox" style="font-weight: normal !important">
-                <div class="col-xs-11">
+                <div class="form-group">
                   <form method='POST' action='' class="form-inline">
-                    <div class="form-group">
+                    <div class="col-xs-9 pull-right">
                       {{ friend }} 
-                      <input type="hidden" value="{{ friend }}" name='respond_friend_code' size="0">
-                      <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="accept_request" value="{{ friend }}">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                      </button>
-                      <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="deny_request" value="{{ friend }}">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                      </button>
-                    </div>
+                        <input type="hidden" value="{{ friend }}" name='respond_friend_code' size="0">
+                        <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="accept_request" value="{{ friend }}">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                        <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="deny_request" value="{{ friend }}">
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                      </div>
                   </form>
                 </div>
               </label>
