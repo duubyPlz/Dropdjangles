@@ -493,7 +493,6 @@ $(document).ready(function() {
     var dragSrcEl = null;
     function handleDragStart(e) {
         dragSrcEl = this;
-        console.log(this);
         // console.log(this.id);
         // courseId = this.id.split('|')[0];
         // classType = this.id.split('|')[1];
@@ -574,6 +573,10 @@ $(document).ready(function() {
             }
 
             $('td').each(function() {
+                if (!$(this).hasClass('hasClass')) {
+                    $(this).removeClass('draggable');
+                }
+
                 $(this).removeClass('dropzone');
                 $(this).removeClass('first_hour');
                 $(this).removeClass('middle_hours');
