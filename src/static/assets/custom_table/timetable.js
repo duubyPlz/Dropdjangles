@@ -639,7 +639,7 @@ $(document).ready(function() {
     });
     // Download timetable
 
-    $('body aside.sidebar-right-collapse center button.btn').on('click',
+    $('body aside.sidebar-right-collapse center button.btn#download_timetable').on('click',
         function() {
             // console.log('export timetable');
             html2canvas($('#TimeTable'),{
