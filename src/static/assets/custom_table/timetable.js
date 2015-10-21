@@ -494,6 +494,7 @@ $(document).ready(function() {
         dragSrcEl = this;
         courseId = this.id.split('|')[0];
         classType = this.id.split('|')[1];
+
     }
 
     function handleDragOver(e, me) {
@@ -506,6 +507,8 @@ $(document).ready(function() {
 
     function handleDragEnter(e, me) {
         // this / e.target is the current hover target.
+
+
         me.classList.add('over');
     }
 
@@ -539,26 +542,32 @@ $(document).ready(function() {
             var i = index_str.split('|')[0];
             var j = index_str.split('|')[1];
 
-            $.get("/timetable_have_classtype_this_course/",
-                {
-                    'courseId':  streams[i][0]['name'],
-                    'classType': streams[i][0]['classtype'],
-                },
-                function (data) {
-                    if (data.have_this_classtype == 0) {
-                        for (var k = 0; k < streams[i].length; k++){
-                            // console.log(this_class);
-                            add_class_to_timetable(streams[i][k]);
-                            add_class_to_backend(streams[i][k]);
+            if ($(me).hasClass('hasClass')) {
+                alert("Time occupied");
+            } else {
+
+                $.get("/timetable_have_classtype_this_course/",
+                    {
+                        'courseId':  streams[i][0]['name'],
+                        'classType': streams[i][0]['classtype'],
+                    },
+                    function (data) {
+                        if (data.have_this_classtype == 0) {
+                            for (var k = 0; k < streams[i].length; k++){
+                                // console.log(this_class);
+                                add_class_to_timetable(streams[i][k]);
+                                add_class_to_backend(streams[i][k]);
+                            }
+                            $(me).addClass('hasClass');
+                        } else {
+                            alert('You already have this class in your timetable.');
                         }
-                        $(me).addClass('hasClass');
-                    } else {
-                        alert('You already have this class in your timetable.');
                     }
-                }
-            );
+                );
+            }
 
             $('td').each(function() {
+                $(this).removeClass('dropzone');
                 $(this).removeClass('first_hour');
                 $(this).removeClass('middle_hours');
                 $(this).removeClass('last_hour');
@@ -605,8 +614,15 @@ $(document).ready(function() {
     $('body').on('dragend', '.dropzone', function(elem) {
         handleDragEnd(elem, this);
     });
-
-
+    $('body').on('drop dragend', function() {
+        $('td').each(function() {
+            $(this).removeClass('dropzone');
+            $(this).removeClass('first_hour');
+            $(this).removeClass('middle_hours');
+            $(this).removeClass('last_hour');
+            $(this).removeClass('individual');
+        });
+    });
 
 
     // Download timetable
