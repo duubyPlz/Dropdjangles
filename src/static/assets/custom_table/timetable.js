@@ -259,6 +259,8 @@ $(document).ready(function() {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
             cell.find('div.hasFriendsClass.friend_class_'+friend_username).css("background-color","rgba("+color_list[color_index][1]+","+color_list[color_index][2]+","+color_list[color_index][3]+",0.7)");
+            cell.find('div.hasFriendsClass.friend_class_'+friend_username).data('friend_class_info',a_class);
+            cell.find('div.hasFriendsClass.friend_class_'+friend_username).data('friend_username',friend_username);
         }
     }
 
@@ -290,6 +292,8 @@ $(document).ready(function() {
             if ($(this).hasClass('friend_class_' + friend_username)) {
                 $(this).parent().removeData('friend_class_info');
                 $(this).parent().removeData('friend_username');
+                $(this).removeData('friend_username');
+                $(this).removeData('friend_class_info');
                 $(this).remove();
             }
         })
@@ -591,28 +595,37 @@ $(document).ready(function() {
         function(){
             // console.log($(this).data('class_info'));
             var class_info = $(this).data('class_info')
-            $('body center p#my_class_info').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
+            $('body center#class_info p#my_class_info').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
         }
     );
     $('body table#TimeTable tbody').on("mouseout","td.hasClass",
         function(){
             // console.log("mouse off class");
-            $('body center p#my_class_info').empty();
+            $('body center#class_info p#my_class_info').empty();
         }
     );
 
-    $('body table#TimeTable tbody').on("mouseover","td div.hasFriendsClass",
+    $('body table#TimeTable tbody').on("mouseover","td",
         function(){
-            console.log($(this).parent().data('friend_class_info'));
-            var class_info = $(this).parent().data('friend_class_info');
-            var username = $(this).parent().data('friend_username');
-            $('body center p#friends_class_info').html(username+"'s&ensp;"+class_info['name']+"&ensp;"+class_info['classtype']+"&ensp;at&ensp;"+class_info['room']);
+            $(this).find('div.hasFriendsClass').each(function () {
+                // console.log($(this).parent().data('friend_class_info'));
+                var class_info = $(this).data('friend_class_info');
+                var username = $(this).data('friend_username');
+                $('body center#class_info').append("<p id='"+username+"_class_info' >"+username+"'s&ensp;"+class_info['name']+"&ensp;"+class_info['classtype']+"&ensp;at&ensp;"+class_info['room']+"</p>");
+            });
         }
     );
-    $('body table#TimeTable tbody').on("mouseout","td div.hasFriendsClass",
+    $('body table#TimeTable tbody').on("mouseout","td",
         function(){
             // console.log("mouse off class");
-            $('body center p#friends_class_info').empty();
+            $(this).find('div.hasFriendsClass').each(function () {
+                // console.log($(this).parent().data('friend_class_info'));
+                var class_info = $(this).data('friend_class_info');
+                var username = $(this).data('friend_username');
+                $(this).removeData('friend_class_info');
+                $(this).removeData('riend_username');
+                $('body center#class_info').find('p#'+username+"_class_info").remove();
+            });
         }
     );
 
