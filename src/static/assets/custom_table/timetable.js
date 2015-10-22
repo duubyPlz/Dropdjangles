@@ -629,6 +629,16 @@ $(document).ready(function() {
         }
     );
 
+    $('body aside.sidebar-left-collapse div#clear_timetable_button p').on('click',
+        function (){
+            $('body table#TimeTable td.hasClass').each(
+                function () {
+                    remove_this_class_stream_from_timetable($(this).data('class_info'));
+                }
+            );
+        }
+    );
+
 });
 
 
