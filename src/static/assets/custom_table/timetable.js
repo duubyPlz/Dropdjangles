@@ -254,6 +254,7 @@ $(document).ready(function() {
         var courseId =  a_class['name'];
         var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
         cell.data('friend_class_info',a_class);
+        cell.data('friend_username',friend_username);
         for (var i = 0; i < hours; i++) {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.append("<div class='hasFriendsClass friend_class_"+friend_username+"'></div>");
@@ -287,6 +288,8 @@ $(document).ready(function() {
     function remove_friends_from_timetable (friend_username) {
         $('td').find('div.hasFriendsClass').each(function () {
             if ($(this).hasClass('friend_class_' + friend_username)) {
+                $(this).parent().removeData('friend_class_info');
+                $(this).parent().removeData('friend_username');
                 $(this).remove();
             }
         })
@@ -586,15 +589,30 @@ $(document).ready(function() {
 
     $('body table#TimeTable tbody').on("mouseover","td.hasClass",
         function(){
-            console.log($(this).data('class_info'));
+            // console.log($(this).data('class_info'));
             var class_info = $(this).data('class_info')
-            $('body center#bottom_class_info p').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
+            $('body center p#my_class_info').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
         }
     );
     $('body table#TimeTable tbody').on("mouseout","td.hasClass",
         function(){
-            console.log("mouse off class");
-            $('body center#bottom_class_info p').empty();
+            // console.log("mouse off class");
+            $('body center p#my_class_info').empty();
+        }
+    );
+
+    $('body table#TimeTable tbody').on("mouseover","td div.hasFriendsClass",
+        function(){
+            console.log($(this).parent().data('friend_class_info'));
+            var class_info = $(this).parent().data('friend_class_info');
+            var username = $(this).parent().data('friend_username');
+            $('body center p#friends_class_info').html(username+"'s&ensp;"+class_info['name']+"&ensp;"+class_info['classtype']+"&ensp;at&ensp;"+class_info['room']);
+        }
+    );
+    $('body table#TimeTable tbody').on("mouseout","td div.hasFriendsClass",
+        function(){
+            // console.log("mouse off class");
+            $('body center p#friends_class_info').empty();
         }
     );
 
