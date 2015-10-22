@@ -416,7 +416,7 @@ $(document).ready(function() {
     }
 
 
-    setInterval(refresh_friends_timetable,800);
+    setInterval(refresh_friends_timetable,2000);
 
     function refresh_friends_timetable() {
         // console.log("Refresh Friends Timetable");

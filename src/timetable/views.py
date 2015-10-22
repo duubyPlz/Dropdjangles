@@ -199,12 +199,15 @@ def add_friend(request):
             # if they both add each other
             if friendUserProfile in user_profile.pending_friends.all():
                 user_profile.pending_friends.remove(friendUserProfile)
+                print 1;
                 if friendUserProfile not in user_profile.friends.all():
                     user_profile.friends.add(friendUserProfile)
                     user_profile.save()
-                    if user_profile not in friendUser_profile.friends.all():
+                    print 2;
+                    if user_profile not in friendUserProfile.friends.all():
                         friendUserProfile.friends.add(user_profile)
                         friendUserProfile.save()
+                        print 3;
                         exit_status = 0
                     else:
                         exit_status = "user_profile is in friendUser_profile.friends"
@@ -318,17 +321,18 @@ def deny_friend_request (request):
             if friendUserProfile in user_profile.pending_friends.all():
                 user_profile.pending_friends.remove(friendUserProfile)
                 user_profile.save()
-                if friendUserProfile not in user_profile.friends.all():
-                    user_profile.friends.add(friendUserProfile)
+                if friendUserProfile in user_profile.friends.all():
+                    user_profile.friends.remove(friendUserProfile)
                     user_profile.save()
-                    if user_profile not in friendUserProfile.friends.all():
-                        friendUserProfile.friends.add(user_profile)
-                        friendUserProfile.save()
-                        exit_status = 0
-                    else:
-                        exit_status = "user is in friend's friends, already friends"
-                else:
                     exit_status = "friendUserProfile is in user_profile.friends"
+                    if user_profile in friendUserProfile.friends.all():
+                        friendUserProfile.friends.remove(user_profile)
+                        friendUserProfile.save()
+                        exit_status = "user is in friend's friends, already friends"
+                    else:
+                        exit_status = 0
+                else:
+                    exit_status = 0
             else:
                 exit_status = "friendUserProfile is not in user pending friends"
         else:

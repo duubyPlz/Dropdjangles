@@ -4,7 +4,7 @@ $(function(){
     var current_pending_list = [];
     var current_waiting_list = [];
 
-    setInterval(refresh_all_friend_list,1000);
+    setInterval(refresh_all_friend_list,2000);
 
     function refresh_all_friend_list() {
         refresh_friend_list();
@@ -91,14 +91,15 @@ $(function(){
     function refresh_friend_list() {
         $.post('/get_friend_list/',{},
             function (data) {
-                // console.log("Friend list: "+data.friend_list);
-                // console.log(current_friend_list);
+                console.log("Friend list: "+data.friend_list);
+                console.log(current_friend_list);
                 var friend_list = data.friend_list;
                 var list = $('body aside.sidebar-right-collapse ul.list-group.sidebar_friendlist#friend_list');
                 for(var i = 0; i < current_friend_list.length; i++){
                     if($.inArray(current_friend_list[i],friend_list) < 0){
                         // remove friend from sidebar
                         list.find('li.list-group-item#'+current_friend_list[i]).remove();
+                        current_friend_list.splice(i,1);
                     }
                 }
                 for(var i = 0; i < friend_list.length;i++) {
@@ -143,6 +144,7 @@ $(function(){
                     if($.inArray(current_pending_list[i],pending_list) < 0){
                         // remove friend from sidebar
                         list.find('li.list-group-item#'+current_pending_list[i]).remove();
+                        current_pending_list.splice(i,1);
                     }
                 }
                 for(var i = 0; i < pending_list.length;i++) {
@@ -189,6 +191,7 @@ $(function(){
                     if($.inArray(current_waiting_list[i],waiting_on_list) < 0){
                         // remove friend from sidebar
                         list.find('li.list-group-item#'+current_waiting_list[i]).remove();
+                        current_waiting_list.splice(i,1);
                     }
                 }
                 for(var i = 0; i < waiting_on_list.length; i++) {
