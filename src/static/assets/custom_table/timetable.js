@@ -227,7 +227,7 @@ $(document).ready(function() {
         var classType = a_class['classtype'];
         var courseId =  a_class['name'];
         var cell = $('#TimeTable tbody tr').eq(row).find('td').eq(col);
-        cell.addClass('hasClass draggable');
+        cell.addClass('hasClass draggable 1st_hour');
         cell.attr('id', courseId+"|"+classType);
         cell.data('class_info',a_class);
         if (classType === 'Tutorial-Laboratory') {
@@ -314,6 +314,7 @@ $(document).ready(function() {
         // remove the whole original cell
         class_block.removeData('class_info');
         class_block.removeClass('hasClass');
+        class_block.removeClass('1st_hour');
         class_block.removeAttr('style');
         class_block.removeAttr('rowspan');
         class_block.find('div').remove();
@@ -591,14 +592,14 @@ $(document).ready(function() {
         }
     );
 
-    $('body table#TimeTable tbody').on("mouseover","td.hasClass",
+    $('body table#TimeTable tbody').on("mouseover","td.hasClass.1st_hour",
         function(){
             // console.log($(this).data('class_info'));
             var class_info = $(this).data('class_info')
             $('body center#class_info p#my_class_info').html("Location: "+class_info['room']+", "+"&emsp;"+"Enrols: "+class_info['enrols']+"/"+class_info['capacity']);
         }
     );
-    $('body table#TimeTable tbody').on("mouseout","td.hasClass",
+    $('body table#TimeTable tbody').on("mouseout","td.hasClass.1st_hour",
         function(){
             // console.log("mouse off class");
             $('body center#class_info p#my_class_info').empty();
@@ -631,8 +632,10 @@ $(document).ready(function() {
 
     $('body aside.sidebar-left-collapse div#clear_timetable_button p').on('click',
         function (){
-            $('body table#TimeTable td.hasClass').each(
+            $('body table#TimeTable td.hasClass.1st_hour').each(
                 function () {
+                    // console.log($(this).data('col')+","+$(this).data('row'));
+                    // console.log($(this).data('class_info'));
                     remove_this_class_stream_from_timetable($(this).data('class_info'));
                 }
             );
