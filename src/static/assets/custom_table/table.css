@@ -93,24 +93,24 @@ tbody > tr > td:first-child {
 }*/
 
 table > tbody > tr > td.first_hour {
-    border-left: 2.5px dashed #000;
-    border-right: 2.5px dashed #000;
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
 
-    border-top: 2.5px dashed #000;
+    border-top: 3px dashed #000;
 }
 
 table > tbody > tr > td.middle_hours {
-    border-left: 2.5px dashed #000;
-    border-right: 2.5px dashed #000;
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
 }
 
 table > tbody > tr > td.last_hour {
-    border-left: 2.5px dashed #000;
-    border-right: 2.5px dashed #000;
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
 
-    border-bottom: 2.5px dashed #000;
+    border-bottom: 3px dashed #000;
 }
 
 table > tbody > tr > td.individual {
-    border: 2.5px dashed #000;
+    border: 3px dashed #000;
 }

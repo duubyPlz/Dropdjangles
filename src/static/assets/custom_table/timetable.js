@@ -191,7 +191,7 @@ $(document).ready(function() {
                                                                         "padding" : "9px",
                                                                         "position" : "absolute",
                                                                         "top" : "2px",
-                                                                        "left" : "16px"})
+                                                                        "left" : "5px"})
 
         } else {
             friend_username = $(this).val();
@@ -239,7 +239,7 @@ $(document).ready(function() {
             cell = $('#TimeTable tbody tr').eq(row+i).find('td').eq(col);
             cell.addClass('hasClass draggable');
             cell.attr('id', courseId+"|"+classType);
-            $(cell).attr('style', 'border-top-width: 5px; border-top-color: #e8c447');
+            $(cell).attr('style', 'border-top-width: 4px; border-top-color: #e8c447');
         }
     }
 
