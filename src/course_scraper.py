@@ -47,6 +47,28 @@ for prefix in prefix_list:
                     if course not in course_list: #add the course to course_list if
                         course_list.append(course)#it doesn't already exist there
 
+# ######################################################
+# S2: USING EACH COURSE CODE, RETRIEVES TIMETABLING DATA
+# ######################################################
 
-for course in course_list:
-    print course
+#get the current teaching period
+semest1 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Dec']
+currDate = subprocess.check_output(["date"])
+dateList = currDate.split(" ")
+currMonth = dateList[1].strip()
+currYear = dateList[5].strip()
+
+currSem = "2" #default value
+if currMonth in semest1:
+    currSem = "1"
+
+#manually set year and semester
+currSem = "2"
+currYear = "2015"
+
+#loop over each course
+#replace with: for subject in sys.stdin.readlines(): 
+#to test with STDIN instead of every course available
+for subject in course_list: 
+#for subject in sys.stdin.readlines():
+    sys.stdout.write("course = Course(name=\"{0}\", semester={1}, year={2})\n".format(subject, currSem, currYear));
