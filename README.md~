@@ -20,9 +20,6 @@ Recommended: Use virtualenv
 pip install -r requirements.txt 
 pip install --upgrade django-crispy-forms
 
-python populate_timetable.py
-python populate_classes.py
-
 python manage.py migrate 
 python manage.py runserver
 
