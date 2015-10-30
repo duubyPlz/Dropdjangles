@@ -22,28 +22,28 @@ def populate():
     i = 0
     for course in courseFile.readlines():
         course = course.strip()
-        #print course
+        print course
         exec(course)
-        #course.save()
+        course.save()
         i = i + 1
 
     #populate classes
-    classFile = open("classLIST.txt")
-    for clss in classFile.readlines():
+    #classFile = open("classLIST.txt")
+    #for clss in classFile.readlines():
         #get current class
-        currCrs = clss
-        crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
-        if (crsFind is not None):
-            currCrs = crsFind.group(1)
+    #    currCrs = clss
+    #    crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
+    #    if (crsFind is not None):
+    #        currCrs = crsFind.group(1)
     
-        relatedCourse = Course.objects.get(name=currCrs)
-        exec(clss)
-        c.course_id = relatedCourse.id
-        c.save()
+    #    relatedCourse = Course.objects.get(name=currCrs)
+    #    exec(clss)
+    #    c.course_id = relatedCourse.id
+    #    c.save()
 
 #start population
 if __name__ == '__main__':
-    print "Starting timetable population from scraper"
+    print "Starting course population from scraper"
     populate()
 
 # ADD COURSE
