@@ -17,11 +17,11 @@
 
 .title {
     font-family: 'Lato', sans-serif;
-    font-size: 50px;
+    font-size: 49px;
     font-weight: 100;
     color: #ecc936;
-    margin-bottom: 30px;
-    margin-top: -10px;
+    margin-bottom: 20px;
+    margin-top: -20px;
 }
 
 .sidebar_remove_btn {
@@ -44,6 +44,14 @@
 
 .sidebar_friendlist {
     text-align: center;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: 7px;
+    padding-left: 7px;
 }
+
+.friend_username_highlight {
+    display:inline;
+}
+
+/*body {
+    background-color: #292c2f;
+}*/

@@ -85,4 +85,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def as_string(self):
+        return self.user.username
+
 

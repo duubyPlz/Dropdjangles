@@ -1,10 +1,11 @@
-.title {
+body {
     font-family: 'Lato', sans-serif;
+    font-weight: 300;
 }
 
-.tableClassSelectingNotAvail {
+/*.tableClassSelectingNotAvail {
     background-color: gray;
-}
+}*/
 .tableClassSelectingAvail{
     background-color: white;
 }
@@ -13,12 +14,37 @@
     height: 10px;
     cursor: default;
 }
+
+table tbody tr td div.hasFriendsClass{
+    /*background-color: #E42121;*/
+    /*height: 10px;*/
+    cursor: default;
+
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    left:0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display:table-row;
+    opacity: 0.7;
+    /*background-color: rgba(86,205,245,0.7);    */
+}
+
+
 #userOne{
     background-color: red;
 }
 
 table, td, th {
     border: 1px solid black;
+    table-layout: fixed;
+    position: relative;
+    padding: 0px;
+    width: 117px;
+    height: 58px;
+    /*z-index: -*/1;
 }
 
 .remove_class {
@@ -38,4 +64,53 @@ table, td, th {
   color: #000000;
   text-decoration: none;
   opacity: 0.4;
+}
+
+.table > thead > tr > td {
+  color: #fff;
+  background-color: #4F4F4F;
+  vertical-align: middle;
+}
+
+tbody > tr > td:first-child {
+  color: #fff;
+  background-color: #4f4f4f;
+  padding-top: 5px;
+}
+
+.draggable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+/*.table > tbody > tr > td.dropzone.over {
+    border: 2px dashed #000;
+}*/
+
+table > tbody > tr > td.first_hour {
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
+
+    border-top: 3px dashed #000;
+}
+
+table > tbody > tr > td.middle_hours {
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
+}
+
+table > tbody > tr > td.last_hour {
+    border-left: 3px dashed #000;
+    border-right: 3px dashed #000;
+
+    border-bottom: 3px dashed #000;
+}
+
+table > tbody > tr > td.individual {
+    border: 3px dashed #000;
 }

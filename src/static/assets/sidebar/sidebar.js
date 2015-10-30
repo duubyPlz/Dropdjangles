@@ -1,25 +1,4 @@
 $(function(){
-    // $('.link-yellow').on('mouseover',self,
-    //     function(){
-    //         $(this).addClass('selected');
-    //     }
-    // ); 
-    // $('.link-yellow').on('mouseout',self,
-    //     function(){
-    //         $(this).removeClass('selected');
-    //     }
-    // );
-
-
-    // $('.link-yellow').on({
-    //     mouseenter: function () {
-    //         $(this).addClass('selected');
-    //     },
-    //     mouseleave: function () {
-    //         $(this).removeClass('selected');
-    //     }    
-    // });
-
     $('body aside.sidebar-left-collapse div.sidebar-links').on("mouseover",".link-yellow",
         function(){
             $(this).addClass('selected');
@@ -31,7 +10,7 @@ $(function(){
         }
     );
 
-
+    // add course to list
     $('body .sidebar-left-collapse .input-group.margin .btn.btn-default.not-focusable').on('click',
         function() {
             var required_course_code = $(this).parent().parent().find('input').val().toUpperCase();
@@ -42,7 +21,7 @@ $(function(){
                 var sidebar_links = $('body aside.sidebar-left-collapse div.sidebar-links');
                 var classes_sublinks = "";
                 for (var i = 0; i < data.class_types.length; i++){        
-                    classes_sublinks = classes_sublinks +"<li style='cursor: default;' class='sidebar_classes' id="+required_course_code+"|"+data.class_types[i]+">"+data.class_types[i]+"</li>";
+                    classes_sublinks = classes_sublinks +"<li style='cursor: move;' class='sidebar_classes draggable' id="+required_course_code+"|"+data.class_types[i]+">"+data.class_types[i]+"</li>";
                 }
                 if(data.valid) {
                     sidebar_links.append(" \
@@ -61,6 +40,7 @@ $(function(){
                         </div>");
                 }
             });
+            $(this).parent().parent().find('input').val('');
         }
     );
 
@@ -71,9 +51,13 @@ $(function(){
             var required_course_code = $(this).siblings()[0].innerHTML;
             var obj = $(this);
             $("#TimeTable tbody tr").find('td.hasClass').each(function() {
-                var current_course_code = $(this).children().children()[0].innerHTML;
-                if (current_course_code == required_course_code) {
-                    $(this).find('div.remove_class').trigger('click');
+                if ($(this).children().children()[0]) {
+                    var current_course_code = $(this).children().children()[0].innerHTML;
+                    console.log($(this).children().children()[0]);
+                    console.log($(this).children().children()[0].innerHTML);
+                    if (current_course_code == required_course_code) {
+                        $(this).find('div.remove_class').trigger('click');
+                    }
                 }
             });
             // console.log(classes);

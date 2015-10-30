@@ -34,6 +34,8 @@ class MyRegistrationView(RegistrationView):
 
 urlpatterns = [
     url(r'^$|^login/$', views.login, name='login'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^forgot_password/$', views.forgot_password, name='forgot_password'),
     url(r'^timetable/$', views.timetable, name='timetable'),
 
     url(r'^admin/', include(admin.site.urls)),
@@ -47,6 +49,19 @@ urlpatterns = [
     url(r'^get_all_class/$',views.get_all_class,name='get_all_class'),
     url(r'^course_add/$',views.course_add,name='course_add'),
     url(r'^course_remove/$',views.course_remove,name='course_remove'),
+    url(r'^get_friends_classes/$', views.get_friends_classes, name ='get_friends_classes'),
+
+    # For POST request that deal with friend list
+    url(r'^add_friend/$',views.add_friend,name='add_friend'),
+    url(r'^remove_friend/$',views.remove_friend,name='remove_friend'),
+    url(r'^accept_friend_request/$',views.accept_friend_request,name='accept_friend_request'),
+    url(r'^deny_friend_request/$',views.deny_friend_request,name='deny_friend_request'),
+    url(r'^get_friend_list/$',views.get_friend_list,name='get_friend_list'),
+    url(r'^get_pending_friend_list/$',views.get_pending_friend_list,name='get_pending_friend_list'),
+    url(r'^get_waiting_friend_list/$',views.get_waiting_friend_list,name='get_waiting_friend_list'),
+
+
+    url(r'^timetable_have_classtype_this_course/$',views.timetable_have_classtype_this_course,name='timetable_have_classtype_this_course'),
 ]
 
 if settings.DEBUG:

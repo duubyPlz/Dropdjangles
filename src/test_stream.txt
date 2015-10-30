@@ -1,5 +1,0 @@
-c1 = Class(name="COMP3331", time_from="1800", time_to="2000", day=2, classtype="Laboratory", enrols=19, capacity=21, room="Oboe  Lab J17 304")
-next-stream
-c1 = Class(name="COMP3331", time_from="1600", time_to="1800", day=0, classtype="Lecture", enrols=189, capacity=196, room="Ainsworth Building G03")
-c2 = Class(name="COMP3331", time_from="1400", time_to="1500", day=2, classtype="Lecture", enrols=189, capacity=196, room="Law Theatre G04")
-next-stream
