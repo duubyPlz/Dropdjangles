@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'unsjg7+!+e%am*pk*ax+hr-4y@!*+a7#$u4xbc+9nqu9$$7!_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['dropjangles.herokuapp.com']
 
