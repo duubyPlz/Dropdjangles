@@ -1,1 +1,1 @@
-web: gunicorn dropjangles.wsgi --log-file -
+web: gunicorn dropjangles.wsgi
