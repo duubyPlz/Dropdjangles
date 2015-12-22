@@ -3,7 +3,6 @@ psycopg2==2.6.1
 wheel==0.24.0
 virtualenv==13.1.2
 swampdragon
-static==0.4
 dj-static==0.0.6
 dj-database-url==0.3.0
 django-crispy-forms==1.5.2
