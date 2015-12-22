@@ -25,7 +25,7 @@ SECRET_KEY = 'unsjg7+!+e%am*pk*ax+hr-4y@!*+a7#$u4xbc+9nqu9$$7!_-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dropjangles.herokuapp.com]
+ALLOWED_HOSTS = ['dropjangles.herokuapp.com']
 
 # setup email for jangle
 # this is a real gmail account
@@ -118,7 +118,7 @@ USE_TZ = True
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
