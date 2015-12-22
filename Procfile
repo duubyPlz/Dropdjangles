@@ -1,1 +1,1 @@
-web: gunicorn dropjangles.wsgi --preload --log-file -
+web: gunicorn dropjangles.wsgi
