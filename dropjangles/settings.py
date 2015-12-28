@@ -112,7 +112,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 import urlparse
-redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
+redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL'))
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.RedisCache',
