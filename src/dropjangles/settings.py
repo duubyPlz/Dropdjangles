@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'unsjg7+!+e%am*pk*ax+hr-4y@!*+a7#$u4xbc+9nqu9$$7!_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['dropjangles.herokuapp.com']
 
@@ -108,6 +108,26 @@ DATABASES = {'default': dj_database_url.config()}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+import urlparse
+redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL','http://localhost:6379'))
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
+        }
+    }
+}
+
+
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
 
 
 # Internationalization
