@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     # third party app
     'crispy_forms',
     'registration',
-    'swampdragon',
+    # 'swampdragon',
     # my app
     'timetable',
 )
@@ -112,7 +112,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 import urlparse
-redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL'))
+redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL','http://localhost:6379'))
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.RedisCache',
