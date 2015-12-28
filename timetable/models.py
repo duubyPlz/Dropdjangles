@@ -1,12 +1,12 @@
 from django.db import models
 from django.forms import ModelForm
-from swampdragon.models import SelfPublishModel
-from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer
+# from swampdragon.models import SelfPublishModel
+# from timetable.serializers import TimetableSerializer, ClassSerializer, CourseSerializer
 
 from django.contrib.auth.models import User
 
-class Timetable(SelfPublishModel, models.Model):
-    serializer_class = TimetableSerializer
+class Timetable(models.Model):
+    # serializer_class = TimetableSerializer
     name = models.CharField(max_length=100,default="15s2")
     courses = models.ManyToManyField("Course", blank=True)
     classes = models.ManyToManyField("Class", blank=True, related_name="timetable")
@@ -14,8 +14,8 @@ class Timetable(SelfPublishModel, models.Model):
     def __str__(self):
         return self.name
 
-class Course(SelfPublishModel, models.Model):
-    serializer_class = CourseSerializer
+class Course(models.Model):
+    # serializer_class = CourseSerializer
     SEMESTERS = (
         (0, 'One'),
         (1, 'Two'),
@@ -28,8 +28,8 @@ class Course(SelfPublishModel, models.Model):
         return self.name
 
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
-class Class(SelfPublishModel, models.Model):
-    serializer_class = ClassSerializer
+class Class(models.Model):
+    # serializer_class = ClassSerializer
     DAYS = (
         (0, 'Monday'),
         (1, 'Tuesday'),

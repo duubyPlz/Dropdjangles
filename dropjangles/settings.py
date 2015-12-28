@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     # third party app
     'crispy_forms',
     'registration',
-    # 'swampdragon',
+    'swampdragon',
     # my app
     'timetable',
 )
