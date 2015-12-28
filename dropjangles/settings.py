@@ -111,17 +111,24 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
+import urlparse
+redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6959'))
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redistogo:87566d2929c9ae493cd69a2e41daa636@tarpon.redistogo.com:11869/",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
         }
     }
 }
 
+
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+BROKER_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 
 
 # Internationalization
