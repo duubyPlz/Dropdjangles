@@ -18,7 +18,7 @@ django.setup()
 
 def populate():
     #populate courses
-    courseFile = open("courseLIST.txt")
+    courseFile = open("src/2016s1_django_course_list.txt")
     i = 0
     for course in courseFile.readlines():
         break
