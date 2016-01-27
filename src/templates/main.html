@@ -1,29 +1,31 @@
-  {% load static swampdragon_tags %}
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <link rel="icon" href="{% static "assets/img/logo.png" %}">
-    <title>Dropjangles</title>
+  <link rel="icon" href="{% static "assets/img/logo.png" %}">
+  <title>Dropjangles</title>
 
-    <!-- Bootstrap -->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{% static "assets/css/custom.css" %}" rel="stylesheet" />
-    <link href="{% static "assets/css/table.css" %}" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="{% static "assets/css/custom.css" %}" rel="stylesheet" />
+  <link href="{% static "assets/custom_table/table.css" %}" rel="stylesheet" />
 
-    <!-- side bar -->
-    <link rel="stylesheet" href="{% static "assets/css/sidebar-collapse.css" %}">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+  <!-- side bar -->
+  <link rel="stylesheet" href="{% static "assets/sidebar/sidebar-collapse.css" %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,100' rel='stylesheet' type='text/css'>
 
-    <!-- jasny-bootstrap -->
-    <link rel="stylesheet" href="{% static "assets/jasny-bootstrap/css/jasny-bootstrap.css" %}">
+
+  <!-- jasny-bootstrap -->
+  <link rel="stylesheet" href="{% static "assets/jasny-bootstrap/css/jasny-bootstrap.css" %}">
 
 
     <!-- Select 2 css 
@@ -51,260 +53,359 @@
         <center>
           <img src='{% static "assets/img/logo.png" %}' id='logo-short'>
         </center>
-
+        <!-- onkeypress="return event.keyCode != 13;"  -->
         <form method='POST' action='' class="input-group margin">
+          <input type="text" onkeypress="return event.keyCode != 13;" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="on" autofocus=1>
           <datalist id="courses">
             {% for course in course_list %}
             <option value='{{ course.name }}'>{{ course.name }}</option>
             {% endfor %}
           </datalist>
-          <input type="text" name="course_code" list="courses" class="form-control" placeholder="course code" autocomplete="off">
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-default not-focusable">
+            <button type="button" class="btn btn-default not-focusable">
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </button>
           </span>
-        </form>
+        </form> 
+        <div id='clear_timetable_button' style='text-align:center;color:#e8c447;margin-top:-10px;margin-bottom:-20px;cursor:pointer;'>
+        <br>
+        <p>Clear Timetable</p>
+        </div>
         <div class="sidebar-links">
-
           {% for course in timetableCourses %}
           <div class="link-yellow">
-            <a href="#">  <!-- need # to expand the dropdown -->
+            <a style="cursor: default;">
               <div class='sidebar_remove_btn'>
-                <form action="" method="POST">
                 <span class='sidebar_course_code'>{{ course.name }}</span>
-                  <input type="hidden" value="{{ course.name }}" name='rm_course_code' size="0">
-                  <!-- <button type="submit" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course"> -->
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
-              </form>
-            </div>
-          </a>
-          <ul class="sub-links">
-
-            {% for class in class_list %}
+                <button type="button" class="btn btn-xs btn-link not-focusable" value="Click" name="rm_course">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </div>
+            </a>
+            <ul class="sub-links">
+              {% for class in class_list %}
               {% if class.course == course %}
-              <button class="addClass btn btn-warning">{{ class.get_classtype_display }}</button>
-              <li><a href="" class='sidebar_classes'>{{ class.classtype }}</a></li>
+              <div class='sidebar_classes draggable' style="cursor: move;" id="{{ course }}|{{ class.classtype }}">{{ class.classtype }}</div>
               {% endif %}
-            {% endfor %}
-            
-          </ul>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
+        <div style="color:gray; text-align:center; margin-top:-20px;">
+        Drag and drop classes
+        </div>
+      </aside>
 
-        
-      </div>
-    </aside>
 
-
-<!-- Content -->
-    <div class='timetable'>
+      <!-- Content -->
+      <div class='timetable'>
         <center>
-            <div class='title'>
-                Dropjangles
-            </div>
+          <div class='title'>
+            Dropjangles
+          </div>
         </center>
-        <table class="table table-bordered" style="width:70%; table-layout: fixed " id="TimeTable" align="center">
-            <tr id="Days">
-                <td></td>
-                <td>Monday</td>
-                <td>Tuesday</td>
-                <td>Wednesday</td>
-                <td>Thursday</td>
-                <td>Friday</td>
-                <td>Saturday</td>
-                <td>Sunday</td>
+        <table class="table table-bordered" height="800" style="width:65%; table-layout: fixed; text-align:center; border-top: 0px" id="TimeTable" align="center">
+          <thead id="Days">
+            <td style='border-color: #fff; background-color: #fff;'></td>
+            <td>MONDAY</td>
+            <td>TUESDAY</td>
+            <td>WEDNESDAY</td>
+            <td>THURSDAY</td>
+            <td>FRIDAY</td>
+            <td>SATURDAY</td>
+            <td>SUNDAY</td>
+          </thead>
+          <tbody>
             <tr id="9:00 am">
-                <td>9:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>9:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="10:00 am">
-                <td>10:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>10:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
 
             <tr id="11:00 am">
-                <td>11:00 am</td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>11:00 am</td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="12:00 pm">
-                <td>12:00 pm</td>   
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>12:00 pm</td>   
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>
             <tr id="1:00 pm">
-                <td>1:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>1:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="2:00 pm">
-                <td>2:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>2:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="3:00 pm">
-                <td>3:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>3:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="4:00pm">
-                <td>4:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>4:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>    
             <tr id="5:00pm">
-                <td>5:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>5:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="6:00pm">
-                <td>6:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>6:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="7:00pm">
-                <td>7:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>7:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr>  
             <tr id="8:00pm">
-                <td>8:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>8:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
             <tr id="9:00pm">
-                <td>9:00 pm</td>    
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
+              <td>9:00 pm</td>    
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td>
             </tr> 
+          </tbody>
         </table>
-    </div>
-    <!-- End Content-->
+      </div>
+      <center id='class_info'>
+        <p id='my_class_info'></p>
+      </center>
+      <!-- End Content-->
 
-    <aside class="sidebar-right-collapse">
-      <p class='text-center'>Welcome, {{ user }} <br>
-      <a href="{% url 'auth_logout' %}?next=/timetable/">logout</a></p>
-      <!-- <center class="panel-title">Welcome, {{ user }}</center>
-      <br>
-      <center class="panel-title">Friends</center> -->
+      <aside class="sidebar-right-collapse">
+        <p class='text-center'>Welcome, {{ user }} <br>
+          <a style="cursor: pointer;" data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true">Help</span></a>
+          <a>&ensp;|&ensp; </a>
+          <a href="{% url 'auth_logout' %}?next=/timetable/"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+        </p>
+        <center>          
+          <button type='button' id="download_timetable" class='btn btn-success btn-sm'>
+            Download Timetable
+          </button>
+        </center>    
+
+
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="friend_list">
+          <li class="h4 list-group-item active">Friends</li>
+
+          <li class="list-group-item">
+            <a style="cursor: pointer;" data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
+          </li>
+        </ul>
+
+ 
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="pending_list">
+          <li class="h4 list-group-item active">Pending</li>
+
+        </ul>
+
+        <ul class="list-group sidebar_friendlist" style="color: black;" id="waiting_list">
+          <li class="h4 list-group-item active">Waiting On</li>
+
+
+
     </aside>
 
+      <!-- Modal creation -->
+      <div id="helpModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Help/How To Use</h4>
+            </div>
+            <div class="modal-body">
 
 
+              <p>Welcome to Dropjangles timetabler, an unofficial timetable maker for UNSW courses. <br>
+                Dropjangles uses a drag and drop interface. To use this product, simply add courses from the <br>
+                search bar, then drag each class from the sidebar to the timetable to add to your timetable.
+              </p>
+              <img src="{% static 'assets/img/draggable_help.jpg' %}" style="width: 400px;">
 
+              <p>You can also move already placed classes by clicking and dragging them. <br>
+                 The available timeslots are highlighted with a dotted border.
+              </p>
+              <img src="{% static 'assets/img/moveable.png' %}" style="">
 
-<script>
-$(document).ready(function(){
-    $("#search").typeahead({
-        name : 'sear',
-        remote: {
-            url : 'connection.php?query=%QUERY'
-        }
-        
-    });
-});
-</script>
+              <p>You can add friends via the 'Add Friend' button. Once they have accepted your request, <br>
+                 you can click the checkbox in the friends menu to view an overlay of their timetable<br>
+                 on top of yours.
+              </p>
+              <img src="{% static 'assets/img/friend_checkbox.png' %}" style="">
 
-<!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+              <p>Your friends' timetable will be a different colour so you can easily see what times <br>
+                 they have compared to yours. It's that easy!
+              </p>
+              <img src="{% static 'assets/img/friend_overlay.png' %}" style="">
 
-<!-- AngularJS -->
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
 
-<!-- jquery css -->
-<link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
+        </div>
+      </div>
+    <!-- Modal creation -->
+    <div id="addFriendModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add a friend</h4>
+          </div>
+          <div class="modal-body">
+            <p>Enter the username or email of the person you wish to add.</p>
+            <div class='form-inline'>
+              <div class="form-group">
+                <input type="text" autofocus=1 class="form-control" size="60" name="friend_search" placeholder="username or email">
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static "js/bootstrap.js" %}"></script>
+                <button class="btn btn-primary" type="submit">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+                <p></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
 
-<!-- Sidebar -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        var links = $('.sidebar-links > div');
-        links.on('click', function () {
+        </div>
+      </div>
+
+      
+      <!-- Plugin JavaScript -->
+
+      <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+
+      <!-- AngularJS -->
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+
+      <!-- jquery css -->
+      <link rel="stylesheet" href="{% static "assets/css/jquery-ui-custom.css" %}">
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "js/bootstrap.js" %}"></script>
+
+      <!-- Sidebar -->
+      <script>
+        $(function () {
+          var links = $('.sidebar-links > div');
+          links.on('click', function () {
             links.removeClass('selected');
             $(this).addClass('selected');
-
+          });
         });
-    });
-</script>
+      </script>
 
-<!-- Controller -->
-<!--script src="{% static "app.js" %}"></script-->
-<script src="{% static "controllers.js" %}"></script>
-<script src="{% static "timetable.js" %}"></script>
 
-  {% include 'tail_js.html' %}
 
-</body>
-</html>
+
+      <!-- Export timetable -->
+      <!-- http://ngiriraj.com/pages/htmltable_export/demo.php -->
+      <script src="{% static 'assets/export_timetable/tableExport.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jquery.base64.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/html2canvas.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/libs/sprintf.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/jspdf.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/jspdf/libs/base64.js' %}"></script>
+      <script src="{% static 'assets/export_timetable/dom-to-image.js' %}"></script>
+      <!-- Controller -->
+      <!--script src="{% static "app.js" %}"></script-->
+      <!-- <script src="{% static "controllers.js" %}"></script> -->
+      <script src="{% static "assets/custom_table/timetable.js" %}"></script>   <!-- JS that control the display of classes on the timetable -->
+      <script src="{% static "assets/sidebar/sidebar.js" %}"></script>
+      <script src="{% static "assets/sidebar/sidebar_friends.js" %}"></script>
+
+      {% include 'tail_js.html' %}
+
+    </body>
+    </html>

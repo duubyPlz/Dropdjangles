@@ -34,8 +34,13 @@ def populate():
     #    currCrs = clss
     #    crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
     #    if (crsFind is not None):
+<<<<<<< HEAD
     #       currCrs = crsFind.group(1)
 
+=======
+    #        currCrs = crsFind.group(1)
+    
+>>>>>>> 5f19117c9bf1d0c4be1f526639748d8cdc7df3f5
     #    relatedCourse = Course.objects.get(name=currCrs)
     #    exec(clss)
     #    c.course_id = relatedCourse.id
@@ -43,7 +48,7 @@ def populate():
 
 #start population
 if __name__ == '__main__':
-    print "Starting timetable population from scraper"
+    print "Starting course population from scraper"
     populate()
 
 # ADD COURSE
