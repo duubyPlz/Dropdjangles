@@ -18,28 +18,28 @@ django.setup()
 
 def populate():
     #populate courses
-    courseFile = open("courseLIST.txt")
+    courseFile = open("2016s1_django_course_list.txt")
     i = 0
     for course in courseFile.readlines():
         course = course.strip()
-        #print course
+        print course
         exec(course)
-        #course.save()
+        course.save()
         i = i + 1
 
     #populate classes
-    classFile = open("classLIST.txt")
-    for clss in classFile.readlines():
-        #get current class
-        currCrs = clss
-        crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
-        if (crsFind is not None):
-            currCrs = crsFind.group(1)
+    #classFile = open("2016s1_django_class_list.txt")
+    #for clss in classFile.readlines():
+    #    #get current class
+    #    currCrs = clss
+    #    crsFind = re.search(r'([A-Z]{4}[0-9]{4})',currCrs)        
+    #    if (crsFind is not None):
+    #        currCrs = crsFind.group(1)
     
-        relatedCourse = Course.objects.get(name=currCrs)
-        exec(clss)
-        c.course_id = relatedCourse.id
-        c.save()
+    #    relatedCourse = Course.objects.get(name=currCrs)
+    #    exec(clss)
+    #    c.course_id = relatedCourse.id
+    #    c.save()
 
 #start population
 if __name__ == '__main__':

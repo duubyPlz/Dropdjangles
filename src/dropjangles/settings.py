@@ -151,4 +151,6 @@ DRAGON_URL = 'http://127.0.0.1:9999/'
 
 AUTH_PROFILE_MODULE = 'timetable.UserProfile'
 
+import dj_database_url
+DATABASE['default'] = dj_database_url.config()
 
