@@ -18,7 +18,7 @@ django.setup()
 
 def populate():
     #populate courses
-    courseFile = open("2016s1_django_course_list.txt")
+    courseFile = open("src/2016s1_django_course_list.txt")
     i = 0
     for course in courseFile.readlines():
         course = course.strip()
@@ -28,7 +28,7 @@ def populate():
         i = i + 1
 
     #populate classes
-    classFile = open("2016s1_django_class_list.txt")
+    classFile = open("src/2016s1_django_class_list.txt")
     for clss in classFile.readlines():
         #get current class
         currCrs = clss
