@@ -104,7 +104,10 @@ WSGI_APPLICATION = 'dropjangles.wsgi.application'
 import dj_database_url
 DATABASES = {}
 
+# This is for using heroku psql
 DATABASES = {'default': dj_database_url.config()}
+# This is for using ElephantSQL
+DATABASES['default'] = dj_database_url.parse('  postgres://vprbxibz:llKqGuawWsKcn0gXwyqfniWDfajzLxlA@pellefant.db.elephantsql.com:5432/vprbxibz', conn_max_age=600)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
