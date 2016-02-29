@@ -90,16 +90,18 @@ WSGI_APPLICATION = 'dropjangles.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'timetable',
-#         'USER': 'admin',
-#         'PASSWORD': 'admin',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+# Using ELephantSQL
+DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vprbxibz',
+        'USER': 'vprbxibz',
+        'PASSWORD': 'llKqGuawWsKcn0gXwyqfniWDfajzLxlA',
+        'HOST': 'pellefant-01.db.elephantsql.com',
+        'PORT': '',
+    }
+}
 
 # This is for using heroku database
 import dj_database_url
