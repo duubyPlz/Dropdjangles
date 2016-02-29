@@ -1,0 +1,774 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"todo",
+				"todo_data"
+			],
+			[
+				"html",
+				"html_parser"
+			],
+			[
+				"Suspen",
+				"suspend_account"
+			],
+			[
+				"display",
+				"display_login_page"
+			],
+			[
+				"username",
+				"username"
+			],
+			[
+				"bleat",
+				"bleat_id"
+			],
+			[
+				"blea",
+				"bleats_dir"
+			],
+			[
+				"displ",
+				"display_forgot_password_page"
+			],
+			[
+				"userna",
+				"username"
+			],
+			[
+				"auth",
+				"authenticated"
+			],
+			[
+				"reload",
+				"reload_bitter_to_login"
+			],
+			[
+				"hiddeN",
+				"hidden_request"
+			],
+			[
+				"account",
+				"account_activation_page"
+			],
+			[
+				"activation",
+				"activation_code"
+			],
+			[
+				"fh",
+				"fh"
+			],
+			[
+				"full",
+				"full_name"
+			],
+			[
+				"new_",
+				"new_account_registration_page"
+			],
+			[
+				"create",
+				"create_new_account"
+			],
+			[
+				"crea",
+				"create_new_account"
+			],
+			[
+				"reply_bleat",
+				"reply_bleat_post"
+			],
+			[
+				"news",
+				"news_feed_status"
+			],
+			[
+				"curr_blea",
+				"curr_bleat_id"
+			],
+			[
+				"friend",
+				"friends_list"
+			],
+			[
+				"curr",
+				"curr_bleat_id"
+			],
+			[
+				"new_fe",
+				"news_feed_bleats_list"
+			],
+			[
+				"re",
+				"render_bleat_for_display"
+			],
+			[
+				"inc",
+				"incorrect_username_password"
+			],
+			[
+				"text",
+				"textfield"
+			],
+			[
+				"get_",
+				"get_comment_display_for_bleat_auxiliary"
+			],
+			[
+				"get",
+				"get_comment_display_for_bleats"
+			],
+			[
+				"all_bleats",
+				"all_bleasts_to_display"
+			],
+			[
+				"get_all",
+				"get_all_bleats_from_user"
+			],
+			[
+				"array",
+				"array_to_hash"
+			],
+			[
+				"roo",
+				"root_bleat"
+			],
+			[
+				"all",
+				"all_reply_bleats"
+			],
+			[
+				"original",
+				"original_bleat"
+			],
+			[
+				"reset",
+				"reset_bleat_update_form"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"jasny",
+				"jasny-bootstrap"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"test",
+				"test_condition"
+			],
+			[
+				"is",
+				"isOperator"
+			],
+			[
+				"program",
+				"program_parser"
+			],
+			[
+				"poe",
+				"poet_name"
+			],
+			[
+				"poet",
+				"poets_total_words"
+			],
+			[
+				"poets",
+				"poets_total_words"
+			],
+			[
+				"log",
+				"log_prob"
+			],
+			[
+				"check",
+				"checked_words"
+			],
+			[
+				"F",
+				"FALSE"
+			],
+			[
+				"target",
+				"target_word"
+			],
+			[
+				"loop",
+				"loop_list_handler"
+			],
+			[
+				"sep",
+				"string_separater"
+			],
+			[
+				"add",
+				"add_program_header"
+			],
+			[
+				"line",
+				"line"
+			],
+			[
+				"pro",
+				"program_parser"
+			],
+			[
+				"string",
+				"string_separater"
+			],
+			[
+				"echo",
+				"echo_handler"
+			],
+			[
+				"end",
+				"end_idx"
+			],
+			[
+				"sta",
+				"start_index"
+			],
+			[
+				"var",
+				"var_handler"
+			],
+			[
+				"bul",
+				"builtin_name"
+			],
+			[
+				"bu",
+				"builtin_name"
+			],
+			[
+				"start",
+				"start_var_index"
+			],
+			[
+				"n",
+				"nIndividuals"
+			],
+			[
+				"pre",
+				"prereq_recursive"
+			],
+			[
+				"print",
+				"print"
+			],
+			[
+				"reques",
+				"requested_page"
+			],
+			[
+				"http",
+				"http_request"
+			],
+			[
+				"small",
+				"small_file"
+			],
+			[
+				"star",
+				"start_vi"
+			],
+			[
+				"old_",
+				"old_white_set"
+			],
+			[
+				"alt",
+				"altColour"
+			],
+			[
+				"white",
+				"white_red_blue"
+			],
+			[
+				"path",
+				"path_from_root"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insat",
+				"Package Control: Install Package"
+			],
+			[
+				"packe",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kelvin/Desktop/getshitdone.com/getshitdone.sublime-project",
+		"/Users/kelvin/Downloads/FlexSlider-1.8 3/demo-stuff/demo.css",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/demo/css/flexslider.css",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/demo/css/custom.css",
+		"/Users/kelvin/Downloads/FlexSlider-1.8 3/demo.html",
+		"/Users/kelvin/Downloads/FlexSlider-1.8/demo.html",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/demo/index.html",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/demo/custom.js",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/demo/custom.css",
+		"/Users/kelvin/Desktop/wordpress media/index.html",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/CSS3-Slider/index.html",
+		"/Users/kelvin/Desktop/dual-real-estate/design media/tv slides/CSS3-Slider/res/css/style.css",
+		"/Users/kelvin/Desktop/test.html",
+		"/Users/kelvin/Desktop/dual-real-estate/www/index.html",
+		"/Users/kelvin/Desktop/checklist.com/static/css/bootstrap.css",
+		"/Users/kelvin/Desktop/index.html",
+		"/Users/kelvin/Desktop/index.php",
+		"/Users/kelvin/Desktop/dual-real-estate/www/under_construction.html",
+		"/Users/kelvin/Desktop/My Profile/software engineer/_redirects",
+		"/Users/kelvin/Desktop/My Profile/software engineer/online resume/viewer.js",
+		"/Users/kelvin/Desktop/My Profile/software engineer/online resume/index.html",
+		"/Users/kelvin/Desktop/custom.js",
+		"/Users/kelvin/Desktop/My Profile/software engineer/index.html",
+		"/Users/kelvin/Desktop/my_website/static/css/slideshow.css",
+		"/Users/kelvin/Desktop/my_website/index.html",
+		"/Users/kelvin/Downloads/Flato - Responsive Resume, Personal Portfolio Template.html",
+		"/Users/kelvin/Desktop/my_website/static/css/style.css",
+		"/Users/kelvin/Desktop/my_website/static/js/scrolling-nav.js",
+		"/Users/kelvin/Desktop/my_website/static/js/custom.js",
+		"/Users/kelvin/Desktop/my_website/static/css/custom.css",
+		"/Users/kelvin/Downloads/startbootstrap-scrolling-nav-1.0.3/index.html",
+		"/Users/kelvin/Desktop/my_website/resume.html",
+		"/Users/kelvin/Desktop/my_website/wsgi/myproject/myproject/urls.py",
+		"/Users/kelvin/Desktop/my_website/libs/secrets.py",
+		"/Users/kelvin/Desktop/my_website/setup.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab11/play_guess_number.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab11/guess_number.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab10/cgi_webserver.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab10/creditcard.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/login.pl.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/login.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab09/cgi-bin/browser.cgi",
+		"/Users/kelvin/Desktop/cs2041/labs/lab08/tags.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab08/shortest_path.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab08/shortest_path.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab08/lectures.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/frequency.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/total_words.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/log_probability.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/frequency.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab07/count_word.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/whale.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/prereq.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/echon.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/digits.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/all_whales.py",
+		"/Users/kelvin/Desktop/cs2041/labs/lab06/all_whales.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/tail.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/shuffle.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/shuffle_test.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/lol.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/echon.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab05/digits.pl",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/webserver/handle_request.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/jpg2png.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/email_image.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab04/date_image.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/echon.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/ex3.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/file_sizes.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/digits.sh",
+		"/Users/kelvin/Desktop/cs2041/labs/lab03/courses.sh",
+		"/Users/kelvin/Desktop/cs2041/ass2/bitter.cgi",
+		"/Users/kelvin/Desktop/cs2041/ass2/diary.txt",
+		"/Users/kelvin/Desktop/cs2041/ass2/perl.pl",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/js/custom_login.js",
+		"/Users/kelvin/Desktop/cs2041/ass2/test.cgi",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/spinners.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/js/bleats.js",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/js/custom_navbar.js",
+		"/Users/kelvin/Desktop/cs2041/ass2/test.txt",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/custom.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/TODO List.txt",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/profile.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/get_cookie.cgi",
+		"/Users/kelvin/Desktop/cs2041/ass2/set_cookie.cgi",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/bootstrap.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/progress_bar.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/progress_bar_flash.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/img/Bitter_files/custom.js",
+		"/Users/kelvin/Desktop/cs2041/tut/week 12 tutorial.txt",
+		"/Users/kelvin/Desktop/cs2041/tut/week 11 tutorial copy.txt",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/css/custom_login.css",
+		"/Users/kelvin/Desktop/cs2041/ass2/developer-v1.4/assets/plugins/jquery-migrate-1.2.1.min.js",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/js/char_count.js",
+		"/Users/kelvin/Desktop/cs2041/ass2/index.html",
+		"/Users/kelvin/Desktop/cs2041/ass2/static/js/loading.js",
+		"/Users/kelvin/Downloads/css3-preloader-transition-1125/css3-preloader-transition-start/index.html",
+		"/Users/kelvin/Desktop/cs2041/ass2/cgi_webserver.py",
+		"/Users/kelvin/Desktop/cs2041/ass2/testhtml/index.html",
+		"/Users/kelvin/Desktop/cs2041/ass2/server.py",
+		"/Users/kelvin/Desktop/MATLAB/week_1_lab.m",
+		"/Users/kelvin/Desktop/MATLAB/week_2_lab.m",
+		"/Users/kelvin/Desktop/MATLAB/week_4_lab.m",
+		"/Users/kelvin/Desktop/MATLAB/week_6_lab.m",
+		"/Users/kelvin/Desktop/MATLAB/week_8_lab.m",
+		"/Users/kelvin/Desktop/cs2041/ass2/cgi-bin/bitter.cgi",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/dropjangles/settings.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/registration_complete.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/main.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/dropjangles/urls.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/logout.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/custom_login.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/registration_form.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/registration_base.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/static/assets/custom_login/custom_login.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/timetable/views.py",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/login.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/static/css/bootstrap.css",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/password_change_form.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/password_reset_confirm.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/registration/password_reset_form.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/base.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/head_css.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/tail_js.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/templates/index.html",
+		"/Users/kelvin/Desktop/dropjangles_proj/dropjangles_django/src/dump.rdb",
+		"/Users/kelvin/Desktop/test_css_js/css/grayscale.css"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"\\.\\./",
+			"theme",
+			"images/img_",
+			".pdf",
+			"imges",
+			"ajax-loader",
+			"src=\"js/",
+			"src=\"images/",
+			"href=\"js/",
+			"href=\"css/",
+			"h2",
+			"aboutme",
+			"h2",
+			"header",
+			"ehader",
+			"h3",
+			"#fff",
+			"#000",
+			"#fff",
+			"active",
+			"mutt",
+			"registration",
+			"mutt",
+			"mugg",
+			"mutt",
+			"send_activtion_mail",
+			"mutt",
+			"MUTT",
+			"mutt",
+			"email.sh",
+			"mutt",
+			"setting",
+			"textarea",
+			"new_bleat_modal",
+			"new_bleat",
+			"html_parser",
+			"filter_about_me",
+			"html_parser",
+			"mutt",
+			"mail",
+			"about_me",
+			"onclicck",
+			"delete_account",
+			"delete_bleat",
+			"my $new_profile_pic = param('input_profile_pic');\n    my $delete_profile_pic = param('input_delete_profile_pic');",
+			"update_user_profile",
+			"password_reset",
+			"display_forgot_password_page",
+			"password_reset",
+			"password reset",
+			"img",
+			"textarea",
+			"listen_to",
+			"account_is_activated",
+			"to_listaccount_is_activated",
+			"to_list",
+			"get_current_username",
+			"activate_account",
+			"red",
+			"span",
+			"account_ac",
+			"account_",
+			"account_ac",
+			"account",
+			"account_is_activated",
+			"open",
+			"new_bleat_modal",
+			"get_bleat_created",
+			"get_new_bleat",
+			"script",
+			"modal",
+			"new_account_registration",
+			"username_is_valid",
+			"reg_password",
+			"valid",
+			"document.getElementById",
+			"hidden",
+			"create_new_account",
+			"username",
+			"reload",
+			"textarea",
+			"reply_bleat_post",
+			"render_bleat",
+			"render",
+			"404",
+			"reply",
+			"view comment",
+			"news_feed",
+			"display_search",
+			"display_bleat",
+			"bleat_search",
+			"get_bleats_display",
+			"display_search",
+			"span",
+			"get_user_details",
+			"display_search_result",
+			"search_result",
+			"get_bleat_details",
+			"search_result",
+			"bleat_search",
+			"bleats_dir",
+			"user_search",
+			"news_feed",
+			"user_search",
+			"debug",
+			"404 not found",
+			"new_bleat_ok_modal",
+			"get_new_bleat_modal",
+			"new_bleat_modal",
+			"get_bleat_created_modal",
+			"debug",
+			"display_user_search_page",
+			"GET",
+			"users_dir",
+			"user_d",
+			"listen",
+			"background-color",
+			"navbar",
+			"#",
+			"href=\"#\"",
+			"href='#'",
+			"-href=>'#'",
+			"-href=>\"#\"",
+			"display_news_feed",
+			"hidden",
+			"a bleat",
+			"post a bleat",
+			"display_news_feed"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"images/",
+			"../../p",
+			"src=\"static/js/",
+			"src=\"static/img/",
+			"href=\"static/js/",
+			"href=\"static/css/",
+			"filter_html",
+			"#dd4814",
+			"bleat_time_converter",
+			"add_code",
+			"add_program_header",
+			"add_prog_header",
+			"request",
+			"requested_item"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "main.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"diart",
+				"diary.txt"
+			],
+			[
+				"prog",
+				"static/css/progress_bar.css"
+			],
+			[
+				"boot",
+				"static/css/bootstrap.css"
+			],
+			[
+				"get_co",
+				"get_cookie.cgi"
+			],
+			[
+				"custom",
+				"static/js/custom_login.js"
+			],
+			[
+				"profile",
+				"static/css/profile.css"
+			],
+			[
+				"bootst",
+				"static/css/bootstrap.css"
+			],
+			[
+				"css",
+				"static/css/custom.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 221.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
