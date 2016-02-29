@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'dropjangles.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
+DATABASES = {}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -100,14 +100,22 @@ WSGI_APPLICATION = 'dropjangles.wsgi.application'
 #         'PORT': '',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vprbxibz',
+        'USER': 'vprbxibz',
+        'PASSWORD': 'llKqGuawWsKcn0gXwyqfniWDfajzLxlA',
+        'HOST': 'pellefant-01.db.elephantsql.com',
+        'PORT': '',
+    }
+}
 
-import dj_database_url
-DATABASES = {}
+# import dj_database_url
+# DATABASES = {}
+# # This is for using heroku psql
+# DATABASES = {'default': dj_database_url.config()}
 
-# This is for using heroku psql
-DATABASES = {'default': dj_database_url.config()}
-# This is for using ElephantSQL
-DATABASES['default'] = dj_database_url.parse('  postgres://vprbxibz:llKqGuawWsKcn0gXwyqfniWDfajzLxlA@pellefant.db.elephantsql.com:5432/vprbxibz')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
