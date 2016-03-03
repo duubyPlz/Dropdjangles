@@ -103,9 +103,9 @@ DATABASES = {}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vprbxibz',
-        'USER': 'vprbxibz',
-        'PASSWORD': 'llKqGuawWsKcn0gXwyqfniWDfajzLxlA',
+        'NAME': 'udpumquz',
+        'USER': 'udpumquz',
+        'PASSWORD': 'bRWgbXTUMSnj8eCMwim_QH4shE09xbUf',
         'HOST': 'pellefant-01.db.elephantsql.com',
         'PORT': '',
     }
