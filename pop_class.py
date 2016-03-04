@@ -18,7 +18,7 @@ django.setup()
 
 def populate():
     #populate courses
-    courseFile = open("src/2016s1_django_course_list.txt")
+    courseFile = open("2016s1_django_course_list.txt")
     i = 0
     for course in courseFile.readlines():
         break
@@ -30,7 +30,7 @@ def populate():
 
     #populate classes
     #classFile = open("classLIST.txt")
-    classFile = open("src/2016s1_django_class_list.txt")
+    classFile = open("2016s1_django_class_list.txt")
     #classFile = open("test_stream.txt")
 
     #initialise stream slots (currently max of 9)
