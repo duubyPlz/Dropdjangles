@@ -91,8 +91,8 @@ $(function(){
     function refresh_friend_list() {
         $.post('/get_friend_list/',{},
             function (data) {
-                console.log("Friend list: "+data.friend_list);
-                console.log(current_friend_list);
+                // console.log("Friend list: "+data.friend_list);
+                // console.log(current_friend_list);
                 var friend_list = data.friend_list;
                 var list = $('body aside.sidebar-right-collapse ul.list-group.sidebar_friendlist#friend_list');
                 for(var i = 0; i < current_friend_list.length; i++){

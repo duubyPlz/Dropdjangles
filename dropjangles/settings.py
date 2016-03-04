@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'unsjg7+!+e%am*pk*ax+hr-4y@!*+a7#$u4xbc+9nqu9$$7!_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['dropjangles.herokuapp.com']
 
@@ -90,6 +90,7 @@ WSGI_APPLICATION = 'dropjangles.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -100,6 +101,8 @@ DATABASES = {}
 #         'PORT': '',
 #     }
 # }
+
+# elephant SQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -111,6 +114,7 @@ DATABASES = {
     }
 }
 
+# Heroku database
 # import dj_database_url
 # DATABASES = {}
 # # This is for using heroku psql

@@ -32,6 +32,7 @@ $(document).ready(function() {
         }
     }); 
     var click_on_class_flag = [0,-1,-1];
+    
     //  this will gray out all the available timeslot
     $('body').on('dragstart','.draggable',
         function(){
@@ -41,7 +42,9 @@ $(document).ready(function() {
 
             courseId = this.id.split('|')[0];
             classType = this.id.split('|')[1];
-            // console.log('clicked');
+            // console.log('before split: id: '+ this.id);
+            // console.log('split: '+ this.id.split('|')[1]);
+            console.log('running class search on '+courseId+ "-" +classType);
             // check if already greyed out
             if (timetable.find('td').hasClass('tableClassSelectingAvail')) {
                 $('td').removeClass('tableClassSelectingAvail');
