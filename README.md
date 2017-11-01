@@ -24,7 +24,6 @@ Known not working: Firefox (Drag and Drop functionality not working)
 
 `pip install -r requirements.txt`  
 `pip install --upgrade django-crispy-forms`  
-
 `python manage.py migrate auth`  
 > Note: this will throw errors - that is expected due to the order in which things have to be migrated.
 
